@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escape Room - O Porão</title>
+    <link rel="stylesheet" href="jogo.css">
+    <script src="jogo.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>O Porão</h1>
+        <p>Encontre uma saída antes que seja tarde.</p>
+    </header>
+
+    <main class="sala">
+        <!-- O palco mantém a proporção 4:3; o canvas fica absoluto dentro dele. -->
+        <div class="palco">
+            <canvas id="sala" width="800" height="600"
+                    aria-label="Porão interativo: porta, painel, fios e geladeira"></canvas>
+            <!-- O painel HTML fica sobre o canvas e recebe as interações dos minijogos. -->
+            <section id="interacao" class="painel-interacao" hidden>
+                <button id="fechar" class="fechar" type="button" aria-label="Fechar">✕</button>
+                <h2 id="titulo-interacao"></h2>
+                <div id="conteudo-interacao"></div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <section>
+            <h2>Inventário</h2>
+            <ul id="inventario"><li>Vazio</li></ul>
+        </section>
+        <button id="abrir-diario" type="button">Diário de pistas</button>
+        <p id="mensagem" aria-live="polite">Você acordou em um porão desconhecido...</p>
+    </footer>
+</body>
+</html>

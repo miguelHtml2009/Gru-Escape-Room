@@ -1,0 +1,112 @@
+/* Importa a fonte de aparência datilografada usada no clima de terror. */
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+
+/* Faz largura e altura incluírem bordas e preenchimento. */
+* {
+    box-sizing: border-box;
+}
+
+/* Define o visual geral da página. */
+body {
+    margin: 0;
+    padding: 20px;
+    background: #101010;
+    color: #eee;
+    font-family: 'Special Elite', monospace;
+}
+
+/* Centraliza o título e o subtítulo. */
+header {
+    text-align: center;
+}
+
+/* Destaca o título em vermelho. */
+header h1 {
+    color: #c62828;
+    letter-spacing: 4px;
+    margin-bottom: 8px;
+}
+
+/* Limita a largura da sala na página. */
+.sala {
+    width: 100%;
+    max-width: 1000px;
+    margin: 20px auto;
+}
+
+/* Mantém uma proporção fixa de 4:3, sem deformar o canvas ao redimensionar a janela. */
+.palco {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border: 4px solid #342820;
+    border-radius: 8px;
+    background: #111;
+}
+
+/* O canvas ocupa o palco inteiro, posicionado de forma absoluta. A imagem é desenhada
+   em coordenadas internas 800x600 e o navegador apenas escala o canvas proporcionalmente. */
+#sala {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* O painel interativo cobre a sala quando uma caixa, senha ou diário é aberto. */
+.painel-interacao {
+    position: absolute;
+    inset: 5%;
+    z-index: 2;
+    overflow: auto;
+    padding: clamp(14px, 3vw, 28px);
+    color: #f3e9d2;
+    background: rgba(9, 10, 12, 0.97);
+    border: 2px solid #806b48;
+    border-radius: 8px;
+    box-shadow: 0 0 35px #000;
+}
+
+/* Atributo hidden precisa esconder o painel mesmo com display definido por esta classe. */
+.painel-interacao[hidden] {
+    display: none;
+}
+
+/* Posiciona o botão de fechar no canto do painel. */
+.fechar {
+    float: right;
+    font-size: 1.1rem;
+}
+
+/* Padroniza os controles de interação. */
+button, input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+    padding: 8px 12px;
+    margin: 4px;
+    color: #f5ead5;
+    background: #29231e;
+    border: 1px solid #806b48;
+    border-radius: 4px;
+}
+
+
+footer {
+    max-width: 1000px;
+    margin: auto;
+    padding: 15px;
+    background: #1b1b1b;
+    border: 1px solid #39312a;
+}
+
+#mensagem {
+    color: #e7c88b;
+}
+
+}

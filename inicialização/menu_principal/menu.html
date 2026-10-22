@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu do Jogo</title>
+  <link rel="stylesheet" href="menu.css">
+</head>
+<body>
+    <header><h1>A vingança de Gru</h1></header>
+    <main>
+      <nav aria-label="Menu principal">
+        <a href="/minigame1.html"><button type="button">Jogar</button></a>
+        <a href="../comojogar/comojogar.html"><button type="button" data-action="instructions">Como jogar</button></a>
+        <button id="configb">Configurações</button>
+        <a href="/Jogo/Cutscenes/cutscene_1.html"><button type="button">História</button></a>
+        <a href="../creditos/creditos.html"><button type="button">Créditos</button></a>
+        <div id="modal" class="modal">
+            <div class="modal-cont">
+              <div class="modal-head">
+                <h2 id="tconfig">Configurações</h2>
+                  <span class="fecha">&times;</span>
+              </div>
+                
+              <div class="modal-body">
+                  <p>Exemplo conteudo</p>
+              </div>               
+                
+            </div>
+        </div>
+      </nav>
+  </main>
+  <aside>
+    <img src="/Sprites/gru_brine.jpeg" alt="Gru">
+  </aside>
+  <script src="menu.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+
+body{
+    display: flex;
+    justify-content: center;
+    min-height: 4px;
+    min-width: 900px;
+    font-family: 'Schoolbell', cursive;
+    color: white;
+    background-color: black;
+}
+h1{
+    color: red;
+}
+a{
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 15px 25px;
+}
+footer{
+    margin-top: 40px;
+    display: flex;
+    gap:24px;
+}
+
