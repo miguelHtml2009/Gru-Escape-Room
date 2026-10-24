@@ -1,0 +1,11 @@
+Começar a programar:
+cd ~/Gru-Escape-Room
+git pull 
+git status
+
+code .
+
+Terminou de programar: 
+git add .
+git commit -m "texto de o que fez"
+git push
