@@ -2,11 +2,23 @@
 body{
     display: flex;
     justify-content: center;
-    min-height: 4px;
+    align-items: flex-start;
+    min-height: 100vh;
     min-width: 900px;
     font-family: 'Schoolbell', cursive;
     color: white;
     background-color: black;
+    margin: 0;
+}
+.elementos{
+    text-align: center;
+    background-color: gray;
+    width: 90vw;
+    max-width: 1200px;
+    min-width: 900px;
+    min-height: 90vh;
+    margin:5vh;
+    padding-bottom: 5vh;
 }
 h1{
     color: red;
@@ -18,9 +30,8 @@ a{
     white-space: nowrap;
     padding: 15px 25px;
 }
+
 footer{
     margin-top: 40px;
-    display: flex;
-    gap:24px;
 }
 

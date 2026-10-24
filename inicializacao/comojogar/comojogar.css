@@ -29,8 +29,9 @@ footer{
     width: 90vw;
     max-width: 1200px;
     min-width: 900px;
-    height: 90vh;
+    min-height: 90vh;
     margin:5vh;
+    padding-bottom: 5vh;
 }
 
 
