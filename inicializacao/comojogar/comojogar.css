@@ -23,6 +23,10 @@ a{
 footer{
     margin-top: 50px;  
 }
+img{
+    max-width: 75%;
+    height: auto;
+}
 .elementos{
     text-align: center;
     background-color: gray;
