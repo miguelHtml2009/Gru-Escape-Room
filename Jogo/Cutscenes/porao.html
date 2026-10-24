@@ -202,6 +202,9 @@ footer {
     
 const canvas = document.getElementById("sala");
 const ctx = canvas.getContext("2d");
+// Troque este caminho pelo sprite da porta aberta que deseja usar.
+const SPRITE_PORTA_ABERTA = "../../Sprites/porta-aberta.png";
+let portaAberta = false;
 
 // Objetos e texturas do porão
 const objetos = [
@@ -317,6 +320,25 @@ function salvarESair() {
     window.location.href = "../inicialização/menu_principal/menu.html";
 }
 
+function abrirPainel(titulo, conteudo) {
+    document.getElementById("titulo-interacao").textContent = titulo;
+    document.getElementById("conteudo-interacao").innerHTML = conteudo;
+    document.getElementById("painel-interacao").hidden = false;
+}
+
+function fecharPainel() {
+    document.getElementById("painel-interacao").hidden = true;
+}
+
+function abrirDiario() {
+    abrirPainel(
+        "Diário de pistas",
+        `
+        <p>Você ainda não encontrou nenhuma pista.</p>
+        `
+    );
+}
+
 async function desenharSala() {
     const imagensCarregadas = [];
 
@@ -392,14 +414,9 @@ function clicarCanvas(event) {
 function abrirPorta() {
     abrirPainel(
         "Porta",
-        "<p>A porta está trancada. Você precisa digitar uma senha.</p>"
-    );
-}
-
-function abrirGeladeira() {
-    abrirPainel(
-        "Geladeira",
-        "<p>A geladeira está fechada. Talvez exista algo dentro dela.</p>"
+        portaAberta
+            ? "<p>A porta está aberta. Você pode sair do porão.</p>"
+            : '<p>A porta está trancada. Digite a senha de quatro dígitos.</p><button type="button" onclick="digitarSenha()">Digitar senha</button>'
     );
 }
 
@@ -409,10 +426,35 @@ function digitarSenha() {
         `
             <p>Digite a senha de quatro dígitos:</p>
 
-            <input id="senha" type="password" maxlength="4">
+            <input id="senha" type="text" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" autocomplete="off">
 
             <button onclick="verificarSenha()">Confirmar</button>
         `
+    );
+}
+
+function verificarSenha() {
+    const campoSenha = document.getElementById("senha");
+    if (!campoSenha) return;
+
+    if (campoSenha.value === "0000") {
+        portaAberta = true;
+        const porta = objetos.find(objeto => objeto.id === "porta");
+        porta.imagem = SPRITE_PORTA_ABERTA;
+        desenharSala();
+
+        document.getElementById("mensagem").textContent = "Senha correta! A porta foi aberta.";
+        document.getElementById("conteudo-interacao").innerHTML =
+            "<p>Senha correta! A porta está aberta.</p>";
+    } else {
+        document.getElementById("mensagem").textContent = "Senha incorreta. Tente novamente.";
+    }
+}
+
+function abrirGeladeira() {
+    abrirPainel(
+        "Geladeira",
+        "<p>A geladeira está fechada. Talvez exista algo dentro dela.</p>"
     );
 }
 
