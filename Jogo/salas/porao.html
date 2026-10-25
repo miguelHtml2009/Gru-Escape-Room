@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escape Room - O Porão</title>
+    <link rel="stylesheet" href="CSS.css">
+</head>
+
+<body>
+    <button id="botao-menu" type="button" onclick="abrirMenu()">
+        ☰
+    </button>
+
+    <section id="menu-pausa" hidden>
+        <h2>Menu do jogo</h2>
+
+        <button type="button" onclick="salvarESair()">
+            Salvar e sair
+        </button>
+
+        <button type="button" onclick="fecharMenu()">
+            Voltar ao jogo
+        </button>
+    </section>
+
+    <header>
+        <h1>O Porão</h1>
+    </header>
+
+    <main class="sala">
+        <div class="palco">
+            <canvas id="sala" width="800" height="600" onclick="clicarCanvas(event)">
+            </canvas>
+        </div>
+    </main>
+
+    <footer>
+
+        <section>
+            <h2>Inventário</h2>
+
+            <ul id="inventario">
+                <li>Vazio</li>
+            </ul>
+        </section>
+
+        <button id="abrir-diario" type="button" onclick="abrirDiario()">
+            Diário de pistas
+        </button>
+
+        <p id="mensagem" aria-live="polite">
+            Você acordou em um porão desconhecido...
+        </p>
+
+        <nav id="minimapa" aria-label="Minimapa de salas">
+            <h2>Minimapa</h2>
+            <div class="salas">
+
+                <section class="sala-mapa" aria-current="page">
+                    Porão
+                </section>
+
+                <a class="sala-mapa" href="./laboratorio.html">
+                    Laboratório
+                </a>
+
+                <a class="sala-mapa" href="./fliperama.html">
+                    Fliperama
+                </a>
+
+                <a class="sala-mapa" href="./linha-de-montagem.html">
+                    Linha de montagem
+                </a>
+
+                <a class="sala-mapa" href="./refugio.html">
+                    Refúgio
+                </a>
+
+            </div>
+        </nav>
+    </footer>
+
+    <script>
+
+        const canvas = document.getElementById("sala");
+        const ctx = canvas.getContext("2d");
+
+        const SPRITE_PORTA_ABERTA = "../../Sprites/porta-aberta.png";
+
+        let portaAberta = false;
+
+        const objetos = [
+
+            {
+                id: "fundo",
+                imagem: "../../Sprites/parede.png",
+                x: 0,
+                y: 0,
+                largura: 800,
+                altura: 600
+            },
+
+            {
+                id: "porta",
+                imagem: "../../Sprites/porta-fechada.png",
+                x: 30,
+                y: 150,
+                largura: 606 / 2.8,
+                altura: 947 / 2.2,
+
+                onclick: function () {
+                    abrirPorta();
+                }
+            },
+
+            {
+                id: "geladeira",
+                imagem: "../../Sprites/geladeira-fechada.png",
+                x: 600,
+                y: 235,
+                largura: 204 / 1.2,
+                altura: 408 / 1.2,
+
+                onclick: function () {
+                    abrirGeladeira();
+                }
+            },
+
+            {
+                id: "senha",
+                imagem: "../../Sprites/senha-porta.png",
+                x: 260,
+                y: 220,
+                largura: 397 / 5,
+                altura: 411 / 5,
+
+                onclick: function () {
+                    digitarSenha();
+                }
+            },
+
+            {
+                id: "fios",
+                imagem: "../../Sprites/fios-fechado.png",
+                x: 400,
+                y: 450,
+                largura: 120,
+                altura: 120,
+
+                onclick: function () {
+                    ligarFios();
+                }
+            },
+
+            {
+                id: "chao",
+                cor: "#66b2b2",
+                x: 0,
+                y: 570,
+                largura: 800,
+                altura: 150
+            }
+
+        ];
+
+        function carregarImagem(caminho) {
+
+            return new Promise((resolve, reject) => {
+
+                const imagem = new Image();
+
+                imagem.onload = () => resolve(imagem);
+
+                imagem.onerror = () =>
+                    reject(
+                        new Error(
+                            "Não foi possível carregar a imagem: " + caminho
+                        )
+                    );
+
+                imagem.src = caminho;
+            });
+        }
+
+        async function desenharSala() {
+
+            const imagensCarregadas = [];
+
+            for (const objeto of objetos) {
+
+                if (objeto.cor) {
+
+                    imagensCarregadas.push(objeto);
+                    continue;
+                }
+
+                try {
+
+                    const imagem =
+                        await carregarImagem(objeto.imagem);
+
+                    imagensCarregadas.push({
+                        ...objeto,
+                        imagemCarregada: imagem
+                    });
+
+                } catch (erro) {
+
+                    console.error(
+                        "Não foi possível carregar:",
+                        erro
+                    );
+                }
+            }
+
+            ctx.clearRect(
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
+
+
+            for (const objeto of imagensCarregadas) {
+
+                if (objeto.cor) {
+
+                    ctx.fillStyle = objeto.cor;
+
+                    ctx.fillRect(
+                        objeto.x,
+                        objeto.y,
+                        objeto.largura,
+                        objeto.altura
+                    );
+
+                    continue;
+                }
+
+                ctx.drawImage(
+                    objeto.imagemCarregada,
+                    objeto.x,
+                    objeto.y,
+                    objeto.largura,
+                    objeto.altura
+                );
+            }
+        }
+
+        function clicarCanvas(event) {
+
+            const rect =
+                canvas.getBoundingClientRect();
+
+            const x =
+                (event.clientX - rect.left) *
+                (canvas.width / rect.width);
+
+            const y =
+                (event.clientY - rect.top) *
+                (canvas.height / rect.height);
+
+
+            for (
+                let i = objetos.length - 1;
+                i >= 0;
+                i--
+            ) {
+
+                const objeto = objetos[i];
+
+
+                if (
+                    objeto.id === "fundo" ||
+                    !objeto.onclick
+                ) {
+                    continue;
+                }
+
+
+                if (
+                    x >= objeto.x &&
+                    x <= objeto.x + objeto.largura &&
+                    y >= objeto.y &&
+                    y <= objeto.y + objeto.altura
+                ) {
+
+                    objeto.onclick();
+
+                    return;
+                }
+            }
+
+
+            document.getElementById("mensagem").textContent =
+                "Não há nada interessante aqui.";
+        }
+
+        function abrirMenu() {
+
+            document.getElementById("menu-pausa").hidden = false;
+        }
+
+        function fecharMenu() {
+
+            document.getElementById("menu-pausa").hidden = true;
+        }
+
+        function salvarESair() {
+
+            const dadosJogo = {
+
+                inventario: Array.from(
+                    document.querySelectorAll("#inventario li")
+                ).map(function (item) {
+
+                    return item.textContent;
+                }),
+
+                mensagem:
+                    document.getElementById("mensagem").textContent
+            };
+
+            localStorage.setItem(
+                "savePorao",
+                JSON.stringify(dadosJogo)
+            );
+
+            window.location.href =
+                "../../../inicializacao/menu_principal/menu.html";
+        }
+
+        function abrirDiario() {
+
+            document.getElementById("mensagem").textContent =
+                "Você ainda não encontrou nenhuma pista.";
+        }
+
+        function abrirPorta() {
+
+            if (portaAberta) {
+
+                document.getElementById("mensagem").textContent =
+                    "A porta está aberta. Você pode sair do porão.";
+
+                return;
+            }
+
+            document.getElementById("mensagem").textContent =
+                "A porta está trancada. Você pode tentar digitar uma senha no painel ao lado.";
+
+            return;
+        }
+
+        function digitarSenha() {
+
+            document.getElementById("mensagem").innerHTML = `
+                Digite a senha de quatro dígitos:
+
+                <input
+                    id="campo-senha"
+                    type="text"
+                    inputmode="numeric"
+                    pattern="[0-9]{4}"
+                    maxlength="4"
+                    autocomplete="off"
+                >
+
+                <button
+                    type="button"
+                    onclick="verificarSenha()">
+                    Confirmar
+                </button>
+            `;
+
+            document
+                .getElementById("campo-senha")
+                .focus();
+        }
+
+        function verificarSenha() {
+
+            const campoSenha =
+                document.getElementById("campo-senha");
+
+            if (!campoSenha) {
+                return;
+            }
+
+
+            if (campoSenha.value === "0000") {
+
+                portaAberta = true;
+
+                const porta =
+                    objetos.find(
+                        objeto => objeto.id === "porta"
+                    );
+
+                porta.imagem =
+                    SPRITE_PORTA_ABERTA;
+
+                desenharSala();
+
+                document.getElementById("mensagem").textContent =
+                    "Senha correta! A porta foi aberta.";
+
+                return;
+            }
+
+
+            document.getElementById("mensagem").textContent =
+                "Senha incorreta. Tente novamente.";
+        }
+
+        function abrirGeladeira() {
+
+            document.getElementById("mensagem").textContent =
+                "A geladeira está fechada. Talvez exista algo dentro dela.";
+        }
+
+        function ligarFios() {
+            document.getElementById("mensagem").textContent =
+                "A caixa de fios está parafusada. Você precisa de uma chave de fenda.";
+        }
+
+        desenharSala();
+
+    </script>
+
+</body>
+
+</html>
