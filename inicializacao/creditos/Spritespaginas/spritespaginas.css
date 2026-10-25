@@ -19,9 +19,20 @@ footer{
     margin-top: 40px;
 }
 footer nav{
-    gap: 24px;
+    justify-content: space-around;
     display: flex;  
 }
+
 h1{
     color: red;
+}
+.elementos{
+    text-align: center;
+    background-color: gray;
+    width: 90vw;
+    max-width: 1200px;
+    min-width: 900px;
+    min-height: 90vh;
+    margin:5vh;
+    padding-bottom: 5vh;
 }
