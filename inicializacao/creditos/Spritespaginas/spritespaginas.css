@@ -36,3 +36,11 @@ h1{
     margin:5vh;
     padding-bottom: 5vh;
 }
+#galeria{
+    background-color:white;
+    width: 90%;
+}
+#galeria img{
+    width: 70%;
+    height:50%;
+}
