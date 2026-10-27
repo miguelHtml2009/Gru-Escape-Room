@@ -14,6 +14,8 @@ a{
     color: black;
     white-space: nowrap;
     text-decoration: none;
+    border-radius: 5px;
+    box-shadow: 3px 5px;
 }
 footer{
     margin-top: 40px;
