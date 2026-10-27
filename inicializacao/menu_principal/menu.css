@@ -63,13 +63,21 @@ button {
     width: 200px;
     font-family: 'Schoolbell', cursive;
     font-size: 18px;
-    border-radius: 5px;
+    border-radius: 8px;
     border-color: white;
     border-width: 3px;
     color: #000000;
     padding: 10px 20px;
     margin: 10px;
     cursor: pointer;
+    transition-duration: 0.5s;
+}
+button:hover{
+    border-radius: 8px;
+    border-color: white;
+    border-width: 3px;
+    color: white;
+    background-color: black;
 }
 
 img {

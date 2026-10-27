@@ -16,6 +16,13 @@ a{
     white-space: nowrap;
     text-decoration: none;
     padding: 15px 25px;
+    border-radius: 8px;
+    transition-duration: 0.5s;
+    border: solid black 2px;
+}
+a:hover{
+    background-color: rgb(0, 0, 0);
+    color: white;
 }
 footer{
     margin-top: 40px;
