@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Rock+Salt&display=swap');
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="formulariofalso.css">
@@ -14,18 +17,18 @@
 
         <main>
             <form> 
-                <fieldset>
-                    <label for="nomeid">Nome:</label>
-                    <input type="text" id="nomeid" required>
+                <fieldset class="forms">
+                    <label for="nomeid" >Nome:</label>
+                    <input type="text" id="nomeid" placeholder="Informe o seu nome" required>
 
                     <label for="emailid">Email:</label>
-                    <input type="email" id="emailid" required>
+                    <input type="email" id="emailid"  placeholder="Informe um Email válido" required>
 
                     <label for="idadeid">Idade:</label>
-                    <input type="number" id="idadeid">
+                    <input type="number" id="idadeid" placeholder="Informe sua idade" min="0" max="120"required>
 
                     <label for="mmid">Mensagem:</label>
-                    <textarea id="mmid" required></textarea>
+                    <textarea id="mmid" required placeholder="O que deseja nos dizer?"></textarea>
                         
                     <input type="submit" id="enviaid" value="Enviar">
                 </fieldset>
