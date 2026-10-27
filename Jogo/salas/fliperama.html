@@ -44,7 +44,7 @@
             </ul>
         </section>
         <button id="abrir-diario" type="button" onclick="abrirDiario()">Diário de pistas</button>
-        <p id="mensagem" aria-live="polite">Você acordou em um porão desconhecido...</p>
+        <p id="mensagem" aria-live="polite"></p>
 
         <nav id="minimapa" aria-label="Minimapa de salas">
             <h2>Minimapa</h2>
@@ -102,7 +102,7 @@
         },
 
         {
-            id: "Minigame1",
+            id: "máquina-jogo",
             imagem: "../../Sprites/minigame1.png",
             x: 800 - 510/2.2,
             y: 570 - 864/2.2,
@@ -110,8 +110,24 @@
             altura: 864/2.2,
 
             onclick: function () {
-                    jogarBananatron();
+                window.location.href = "../../minigame1.html";
                 }
+        },
+
+        {
+            id:"minion",
+            imagem: "../../Sprites/minion1.png",
+            x: (800 - 524/2.4) / 2,
+            y: 570 - 653/2.4 +12,
+            largura: 524/2.4,
+            altura: 653/2.4,
+
+            onclick: function () {
+                document.getElementById("mensagem").textContent =
+                    "Minion: Ei cara!. Vai se foder";
+                
+                }
+            
         }
 
     ];
@@ -248,28 +264,6 @@
 
         document.getElementById("mensagem").textContent =
             "Não há nada interessante aqui.";
-    }
-
-    function jogarBananatron() {
-        if (document.getElementById("bananatron-overlay")) return;
-
-        const overlay = document.createElement("section");
-        overlay.id = "bananatron-overlay";
-        overlay.setAttribute("aria-label", "Minigame Bananatron");
-        overlay.style.cssText = "position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.85);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;box-sizing:border-box";
-
-        const fechar = document.createElement("button");
-        fechar.textContent = "Fechar minigame";
-        fechar.style.cssText = "margin-bottom:10px;padding:10px 16px;cursor:pointer";
-        fechar.onclick = () => overlay.remove();
-
-        const jogo = document.createElement("iframe");
-        jogo.src = "../../minigame1.html";
-        jogo.title = "Minigame Bananatron";
-        jogo.style.cssText = "width:min(100%,1000px);height:min(80vh,700px);border:0;background:#fff";
-
-        overlay.append(fechar, jogo);
-        document.body.appendChild(overlay);
     }
 
     desenharSala();

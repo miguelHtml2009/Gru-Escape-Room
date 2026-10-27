@@ -9,6 +9,7 @@
 </head>
 
 <body>
+
     <button id="botao-menu" type="button" onclick="abrirMenu()">
         ☰
     </button>
@@ -46,7 +47,7 @@
             </ul>
         </section>
 
-        <button id="abrir-diario" type="button" onclick="abrirDiario()">
+        <button id="abrir-diario" type="button" onclick="diario.abrir()">
             Diário de pistas
         </button>
 
@@ -55,7 +56,9 @@
         </p>
 
         <nav id="minimapa" aria-label="Minimapa de salas">
+
             <h2>Minimapa</h2>
+
             <div class="salas">
 
                 <section class="sala-mapa" aria-current="page">
@@ -79,7 +82,9 @@
                 </a>
 
             </div>
+
         </nav>
+
     </footer>
 
     <script>
@@ -91,79 +96,256 @@
 
         let portaAberta = false;
 
+
+        const diario = {
+
+            id: "diario",
+
+            imagem: "../../Sprites/diario.png",
+
+            x: 100,
+            y: 30,
+            largura: 600,
+            altura: 550,
+
+            aberto: false,
+
+            pistas: [],
+
+
+            abrir() {
+
+                this.aberto = !this.aberto;
+
+                desenharSala();
+
+            },
+
+
+            registrarPista(pista) {
+
+                if (!this.pistas.includes(pista)) {
+
+                    this.pistas.push(pista);
+
+                }
+
+                if (this.aberto) {
+
+                    desenharSala();
+
+                }
+
+            },
+
+
+            clicar() {
+
+                this.abrir();
+
+            },
+
+
+            desenharPistas() {
+
+                if (this.pistas.length === 0) {
+
+                    return;
+
+                }
+
+                ctx.fillStyle = "#111";
+                ctx.font = "18px Arial";
+
+                let y = this.y + 90;
+
+                for (let i = 0; i < this.pistas.length; i++) {
+
+                    const texto = `${i + 1}. ${this.pistas[i]}`;
+
+                    const linhas = quebrarTexto(
+                        texto,
+                        this.largura - 100
+                    );
+
+                    for (const linha of linhas) {
+
+                        ctx.fillText(
+                            linha,
+                            this.x + 60,
+                            y
+                        );
+
+                        y += 25;
+
+                    }
+
+                    y += 10;
+
+                }
+
+            }
+
+        };
+
+
         const objetos = [
 
             {
+
                 id: "fundo",
+
                 imagem: "../../Sprites/parede.png",
+
                 x: 0,
                 y: 0,
+
                 largura: 800,
                 altura: 600
+
             },
 
+
             {
+
                 id: "porta",
+
                 imagem: "../../Sprites/porta-fechada.png",
+
                 x: 30,
                 y: 150,
+
                 largura: 606 / 2.8,
                 altura: 947 / 2.2,
 
-                onclick: function () {
-                    abrirPorta();
+
+                clicar() {
+
+                    if (portaAberta) {
+
+                        document.getElementById("mensagem").textContent =
+                        "Porta aberta. Você pode sair.";
+
+                        return;
+
+                    }
+
+
+                    document.getElementById("mensagem").textContent =
+                        "Porta trancada. Tente a senha do painel.";
                 }
+
             },
 
+
             {
+
                 id: "geladeira",
+
                 imagem: "../../Sprites/geladeira-fechada.png",
+
                 x: 600,
                 y: 235,
+
                 largura: 204 / 1.2,
                 altura: 408 / 1.2,
 
-                onclick: function () {
-                    abrirGeladeira();
+
+                clicar() {
+
+                    document.getElementById("mensagem").textContent =
+                        "A geladeira está fechada. Talvez exista algo dentro dela.";
+
                 }
+
             },
 
+
             {
+
                 id: "senha",
+
                 imagem: "../../Sprites/senha-porta.png",
+
                 x: 260,
                 y: 220,
+
                 largura: 397 / 5,
                 altura: 411 / 5,
 
-                onclick: function () {
-                    digitarSenha();
+
+                clicar() {
+
+                    document.getElementById("mensagem").innerHTML = `
+                        Digite a senha de quatro dígitos:
+
+                        <input
+                            id="campo-senha"
+                            type="text"
+                            inputmode="numeric"
+                            pattern="[0-9]{4}"
+                            maxlength="4"
+                            autocomplete="off"
+                        >
+
+                        <button
+                            type="button"
+                            onclick="verificarSenha()">
+                            Confirmar
+                        </button>
+                    `;
+
+                    document
+                        .getElementById("campo-senha")
+                        .focus();
+
                 }
+
             },
 
+
             {
+
                 id: "fios",
+
                 imagem: "../../Sprites/fios-fechado.png",
+
                 x: 400,
                 y: 450,
+
                 largura: 120,
                 altura: 120,
 
-                onclick: function () {
-                    ligarFios();
+
+                clicar() {
+
+                    document.getElementById("mensagem").textContent =
+                        "A caixa de fios está parafusada. Você precisa de uma chave de fenda.";
+                    diario.registrarPista("Chave de Fenda é importante, ou Philips");
+
                 }
+
             },
 
+
             {
+
                 id: "chao",
+
                 cor: "#66b2b2",
+
                 x: 0,
                 y: 570,
+
                 largura: 800,
                 altura: 150
-            }
+
+            },
+
+            diario
 
         ];
+
 
         function carregarImagem(caminho) {
 
@@ -173,47 +355,20 @@
 
                 imagem.onload = () => resolve(imagem);
 
-                imagem.onerror = () =>
-                    reject(
-                        new Error(
-                            "Não foi possível carregar a imagem: " + caminho
-                        )
-                    );
+                imagem.onerror = () => reject(
+                    new Error(
+                        "Não foi possível carregar a imagem: " + caminho
+                    )
+                );
 
                 imagem.src = caminho;
+
             });
+
         }
 
+
         async function desenharSala() {
-
-            const imagensCarregadas = [];
-
-            for (const objeto of objetos) {
-
-                if (objeto.cor) {
-
-                    imagensCarregadas.push(objeto);
-                    continue;
-                }
-
-                try {
-
-                    const imagem =
-                        await carregarImagem(objeto.imagem);
-
-                    imagensCarregadas.push({
-                        ...objeto,
-                        imagemCarregada: imagem
-                    });
-
-                } catch (erro) {
-
-                    console.error(
-                        "Não foi possível carregar:",
-                        erro
-                    );
-                }
-            }
 
             ctx.clearRect(
                 0,
@@ -223,7 +378,17 @@
             );
 
 
-            for (const objeto of imagensCarregadas) {
+            for (const objeto of objetos) {
+
+                if (
+                    objeto.id === "diario" &&
+                    !objeto.aberto
+                ) {
+
+                    continue;
+
+                }
+
 
                 if (objeto.cor) {
 
@@ -237,26 +402,104 @@
                     );
 
                     continue;
+
                 }
 
-                ctx.drawImage(
-                    objeto.imagemCarregada,
-                    objeto.x,
-                    objeto.y,
-                    objeto.largura,
-                    objeto.altura
-                );
+
+                try {
+
+                    const imagem =
+                        await carregarImagem(objeto.imagem);
+
+                    ctx.drawImage(
+                        imagem,
+                        objeto.x,
+                        objeto.y,
+                        objeto.largura,
+                        objeto.altura
+                    );
+
+
+                    if (
+                        objeto.id === "diario" &&
+                        objeto.aberto
+                    ) {
+
+                        objeto.desenharPistas();
+
+                    }
+
+                } catch (erro) {
+
+                    console.error(
+                        "Não foi possível carregar:",
+                        erro
+                    );
+
+                }
+
             }
+
         }
+
+
+        function quebrarTexto(texto, larguraMaxima) {
+
+            const palavras = texto.split(" ");
+
+            const linhas = [];
+
+            let linha = "";
+
+
+            for (const palavra of palavras) {
+
+                const teste =
+                    linha === ""
+                        ? palavra
+                        : linha + " " + palavra;
+
+
+                if (
+                    ctx.measureText(teste).width <=
+                    larguraMaxima
+                ) {
+
+                    linha = teste;
+
+                } else {
+
+                    linhas.push(linha);
+
+                    linha = palavra;
+
+                }
+
+            }
+
+
+            if (linha !== "") {
+
+                linhas.push(linha);
+
+            }
+
+
+            return linhas;
+
+        }
+
 
         function clicarCanvas(event) {
 
             const rect =
                 canvas.getBoundingClientRect();
 
+
             const x =
                 (event.clientX - rect.left) *
                 (canvas.width / rect.width);
+
 
             const y =
                 (event.clientY - rect.top) *
@@ -272,11 +515,20 @@
                 const objeto = objetos[i];
 
 
-                if (
-                    objeto.id === "fundo" ||
-                    !objeto.onclick
-                ) {
+                if (!objeto.clicar) {
+
                     continue;
+
+                }
+
+
+                if (
+                    objeto.id === "diario" &&
+                    !objeto.aberto
+                ) {
+
+                    continue;
+
                 }
 
 
@@ -287,25 +539,84 @@
                     y <= objeto.y + objeto.altura
                 ) {
 
-                    objeto.onclick();
+                    objeto.clicar();
 
                     return;
+
                 }
+
             }
 
 
             document.getElementById("mensagem").textContent =
                 "Não há nada interessante aqui.";
+
         }
+
+
+        function verificarSenha() {
+
+            const campoSenha =
+                document.getElementById("campo-senha");
+
+
+            if (!campoSenha) {
+
+                return;
+
+            }
+
+
+            if (campoSenha.value === "0000") {
+
+                portaAberta = true;
+
+
+                const porta =
+                    objetos.find(
+                        objeto => objeto.id === "porta"
+                    );
+
+
+                porta.imagem =
+                    SPRITE_PORTA_ABERTA;
+
+
+                diario.registrarPista(
+                    "A senha da porta é 0000."
+                );
+
+
+                desenharSala();
+
+
+                document.getElementById("mensagem").textContent =
+                    "Senha correta! A porta foi aberta.";
+                
+                    
+
+                return;
+
+            }
+
+
+            document.getElementById("mensagem").textContent =
+                "Senha incorreta. Tente novamente.";
+
+        }
+
 
         function abrirMenu() {
 
             document.getElementById("menu-pausa").hidden = false;
+
         }
+
 
         function fecharMenu() {
 
             document.getElementById("menu-pausa").hidden = true;
+
         }
 
         function salvarESair() {
@@ -314,13 +625,16 @@
 
                 inventario: Array.from(
                     document.querySelectorAll("#inventario li")
-                ).map(function (item) {
-
-                    return item.textContent;
-                }),
+                ).map(
+                    item => item.textContent
+                ),
 
                 mensagem:
-                    document.getElementById("mensagem").textContent
+                    document.getElementById("mensagem").textContent,
+
+                pistas:
+                    diario.pistas
+
             };
 
             localStorage.setItem(
@@ -328,102 +642,9 @@
                 JSON.stringify(dadosJogo)
             );
 
+
             window.location.href =
                 "../../inicializacao/menu_principal/menu.html";
-        }
-
-        function abrirDiario() {
-
-            document.getElementById("mensagem").textContent =
-                "Você ainda não encontrou nenhuma pista.";
-        }
-
-        function abrirPorta() {
-
-            if (portaAberta) {
-
-                document.getElementById("mensagem").textContent =
-                    "A porta está aberta. Você pode sair do porão.";
-
-                return;
-            }
-
-            document.getElementById("mensagem").textContent =
-                "A porta está trancada. Você pode tentar digitar uma senha no painel ao lado.";
-
-            return;
-        }
-
-        function digitarSenha() {
-
-            document.getElementById("mensagem").innerHTML = `
-                Digite a senha de quatro dígitos:
-
-                <input
-                    id="campo-senha"
-                    type="text"
-                    inputmode="numeric"
-                    pattern="[0-9]{4}"
-                    maxlength="4"
-                    autocomplete="off"
-                >
-
-                <button
-                    type="button"
-                    onclick="verificarSenha()">
-                    Confirmar
-                </button>
-            `;
-
-            document
-                .getElementById("campo-senha")
-                .focus();
-        }
-
-        function verificarSenha() {
-
-            const campoSenha =
-                document.getElementById("campo-senha");
-
-            if (!campoSenha) {
-                return;
-            }
-
-
-            if (campoSenha.value === "0000") {
-
-                portaAberta = true;
-
-                const porta =
-                    objetos.find(
-                        objeto => objeto.id === "porta"
-                    );
-
-                porta.imagem =
-                    SPRITE_PORTA_ABERTA;
-
-                desenharSala();
-
-                document.getElementById("mensagem").textContent =
-                    "Senha correta! A porta foi aberta.";
-
-                return;
-            }
-
-
-            document.getElementById("mensagem").textContent =
-                "Senha incorreta. Tente novamente.";
-        }
-
-        function abrirGeladeira() {
-
-            document.getElementById("mensagem").textContent =
-                "A geladeira está fechada. Talvez exista algo dentro dela.";
-        }
-
-        function ligarFios() {
-            document.getElementById("mensagem").textContent =
-                "A caixa de fios está parafusada. Você precisa de uma chave de fenda.";
         }
 
         desenharSala();
