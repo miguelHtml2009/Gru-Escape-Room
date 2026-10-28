@@ -1,33 +1,37 @@
 const img = document.getElementById('img');
 const cont = document.getElementById('cont');
+const cate = document.getElementById('cate');
 const select = document.getElementById('cat');
-const menu = [
+const Menu = [
     "../../../Sprites/gru_brine.jpeg",
     "https://placehold.co/600x400",
     "../../../Sprites/tutoriall1.png",
     "../../../Sprites/tutoriall2.png"
 ];
-const porao = [
+const Porão = [
     "../../../Sprites/fios-fechado.png",
     "../../../Sprites/geladeira-fechada.png",
     "../../../Sprites/porta-aberta.png",
     "../../../Sprites/porta-fechada.png",
     "../../../Sprites/senha-porta.png",
-    "../../../Sprites/parede.png"
+    "../../../Sprites/parede.png",
+    "../../../Sprites/diario.png"
 ];
-const fliperama = [
+const Fliperama = [
     "../../../Sprites/80amarelo.jpg",
     "../../../Sprites/banana.png",
     "../../../Sprites/bananatron.png",
-    "../../../Sprites/game-over.png"
+    "../../../Sprites/game-over.png",
+    "../../../Sprites/minion1.png",
+    "../../../Sprites/minigame1.png"
 ];
 const categorias = {
-    menu : menu,
-    porao: porao,
-    fliperama: fliperama
+    Menu : Menu,
+    Porão: Porão,
+    Fliperama: Fliperama
 };
 
-let lista = menu;
+let lista = Menu;
 let posicao = 0;
 
 function proxima(){
@@ -52,6 +56,7 @@ function anterior(){
 function mostrar(){
     img.src = lista[posicao];
     cont.innerHTML = (posicao + 1) + "/" + lista.length ;
+    cate.innerHTML = select.value;
 }
 
 function trocarcategoria(novalista){
