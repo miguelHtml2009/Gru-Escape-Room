@@ -17,14 +17,15 @@
                 <p id="cate">Menu</p>
                 <img id="img" src="../../../Sprites/gru_brine.jpeg" alt="Gru malvado">
             </div>
-            <button id="botao2" onclick="anterior()">Imagem anterior</button>
-            
-                <select id="cat" onchange="escolhercategoria()">
+            <div id="botoes">
+                <button id="botao2" class="botao" onclick="anterior()">Imagem anterior</button>
+                <select id="cat" class="botao" onchange="escolhercategoria()">
                     <option value="Menu">Menu</option>
                     <option value="Porão">Porão</option>
                     <option value="Fliperama">Fliperama</option>
                 </select>
-            <button id="botao" onclick="proxima()">Próxima imagem</button>
+                <button id="botao" class="botao" onclick="proxima()">Próxima imagem</button>
+            </div>
         </main>
         <footer>
             <nav>
