@@ -15,8 +15,10 @@ body{
     margin: 0;
 }
 h1{
-    color: white;
-    font-size:45px;
+    font-size: 45px;
+    color: #e01b2b;
+    letter-spacing: 3px;
+    margin: 12px 0 28px;
     
 }
 fieldset{
@@ -70,7 +72,7 @@ textarea{
 }
 .elementos{
     text-align: center;
-    border: solid #3a0810 3px;
+    border:3px solid #5e0c19;
     border-radius: 5px;
     width: 90vw;
     max-width: 700px;
@@ -78,7 +80,8 @@ textarea{
     min-height: 70vh;
     margin:5vh;
     padding:10vh;
-    background: #2e070d;
+    background: linear-gradient(180deg, #3a0a12 0%, #2e070d 45%, #1a0407 100%);
+
     
 }
 

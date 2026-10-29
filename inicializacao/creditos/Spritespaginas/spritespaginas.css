@@ -40,7 +40,10 @@ footer nav{
 }
 
 h1{
-    color: white;
+    font-size: 45px;
+    color: #e01b2b;
+    letter-spacing: 3px;
+    margin: 12px 0 28px;
 }
 .botao{
     padding: 15px 25px;
@@ -66,7 +69,8 @@ h1{
     padding-bottom: 5vh;
     border:3px solid #3a0810;
     border-radius: 5px;
-     background: #2e070d;
+    background: linear-gradient(180deg, #3a0a12 0%, #2e070d 45%, #1a0407 100%);
+
 }
 #galeria{
     background-color:black;
@@ -75,7 +79,7 @@ h1{
     aspect-ratio: 3 / 2;
     margin: 10px auto;
     padding-bottom: 20px;
-    border: 3px solid #6b1220;
+    border:3px solid #5e0c19;
     border-radius: 5px;
     
 }

@@ -8,8 +8,21 @@ body{
     background-color: black;
 }
 h1{
-    color: red;
+    font-size: 45px;
+    color: #e01b2b;
+    letter-spacing: 3px;
+    margin: 12px 0 28px;
 }
+h2{
+    font-size: 15px;
+    letter-spacing: 4px;
+    color: #ceacb1;
+}
+h3{  
+    font-size: 23px;
+    color: #f3dcdf;
+}
+
 a{
     background-color: white;
     color: black;
@@ -36,11 +49,16 @@ footer nav{
 }
 .elementos{
     text-align: center;
-    background-color: gray;
     width: 90vw;
     max-width: 1200px;
     min-width: 900px;
-    min-height: 90vh;
+    min-height: 60vh;
     margin:5vh;
+    padding-bottom: 5vh;
+    border:3px solid #5e0c19;
+    border-radius: 5px;
+    background: linear-gradient(180deg, #3a0a12 0%, #2e070d 45%, #1a0407 100%);
+
 }
+
 
