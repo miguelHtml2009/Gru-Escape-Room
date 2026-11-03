@@ -1,6 +1,7 @@
 body{
     display: flex;
     justify-content: center;
+    align-items: flex-start;
     min-height: 100vh;
     min-width: 900px;
     font-family: 'Schoolbell', cursive;
@@ -26,14 +27,14 @@ h3{
 a{
     background-color: white;
     color: black;
-    white-space: nowrap;
     text-decoration: none;
+    white-space: nowrap;
     padding: 15px 25px;
     border-radius: 8px;
     transition-duration: 0.5s;
     border: solid black 2px;
     font-weight: bold;
-    
+    letter-spacing: 1px;
 }
 a:hover{
     background-color: rgb(0, 0, 0);
@@ -41,7 +42,7 @@ a:hover{
     border: 2px solid white;
 }
 footer{
-    margin-top: 40px;
+    margin-top: 50px;  
 }
 footer nav{
     justify-content: space-around;
