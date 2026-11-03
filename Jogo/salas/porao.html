@@ -1,656 +1,86 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Escape Room - O Porão</title>
-    <link rel="stylesheet" href="CSS.css">
+    <link rel="stylesheet" href="../CSS.css">
 </head>
-
 <body>
 
-    <button id="botao-menu" type="button" onclick="abrirMenu()">
-        ☰
-    </button>
-
-    <section id="menu-pausa" hidden>
-        <h2>Menu do jogo</h2>
-
-        <button type="button" onclick="salvarESair()">
-            Salvar e sair
-        </button>
-
-        <button type="button" onclick="fecharMenu()">
-            Voltar ao jogo
-        </button>
-    </section>
-
-    <header>
-        <h1>O Porão</h1>
-    </header>
-
-    <main class="sala">
-        <div class="palco">
-            <canvas id="sala" width="800" height="600" onclick="clicarCanvas(event)">
-            </canvas>
-        </div>
-    </main>
-
-    <footer>
-
-        <section>
-            <h2>Inventário</h2>
-
-            <ul id="inventario">
-                <li>Vazio</li>
-            </ul>
-        </section>
-
-        <button id="abrir-diario" type="button" onclick="diario.abrir()">
-            Diário de pistas
-        </button>
-
-        <p id="mensagem" aria-live="polite">
-            Você acordou em um porão desconhecido...
-        </p>
-
-        <nav id="minimapa" aria-label="Minimapa de salas">
-
-            <h2>Minimapa</h2>
-
-            <div class="salas">
-
-                <section class="sala-mapa" aria-current="page">
-                    Porão
-                </section>
-
-                <a class="sala-mapa" href="./laboratorio.html">
-                    Laboratório
-                </a>
-
-                <a class="sala-mapa" href="./fliperama.html">
-                    Fliperama
-                </a>
-
-                <a class="sala-mapa" href="./linha-de-montagem.html">
-                    Linha de montagem
-                </a>
-
-                <a class="sala-mapa" href="./refugio.html">
-                    Refúgio
-                </a>
-
-            </div>
-
-        </nav>
-
-    </footer>
-
-    <script>
-
-        const canvas = document.getElementById("sala");
-        const ctx = canvas.getContext("2d");
-
-        const SPRITE_PORTA_ABERTA = "../../Sprites/porta-aberta.png";
-
-        let portaAberta = false;
-
-
-        const diario = {
-
-            id: "diario",
-
-            imagem: "../../Sprites/diario.png",
-
-            x: 100,
-            y: 30,
-            largura: 600,
-            altura: 550,
-
-            aberto: false,
-
-            pistas: [],
-
-
-            abrir() {
-
-                this.aberto = !this.aberto;
-
-                desenharSala();
-
-            },
-
-
-            registrarPista(pista) {
-
-                if (!this.pistas.includes(pista)) {
-
-                    this.pistas.push(pista);
-
-                }
-
-                if (this.aberto) {
-
-                    desenharSala();
-
-                }
-
-            },
-
-
-            clicar() {
-
-                this.abrir();
-
-            },
-
-
-            desenharPistas() {
-
-                if (this.pistas.length === 0) {
-
-                    return;
-
-                }
-
-                ctx.fillStyle = "#111";
-                ctx.font = "18px Arial";
-
-                let y = this.y + 90;
-
-                for (let i = 0; i < this.pistas.length; i++) {
-
-                    const texto = `${i + 1}. ${this.pistas[i]}`;
-
-                    const linhas = quebrarTexto(
-                        texto,
-                        this.largura - 100
-                    );
-
-                    for (const linha of linhas) {
-
-                        ctx.fillText(
-                            linha,
-                            this.x + 60,
-                            y
-                        );
-
-                        y += 25;
-
-                    }
-
-                    y += 10;
-
-                }
-
-            }
-
-        };
-
-
-        const objetos = [
-
-            {
-
-                id: "fundo",
-
-                imagem: "../../Sprites/parede.png",
-
-                x: 0,
-                y: 0,
-
-                largura: 800,
-                altura: 600
-
-            },
-
-
-            {
-
-                id: "porta",
-
-                imagem: "../../Sprites/porta-fechada.png",
-
-                x: 30,
-                y: 150,
-
-                largura: 606 / 2.8,
-                altura: 947 / 2.2,
-
-
-                clicar() {
-
-                    if (portaAberta) {
-
-                        document.getElementById("mensagem").textContent =
-                        "Porta aberta. Você pode sair.";
-
-                        return;
-
-                    }
-
-
-                    document.getElementById("mensagem").textContent =
-                        "Porta trancada. Tente a senha do painel.";
-                }
-
-            },
-
-
-            {
-
-                id: "geladeira",
-
-                imagem: "../../Sprites/geladeira-fechada.png",
-
-                x: 600,
-                y: 235,
-
-                largura: 204 / 1.2,
-                altura: 408 / 1.2,
-
-
-                clicar() {
-
-                    document.getElementById("mensagem").textContent =
-                        "A geladeira está fechada. Talvez exista algo dentro dela.";
-
-                }
-
-            },
-
-
-            {
-
-                id: "senha",
-
-                imagem: "../../Sprites/senha-porta.png",
-
-                x: 260,
-                y: 220,
-
-                largura: 397 / 5,
-                altura: 411 / 5,
-
-
-                clicar() {
-
-                    document.getElementById("mensagem").innerHTML = `
-                        Digite a senha de quatro dígitos:
-
-                        <input
-                            id="campo-senha"
-                            type="text"
-                            inputmode="numeric"
-                            pattern="[0-9]{4}"
-                            maxlength="4"
-                            autocomplete="off"
-                        >
-
-                        <button
-                            type="button"
-                            onclick="verificarSenha()">
-                            Confirmar
-                        </button>
-                    `;
-
-                    document
-                        .getElementById("campo-senha")
-                        .focus();
-
-                }
-
-            },
-
-
-            {
-
-                id: "fios",
-
-                imagem: "../../Sprites/fios-fechado.png",
-
-                x: 400,
-                y: 450,
-
-                largura: 120,
-                altura: 120,
-
-
-                clicar() {
-
-                    document.getElementById("mensagem").textContent =
-                        "A caixa de fios está parafusada. Você precisa de uma chave de fenda.";
-                    diario.registrarPista("Chave de Fenda é importante, ou Philips");
-
-                }
-
-            },
-
-
-            {
-
-                id: "chao",
-
-                cor: "#66b2b2",
-
-                x: 0,
-                y: 570,
-
-                largura: 800,
-                altura: 150
-
-            },
-
-            diario
-
-        ];
-
-
-        function carregarImagem(caminho) {
-
-            return new Promise((resolve, reject) => {
-
-                const imagem = new Image();
-
-                imagem.onload = () => resolve(imagem);
-
-                imagem.onerror = () => reject(
-                    new Error(
-                        "Não foi possível carregar a imagem: " + caminho
-                    )
-                );
-
-                imagem.src = caminho;
-
-            });
-
-        }
-
-
-        async function desenharSala() {
-
-            ctx.clearRect(
-                0,
-                0,
-                canvas.width,
-                canvas.height
-            );
-
-
-            for (const objeto of objetos) {
-
-                if (
-                    objeto.id === "diario" &&
-                    !objeto.aberto
-                ) {
-
-                    continue;
-
-                }
-
-
-                if (objeto.cor) {
-
-                    ctx.fillStyle = objeto.cor;
-
-                    ctx.fillRect(
-                        objeto.x,
-                        objeto.y,
-                        objeto.largura,
-                        objeto.altura
-                    );
-
-                    continue;
-
-                }
-
-
-                try {
-
-                    const imagem =
-                        await carregarImagem(objeto.imagem);
-
-                    ctx.drawImage(
-                        imagem,
-                        objeto.x,
-                        objeto.y,
-                        objeto.largura,
-                        objeto.altura
-                    );
-
-
-                    if (
-                        objeto.id === "diario" &&
-                        objeto.aberto
-                    ) {
-
-                        objeto.desenharPistas();
-
-                    }
-
-                } catch (erro) {
-
-                    console.error(
-                        "Não foi possível carregar:",
-                        erro
-                    );
-
-                }
-
-            }
-
-        }
-
-
-        function quebrarTexto(texto, larguraMaxima) {
-
-            const palavras = texto.split(" ");
-
-            const linhas = [];
-
-            let linha = "";
-
-
-            for (const palavra of palavras) {
-
-                const teste =
-                    linha === ""
-                        ? palavra
-                        : linha + " " + palavra;
-
-
-                if (
-                    ctx.measureText(teste).width <=
-                    larguraMaxima
-                ) {
-
-                    linha = teste;
-
-                } else {
-
-                    linhas.push(linha);
-
-                    linha = palavra;
-
-                }
-
-            }
-
-
-            if (linha !== "") {
-
-                linhas.push(linha);
-
-            }
-
-
-            return linhas;
-
-        }
-
-
-        function clicarCanvas(event) {
-
-            const rect =
-                canvas.getBoundingClientRect();
-
-
-            const x =
-                (event.clientX - rect.left) *
-                (canvas.width / rect.width);
-
-
-            const y =
-                (event.clientY - rect.top) *
-                (canvas.height / rect.height);
-
-
-            for (
-                let i = objetos.length - 1;
-                i >= 0;
-                i--
-            ) {
-
-                const objeto = objetos[i];
-
-
-                if (!objeto.clicar) {
-
-                    continue;
-
-                }
-
-
-                if (
-                    objeto.id === "diario" &&
-                    !objeto.aberto
-                ) {
-
-                    continue;
-
-                }
-
-
-                if (
-                    x >= objeto.x &&
-                    x <= objeto.x + objeto.largura &&
-                    y >= objeto.y &&
-                    y <= objeto.y + objeto.altura
-                ) {
-
-                    objeto.clicar();
-
-                    return;
-
-                }
-
-            }
-
-
-            document.getElementById("mensagem").textContent =
-                "Não há nada interessante aqui.";
-
-        }
-
-
-        function verificarSenha() {
-
-            const campoSenha =
-                document.getElementById("campo-senha");
-
-
-            if (!campoSenha) {
-
-                return;
-
-            }
-
-
-            if (campoSenha.value === "0000") {
-
-                portaAberta = true;
-
-
-                const porta =
-                    objetos.find(
-                        objeto => objeto.id === "porta"
-                    );
-
-
-                porta.imagem =
-                    SPRITE_PORTA_ABERTA;
-
-
-                diario.registrarPista(
-                    "A senha da porta é 0000."
-                );
-
-
-                desenharSala();
-
-
-                document.getElementById("mensagem").textContent =
-                    "Senha correta! A porta foi aberta.";
-                
-                    
-
-                return;
-
-            }
-
-
-            document.getElementById("mensagem").textContent =
-                "Senha incorreta. Tente novamente.";
-
-        }
-
-
-        function abrirMenu() {
-
-            document.getElementById("menu-pausa").hidden = false;
-
-        }
-
-
-        function fecharMenu() {
-
-            document.getElementById("menu-pausa").hidden = true;
-
-        }
-
-        function salvarESair() {
-
-            const dadosJogo = {
-
-                inventario: Array.from(
-                    document.querySelectorAll("#inventario li")
-                ).map(
-                    item => item.textContent
-                ),
-
-                mensagem:
-                    document.getElementById("mensagem").textContent,
-
-                pistas:
-                    diario.pistas
-
-            };
-
-            localStorage.setItem(
-                "savePorao",
-                JSON.stringify(dadosJogo)
-            );
-
-
-            window.location.href =
-                "../../inicializacao/menu_principal/menu.html";
-        }
-
-        desenharSala();
-
-    </script>
+<button id="botao-menu" onclick="abrirMenu()">☰</button>
+
+<section id="menu-pausa" hidden>
+    <h2>Menu do jogo</h2>
+    <button onclick="salvarESair()">Salvar e sair</button>
+    <button onclick="fecharMenu()">Voltar ao jogo</button>
+</section>
+
+<header>
+    <h1>O Porão</h1>
+</header>
+
+<main class="sala">
+    <div class="palco" id="palco">
+        <canvas id="sala" width="800" height="600"></canvas>
+    </div>
+</main>
+
+<footer>
+
+<section>
+    <h2>Inventário</h2>
+    <ul id="inventario">
+        <li>Vazio</li>
+    </ul>
+</section>
+
+<button id="abrir-diario" onclick="diario.abrir()">
+    Diário de pistas
+</button>
+
+<p id="mensagem">
+    Você acordou em um porão desconhecido...
+</p>
+
+<nav id="minimapa">
+    <h2>Minimapa</h2>
+
+    <div class="salas">
+        <section class="sala-mapa">Porão</section>
+
+        <a class="sala-mapa"
+           href="./laboratorio.html"
+           onclick="salvarJogo()">
+            Laboratório
+        </a>
+
+        <a class="sala-mapa"
+           href="./fliperama.html"
+           onclick="salvarJogo()">
+            Fliperama
+        </a>
+
+        <a class="sala-mapa"
+           href="./linha-de-montagem.html"
+           onclick="salvarJogo()">
+            Linha de montagem
+        </a>
+
+        <a class="sala-mapa"
+           href="./refugio.html"
+           onclick="salvarJogo()">
+            Refúgio
+        </a>
+    </div>
+</nav>
+
+</footer>
+
+<script src="../js/codigoFonte.js"></script>
+<script src="../js/porao.js"></script>
 
 </body>
-
+<script src="../js/codigoFonte.js"></script>
+<script src="../js/porao.js"></script>
 </html>
