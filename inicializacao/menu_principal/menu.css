@@ -134,14 +134,14 @@ img {
 }
 
 .modal-cont{
-    background-color: gray;
+    background: linear-gradient(180deg, #3a0a12 0%, #2e070d 45%, #1a0407 100%);
     margin: 15% auto;
     padding: 20px;
-    border: 1px solid red;
+    border: 2px solid red;
+    border-radius: 4px;
     height: 70%;
     width: 50%;
 }
-
 .modal-head{
     display: flex;
     align-items: flex-start;
@@ -150,11 +150,19 @@ img {
 .modal-head h2{
     margin-left: auto;
     margin-right: auto;
+    color: red;
 }
 
 .fecha{
     align-self: flex-start;
     background-color: red;
-    padding: 5px 10px;
+    padding: 5px 12px;
     cursor: default;
+    border-radius: 3px;
+    transition-duration: 0.5s;
+    font-size: 18px;
+    border: 2px solid rgb(155, 18, 18);
+}
+.fecha:hover{
+    background-color: rgb(155, 18, 18);
 }
