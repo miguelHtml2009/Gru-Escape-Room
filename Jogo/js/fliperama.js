@@ -22,7 +22,7 @@ const maquina = {
     onclick() {
         estado.maquinaUsada = true;
         salvarJogo();
-        window.location.href = "./minigame1.html";
+        window.location.href = "../../minigame1.html";
     }
 };
 
