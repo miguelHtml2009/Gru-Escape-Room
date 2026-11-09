@@ -73,7 +73,7 @@ function salvarESair() {
     salvarJogo();
 
     window.location.href =
-        "../inicializacao/menu_principal/menu.html";
+        "../../inicializacao/menu_principal/index.html";
 }
 
 function abrirMenu() {

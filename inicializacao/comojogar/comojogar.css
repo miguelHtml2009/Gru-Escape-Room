@@ -50,5 +50,30 @@ img{
     border-radius: 5px;
     background: linear-gradient(180deg, #3a0a12 0%, #2e070d 45%, #1a0407 100%);
 }
+.sala {
+    width: 100%;
+    max-width: 1000px;
+    margin: 20px auto;
+}
+.palco {
+    position: relative;
+    width: 800px;
+    height: 600px;
+    margin: 0 auto;
+    overflow: hidden;
+    border: 4px solid #342820;
+    border-radius: 8px;
+    background: #111;
+    background-image: url('../../Sprites/papelfundotutorial.png');
+}
+#sala {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 800px;
+    height: 600px;
+    display: block;
+    z-index: 1;
+}
 
 

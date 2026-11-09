@@ -67,5 +67,7 @@ img{
     object-fit: contain;
     display: block;
     margin: 0 auto;
+    border: 3px solid #5e0c19 ;
+    border-radius: 5px;
 }
 
