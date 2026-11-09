@@ -61,5 +61,11 @@ footer nav{
     background: linear-gradient(180deg, #3a0a12 0%, #2e070d 45%, #1a0407 100%);
 
 }
-
+img{
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}
 
