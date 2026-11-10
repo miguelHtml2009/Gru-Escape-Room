@@ -7,7 +7,7 @@ select {
     font-family: inherit;
 }
 
-body{
+body {
     display: flex;
     justify-content: center;
     min-height: 100vh;
@@ -18,19 +18,25 @@ body{
     padding: 20px;
     box-sizing: border-box;
 }
-h1{
+
+h1 {
     font-size: 45px;
     color: #e01b2b;
     letter-spacing: 3px;
     margin: 12px 0 28px;
 }
-fieldset{
+
+fieldset {
     display: flex;
     flex-direction: column;
     border: none;
-    text-align:left;
+    text-align: left;
+    min-width: 0;
+    padding: 0;
+    margin: 0;
 }
-a{
+
+a {
     background-color: white;
     color: black;
     text-decoration: none;
@@ -46,57 +52,90 @@ a{
     box-sizing: border-box;
     text-align: center;
 }
-a:hover{
+
+a:hover {
     background-color: rgb(0, 0, 0);
     border: 2px solid white;
     color: white;
 }
-label{
+
+label {
     margin-top: 25px;
     margin-bottom: 5px;
     font-size: 12px;
 }
 
-input, textarea{
-    width: 95%;
+input,
+textarea {
+    width: 100%;
     padding: 15px;
+    box-sizing: border-box;
 }
-footer{
+
+footer {
     margin-top: 50px;
 }
-footer nav{
+
+footer nav {
     flex-direction: column;
     display: flex;
     align-items: center;
     gap: 10px;
 }
-textarea{
+
+textarea {
     max-width: 700px;
     max-height: 200px;
 }
-.elementos{
+
+.elementos {
     text-align: center;
     width: 100%;
     max-width: 700px;
     min-height: 70vh;
-    margin:20px auto;
-    padding:10vh;
-    padding-bottom: 0 10px 5vh;
-    border:3px solid #5e0c19;
+    margin: 20px auto;
+    padding: 60px 50px 40px;
+    box-sizing: border-box;
+    border: 3px solid #5e0c19;
     border-radius: 5px;
     background: linear-gradient(180deg, #3a0a12 0%, #2e070d 45%, #1a0407 100%);
-
 }
-#enviaid{
-    width: 100.2%;
+
+#enviaid {
+    width: 100%;
     margin-top: 25px;
     background-color: black;
     border: 2px solid #6b1220;
     border-radius: 8px;
-    color:white;
+    color: white;
     transition-duration: 0.5s;
 }
-#enviaid:hover{
+
+#enviaid:hover {
     background: #6b1220;
 }
 
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    .elementos {
+        padding: 30px 15px 30px;
+        margin: 10px auto;
+    }
+
+    h1 {
+        font-size: 32px;
+        letter-spacing: 1px;
+    }
+
+    label {
+        font-size: 18px;
+    }
+
+    a {
+        max-width: 100%;
+        white-space: normal;
+    }
+}
