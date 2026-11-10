@@ -1,14 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Schoolbell&display=swap');
 
-body{
+body {
     display: flex;
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
-    min-width: 900px;
     font-family: 'Schoolbell', cursive;
     color: white;
     background-color: black;
     margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
 }
 h1{
     color: red;
@@ -25,7 +27,9 @@ a{
     font-weight: bold;
     letter-spacing: 1px;
     max-width: 80%;
-    width: 1000px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
 }
 a:hover{
     background-color: rgb(0, 0, 0);
@@ -33,7 +37,8 @@ a:hover{
     border: 2px solid white;
 }
 footer{
-    margin-top: 50px;  
+    margin-top: 50px; 
+    margin-bottom: 20px; 
 }
 footer nav{
     flex-direction: column;
@@ -46,13 +51,11 @@ img{
 }
 .elementos{
     text-align: center;
-    background-color: gray;
-    width: 90vw;
+    width: 100%;
     max-width: 1200px;
-    min-width: 900px;
     min-height: 90vh;
-    margin:5vh;
-    padding-bottom: 5vh;
+    margin:20px auto;
+    padding-bottom: 0 10px 5vh;
     border:3px solid #5e0c19;
     border-radius: 5px;
     background: linear-gradient(180deg, #3a0a12 0%, #2e070d 45%, #1a0407 100%);
@@ -64,7 +67,8 @@ img{
 }
 .palco {
     position: relative;
-    width: 800px;
+    width: 100%;
+    max-width: 800px;
     height: 600px;
     margin: 0 auto;
     overflow: hidden;
@@ -72,13 +76,15 @@ img{
     border-radius: 8px;
     background: #111;
     background-image: url('../../Sprites/papelfundotutorial.png');
+    background-size: cover;
+    background-position: center;
 }
 #sala {
     position: absolute;
     left: 0;
     top: 0;
-    width: 800px;
-    height: 600px;
+    width: 100%;
+    height: 100%;
     display: block;
     z-index: 1;
 }

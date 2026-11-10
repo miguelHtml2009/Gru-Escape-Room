@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Schoolbell&display=swap');
 
-a {
-    text-decoration: none;
-}
-
 body {
     font-family: 'Schoolbell', cursive;
     background-color: black;
@@ -21,6 +17,9 @@ body {
         "imagem menu";
     align-items: center;
     gap: 20px;
+}
+a {
+    text-decoration: none;
 }
 
 header {
