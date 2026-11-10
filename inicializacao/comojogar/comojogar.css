@@ -13,7 +13,10 @@ body {
     box-sizing: border-box;
 }
 h1{
-    color: red;
+    font-size: 45px;
+    color: #e01b2b;
+    letter-spacing: 3px;
+    margin: 12px 0 28px;
 }
 a{
     background-color: white;
