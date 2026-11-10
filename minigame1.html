@@ -40,7 +40,7 @@
     // Estrutura do personagem (Bloco)
     var Bloco = {
         x: 50, y: 0, altura: 50, largura: 50,
-        gravidade: 1.5, velocidade: 0, forcaDoPulo: 22,
+        gravidade: 1.5, velocidade: 0, forcaDoPulo: 30,
         qntpulos: 0, score: 0, rotacao: 0, img: null,
 
         // Atualiza física, gravidade e rotação do bloco
@@ -93,7 +93,7 @@
     var obstaculos = {
         _obs: [],
         cores: ["#FF0000", "#FF00FF", "#0031A3", "#00FF04"],
-        tempoInsere: 0,
+        tempoInsere: 20,
 
         insere: function() {
             this._obs.push({
