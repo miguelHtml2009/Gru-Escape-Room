@@ -21,6 +21,7 @@ header {
     width: 100%;
     max-width: 1000px;
     margin: 20px auto;
+    z-index: 3;
 }
 
 .palco {
@@ -47,6 +48,16 @@ header {
 .palco img {
     position: absolute;
     z-index: 2;
+}
+
+#diario-canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 800px;
+    height: 600px;
+    z-index: 3;
+    pointer-events: none;
 }
 
 button,
@@ -202,7 +213,7 @@ footer h2 {
     border-radius: 4px;
 }
 
-#minimapa .sala-mapa:first-child {
+#minimapa .sala-mapa[aria-current="page"] {
     color: #fff;
     background: #5a2923;
     border-color: #c62828;
