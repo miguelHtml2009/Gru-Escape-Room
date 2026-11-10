@@ -1,19 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Schoolbell&display=swap');
-a{
+
+a {
     text-decoration: none;
 }
+
 body {
     font-family: 'Schoolbell', cursive;
     background-color: black;
     margin: 0 auto;
     padding: 20px;
-    min-height: 700px;
+    min-height: 100vh;
     max-width: 1400px;
-    min-width: 900px;
     box-sizing: border-box;
 
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     grid-template-rows: 1fr 2fr;
     grid-template-areas:
         "imagem titulo"
@@ -21,6 +22,7 @@ body {
     align-items: center;
     gap: 20px;
 }
+
 header {
     grid-area: titulo;
     text-align: center;
@@ -31,13 +33,11 @@ main {
     grid-area: menu;
     text-align: center;
     align-self: start;
-    
 }
 
 aside {
     grid-area: imagem;
     display: flex;
-    
     align-self: center;
 }
 
@@ -75,7 +75,8 @@ button {
     font-weight: bold;
     letter-spacing: 1px;
 }
-button:hover{
+
+button:hover {
     border-radius: 8px;
     border-color: white;
     border-width: 3px;
@@ -86,75 +87,71 @@ button:hover{
 img {
     width: 100%;
     max-width: 1100px;
-    min-width: 400px;
     height: auto;
     border-radius: 10px;
 }
 
-/* Adaptação para celular */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     body {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         grid-template-rows: auto auto auto;
         grid-template-areas:
             "titulo"
             "imagem"
             "menu";
+        align-content: center;
     }
+
     header {
         align-self: center;
     }
+
     aside {
         justify-content: center;
     }
-    img {
-        width: 100%;
-        max-width: 300px;
-    }
-    h1 {
-        font-size: 36px;
-    }
+
     main {
         align-self: center;
     }
+
+    h1 {
+        font-size: 36px;
+    }
 }
 
-.modal{
+.modal {
     display: none;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    position: fixed;
+    inset: 0;
     z-index: 1;
-    width: 100%;
-    height: 100%;
     overflow: auto;
-    background-color: rgb(0 0 0);
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
-.modal-cont{
+.modal-cont {
     background: linear-gradient(180deg, #3a0a12 0%, #2e070d 45%, #1a0407 100%);
-    margin: 15% auto;
+    margin: 10vh auto;
     padding: 20px;
     border: 2px solid red;
     border-radius: 4px;
-    height: 70%;
-    width: 50%;
-    min-width: 400px;
+    width: 90%;
+    max-width: 500px;
+    min-height: 40vh;
+    box-sizing: border-box;
 }
-.modal-head{
+
+.modal-head {
     display: flex;
     align-items: flex-start;
-    
 }
-.modal-head h2{
+
+.modal-head h2 {
     margin-left: auto;
     margin-right: auto;
     color: red;
 }
 
-.fecha{
+.fecha {
     align-self: flex-start;
     background-color: red;
     padding: 5px 12px;
@@ -164,6 +161,7 @@ img {
     font-size: 18px;
     border: 2px solid rgb(155, 18, 18);
 }
-.fecha:hover{
+
+.fecha:hover {
     background-color: rgb(155, 18, 18);
 }
