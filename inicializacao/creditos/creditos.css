@@ -34,7 +34,8 @@ a{
     transition-duration: 0.5s;
     border: solid black 2px;
     font-weight: bold;
-    letter-spacing: 1px;
+    max-width: 80%;
+    width: 1000px;
 }
 a:hover{
     background-color: rgb(0, 0, 0);
@@ -45,9 +46,11 @@ footer{
     margin-top: 50px;  
 }
 footer nav{
-    justify-content: space-around;
-    display: flex;  
+    flex-direction: column;
+    display: flex;
+    align-items: center;
 }
+
 .elementos{
     text-align: center;
     width: 90vw;

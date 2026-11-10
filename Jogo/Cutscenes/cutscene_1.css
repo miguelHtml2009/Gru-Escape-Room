@@ -37,7 +37,8 @@ a{
     border: solid black 2px;
     letter-spacing: 1px;
     font-weight: bold;
-    
+    max-width: 80%;
+    width: 1000px;
 }
 a:hover{
     background-color: rgb(0, 0, 0);
@@ -47,5 +48,10 @@ a:hover{
 
 footer{
     margin-top: 50px;
+}
+footer nav{
+    flex-direction: column;
+    display: flex;
+    align-items: center;
 }
 
