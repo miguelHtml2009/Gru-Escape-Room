@@ -1,0 +1,74 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    min-width: 900px;
+    font-family: 'Schoolbell', cursive;
+    color: white;
+    background-color: black;
+}
+h1{
+    font-size: 45px;
+    color: #e01b2b;
+    letter-spacing: 3px;
+    margin: 12px 0 28px;
+}
+h2{
+    font-size: 15px;
+    letter-spacing: 4px;
+    color: #ceacb1;
+}
+h3{  
+    font-size: 23px;
+    color: #f3dcdf;
+}
+
+a{
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 15px 25px;
+    border-radius: 8px;
+    transition-duration: 0.5s;
+    border: solid black 2px;
+    font-weight: bold;
+    max-width: 80%;
+    width: 1000px;
+}
+a:hover{
+    background-color: rgb(0, 0, 0);
+    color: white;
+    border: 2px solid white;
+}
+footer{
+    margin-top: 50px;  
+}
+footer nav{
+    justify-content: space-around;
+    display: flex;  
+}
+.elementos{
+    text-align: center;
+    width: 90vw;
+    max-width: 1200px;
+    min-width: 900px;
+    min-height: 60vh;
+    margin:5vh;
+    padding-bottom: 5vh;
+    border:3px solid #5e0c19;
+    border-radius: 5px;
+    background: linear-gradient(180deg, #3a0a12 0%, #2e070d 45%, #1a0407 100%);
+
+}
+img{
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    border: 3px solid #5e0c19 ;
+    border-radius: 5px;
+}
+
