@@ -18,10 +18,15 @@ h1{
     letter-spacing: 3px;
     margin: 12px 0 28px;
 }
-h2{
-    font-size: 15px;
+#claudt{
+    font-size: 25px;
     letter-spacing: 4px;
-    color: #ceacb1;
+    color: #D97757;
+}
+#gemit{
+    font-size:25px;
+    letter-spacing: 4px;
+    color: #FF6BCA;
 }
 a{
     background-color: white;
@@ -58,12 +63,25 @@ img{
     max-width: 75%;
     height: auto;
 }
+
 .lista #li1,#li2,#li3,#li4,#li5{
     margin-bottom: 10px;
-    background-color: rgb(87, 14, 26);
+    background-color: #191919;
     padding: 10px;
     border-radius: 8px;
-    border: 2px solid rgb(194, 79, 79);
+    border: 2px solid #D97757;
+    max-width: 90%;
+    max-height: 100%;
+    list-style-type: upper-roman;
+    list-style-position: outside;
+    text-align: left;
+}
+.lista2 #li21,#li22,#li23,#li24,#li25{
+    margin-bottom: 10px;
+    background-color: #171324;
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid #8AB4F8;
     max-width: 90%;
     max-height: 100%;
     list-style-type: upper-roman;

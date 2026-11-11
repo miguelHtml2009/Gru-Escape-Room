@@ -70,17 +70,14 @@ img{
 }
 .palco {
     position: relative;
-    width: 90%;
+    width:90%;
     max-width: 800px;
-    height: 600px;
+    aspect-ratio: 4/3;
     margin: 0 auto;
     overflow: hidden;
     border: 4px solid #342820;
     border-radius: 8px;
     background: #111;
-    background-image: url('../../Sprites/papelfundotutorial.png');
-    background-size: cover;
-    background-position: center;
 }
 #sala {
     position: absolute;
@@ -89,7 +86,7 @@ img{
     width: 100%;
     height: 100%;
     display: block;
-    z-index: 1;
+    touch-action: manipulation;
 }
 
 

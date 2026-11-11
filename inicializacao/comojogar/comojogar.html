@@ -13,9 +13,18 @@
     <main class="sala">
         <p>Clique nos elementos da tela para interagir com eles:</p>
         <div class="palco" id="palco">
-            <canvas id="sala" width="800" height="600"></canvas>
-            <div id="chao">aaa</div>
+            <canvas id="sala" width="800" height="600" onclick="cliques(event)">Elemento interativo tutorial</canvas>
         </div>
+        <p id="inventario">Inventário: vazio</p>
+        <p id="mensagem" aria-live="polite">Objetivo: escape pela porta.</p>
+        
+        <img id="fundo" src="../../Sprites/papelfundotutorial.png" alt="" hidden>
+        
+        <img id="img-porta-fechada" src="../../Sprites/porta-fechada.svg" alt="" hidden>
+        <img id="img-porta-aberta" src="../../Sprites/porta-aberta.svg" alt="" hidden>
+        <img id="img-gaveta-fechada" src="../../Sprites/gaveta-fechada.svg" alt="" hidden>
+        <img id="img-gaveta-aberta" src="../../Sprites/gaveta-aberta.svg" alt="" hidden>
+        <img id="img-chave" src="../../Sprites/chave.svg" alt="" hidden>
     </main>
     <footer>
         <nav>
