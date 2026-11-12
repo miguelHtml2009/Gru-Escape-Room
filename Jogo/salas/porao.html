@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Escape Room - O Porão</title>
-    <link rel="stylesheet" href="../CSS.css">
+    <link rel="stylesheet" href="../css/CSS.css">
+    <link rel="stylesheet" href="../css/porao.css">
     <link rel="shortcut icon" type="imagex/png" href="../../Sprites/icon.ico">
 </head>
 <body>
 
-<button id="botao-menu" onclick="abrirMenu()">☰</button>
+<button id="botao-menu" onclick="pause()">☰</button>
 
 <section id="menu-pausa" hidden>
     <h2>Menu do jogo</h2>
-    <button onclick="salvarESair()">Salvar e sair</button>
+    <button onclick="saveExit()">Salvar e sair</button>
     <button onclick="fecharMenu()">Voltar ao jogo</button>
 </section>
 
@@ -21,11 +22,16 @@
     <h1>O Porão</h1>
 </header>
 
-<main class="sala">
-<div class="palco" id="palco">
-    <canvas id="sala" width="800" height="600"></canvas>
-    <canvas id="diario-canvas" width="800" height="600"></canvas>
-</div>
+<main>
+    <div id="sala">
+        <img src="../../Sprites/porta-fechada.png" id="porta-fechada">
+        <img src="../../Sprites/porta-aberta.png"  id="porta-aberta" hidden>
+        <img src ="../../Sprites/senha-porta.png" id="senha-porta">
+        
+        <!--<img src="../../Sprites/geladeira-fechada.png" id="geladeira-fechada" > -->
+        <!-- <img src="../../Sprites/geladeira-aberta.png"  id="geladeira-aberta" hidden> -->
+        
+    </div>
 </main>
 
 <footer>
@@ -33,7 +39,8 @@
 <section>
     <h2>Inventário</h2>
     <ul id="inventario">
-        <li>Vazio</li>
+        <li></li>
+        <li></li>
     </ul>
 </section>
 
@@ -49,40 +56,19 @@
     <h2>Minimapa</h2>
 
     <div class="salas">
-        <section class="sala-mapa" aria-current="page">Porão</section>
+        <section class="sala-mapa" id="MinimapaAtual" aria-current="page">Porão</section>
 
-        <a class="sala-mapa"
-           href="./laboratorio.html"
-           onclick="salvarJogo()">
-            Laboratório
-        </a>
+        <a class="sala-mapa" href="./laboratorio.html" onclick="save()">Laboratório</a>
 
-        <a class="sala-mapa"
-           href="./fliperama.html"
-           onclick="salvarJogo()">
-            Fliperama
-        </a>
+        <a class="sala-mapa" href="./fliperama.html" onclick="save()">Fliperama</a>
 
-        <a class="sala-mapa"
-           href="./linha-de-montagem.html"
-           onclick="salvarJogo()">
-            Linha de montagem
-        </a>
+        <a class="sala-mapa" href="./linha-de-montagem.html" onclick="save()">Linha de montagem</a>
 
-        <a class="sala-mapa"
-           href="./refugio.html"
-           onclick="salvarJogo()">
-            Refúgio
-        </a>
+        <a class="sala-mapa" href="./refugio.html" onclick="save()">Refúgio</a>
     </div>
 </nav>
 
 </footer>
 
-<script src="../js/codigoFonte.js"></script>
-<script src="../js/porao.js"></script>
-
 </body>
-<script src="../js/codigoFonte.js"></script>
-<script src="../js/porao.js"></script>
 </html>
