@@ -121,7 +121,7 @@ function desenhar(){
         ctx.fillStyle = "#b32424";
         ctx.fillRect(btmVoltar.x, btmVoltar.y, btmVoltar.w, btmVoltar.h);
         ctx.fillStyle = "#ffffff";
-        ctx.font = "20px Arial";
+        ctx.font = "20px Schoolbell, cursive";
         ctx.fillText("Voltar", btmVoltar.x + 28, btmVoltar.y + 27);
     }
 }
@@ -144,7 +144,10 @@ function cliques(evento){
             temChave = true;
             inventario.textContent = 'Inventário: Chave';
         } else if(dentro(x,y,gaveta)){
-            if(!gavetaAberta && !gavetaTrancada){
+            if (gavetaTrancada) {
+                telaAtual = 'zoomGaveta';
+                mensagem.textContent = 'A gaveta está presa por 6 parafusos.';
+            } else if (!gavetaAberta) {
                 gavetaAberta = true;
             } else {
                 gavetaAberta = false;
@@ -152,6 +155,7 @@ function cliques(evento){
         } else if(dentro(x,y,porta)){
             if(portaAberta){
                  mensagem.textContent = 'Você escapou! Fim do tutorial.';
+                 mensagem.style.color = 'lightgreen';
             } else if(temChave){
                 portaAberta = true;
                 inventario.textContent = 'Inventário: Vazio';
@@ -194,6 +198,17 @@ function cliqueZoomGaveta(x,y){
                 mensagem.textContent = 'Você precisa de uma chave de fenda!'
                 return;
             }
-    }        
+            if (dentro(x, y, p1) && parafuso1) { parafuso1 = false; mensagem.textContent = 'Parafuso removido!'; }
+            if (dentro(x, y, p2) && parafuso2) { parafuso2 = false; mensagem.textContent = 'Parafuso removido!'; }
+            if (dentro(x, y, p3) && parafuso3) { parafuso3 = false; mensagem.textContent = 'Parafuso removido!'; }
+            if (dentro(x, y, p4) && parafuso4) { parafuso4 = false; mensagem.textContent = 'Parafuso removido!'; }
+            if (dentro(x, y, p5) && parafuso5) { parafuso5 = false; mensagem.textContent = 'Parafuso removido!'; }
+            if (dentro(x, y, p6) && parafuso6) { parafuso6 = false; mensagem.textContent = 'Parafuso removido!'; }
+    }      
+    if (!parafuso1 && !parafuso2 && !parafuso3 && !parafuso4 && !parafuso5 && !parafuso6) {
+        gavetaTrancada = false;
+        telaAtual = 'sala';
+        mensagem.textContent = 'Você desparafusou toda a gaveta! Agora pode abri-la.';
+    }  
 }
 window.onload = desenhar;
