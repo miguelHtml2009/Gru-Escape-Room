@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Sombra projetada na madeira -->
+  <circle cx="16" cy="17.5" r="12" fill="#2b1b0c" opacity="0.6" />
+  
+  <!-- Borda externa escura do parafuso -->
+  <circle cx="16" cy="15.5" r="12" fill="#4a4e52" />
+  
+  <!-- Corpo metálico cinza -->
+  <circle cx="16" cy="15.5" r="10.5" fill="#9ea4ab" />
+  
+  <!-- Reflexo de luz na parte superior -->
+  <path d="M 8 11 A 9 9 0 0 1 24 11" fill="none" stroke="#d5dce3" stroke-width="2" stroke-linecap="round" />
+  
+  <!-- Fenda diagonal -->
+  <line x1="9" y1="22.5" x2="23" y2="8.5" stroke="#2c2f33" stroke-width="3" stroke-linecap="round" />
+</svg>

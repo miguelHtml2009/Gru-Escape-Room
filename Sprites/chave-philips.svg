@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="400" viewBox="0 0 60 200">
+  <defs>
+    <linearGradient id="steel" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7d8186"/>
+      <stop offset="0.3" stop-color="#e9ebed"/>
+      <stop offset="0.6" stop-color="#b3b7bb"/>
+      <stop offset="1" stop-color="#6a6e73"/>
+    </linearGradient>
+    <linearGradient id="grip" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#9c2a1f"/>
+      <stop offset="0.3" stop-color="#e25544"/>
+      <stop offset="0.65" stop-color="#c93a2b"/>
+      <stop offset="1" stop-color="#8a2218"/>
+    </linearGradient>
+    <clipPath id="handle-clip">
+      <path d="M18 6 Q30 0 42 6 C50 14 52 40 48 60 C46 72 44 80 42 86 L18 86 C16 80 14 72 12 60 C8 40 10 14 18 6 Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- sombra -->
+  <ellipse cx="33" cy="197" rx="9" ry="2" fill="#000" opacity="0.18"/>
+
+  <!-- cabo -->
+  <path d="M18 6 Q30 0 42 6 C50 14 52 40 48 60 C46 72 44 80 42 86 L18 86 C16 80 14 72 12 60 C8 40 10 14 18 6 Z"
+        fill="url(#grip)" stroke="#4d140d" stroke-width="2" stroke-linejoin="round"/>
+  <g clip-path="url(#handle-clip)" stroke="#4d140d" stroke-width="1.4" opacity="0.45" stroke-linecap="round">
+    <path d="M8 26 H52 M8 36 H52 M8 46 H52 M8 56 H52 M8 66 H52 M8 76 H52"/>
+  </g>
+  <path d="M20 12 C16 30 17 56 20 78" fill="none" stroke="#fff" stroke-width="2.2" opacity="0.35" stroke-linecap="round"/>
+
+  <!-- virola -->
+  <rect x="18" y="86" width="24" height="14" rx="2.5" fill="url(#steel)" stroke="#33363a" stroke-width="2"/>
+  <path d="M18 91 H42 M18 96 H42" stroke="#33363a" stroke-width="1" opacity="0.5"/>
+
+  <!-- haste -->
+  <rect x="26" y="100" width="8" height="72" fill="url(#steel)" stroke="#33363a" stroke-width="1.6"/>
+
+  <!-- ponta Phillips (afilada, com cruz) -->
+  <path d="M25 172 L35 172 L32.2 190 L31 196 L29 196 L27.8 190 Z" fill="url(#steel)" stroke="#33363a" stroke-width="1.6" stroke-linejoin="round"/>
+  <path d="M30 173 V195" stroke="#33363a" stroke-width="1" opacity="0.7"/>
+  <path d="M27.2 176 L28.2 190 M32.8 176 L31.8 190" stroke="#33363a" stroke-width="0.8" opacity="0.6"/>
+</svg>
