@@ -17,47 +17,25 @@ header {
     margin-bottom: 8px;
 }
 
-.sala {
-    width: 100%;
-    max-width: 1000px;
-    margin: 20px auto;
-    z-index: 3;
-}
-
-.palco {
+main {
     position: relative;
-    width: 800px;
+    width: 1000px;
     height: 600px;
-    margin: 0 auto;
+    margin: 20px auto;
     overflow: hidden;
     border: 4px solid #342820;
     border-radius: 8px;
-    background: #111;
-}
-
-#sala {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 800px;
-    height: 600px;
-    display: block;
-    z-index: 1;
-}
-
-.palco img {
-    position: absolute;
-    z-index: 2;
 }
 
 #diario-canvas {
     position: absolute;
     left: 0;
     top: 0;
-    width: 800px;
-    height: 600px;
+    width: 100%;
+    height: 100%;
     z-index: 3;
     pointer-events: none;
+    background: transparent;
 }
 
 button,
@@ -213,7 +191,7 @@ footer h2 {
     border-radius: 4px;
 }
 
-#minimapa .sala-mapa[aria-current="page"] {
+#minimapaSalaAtual {
     color: #fff;
     background: #5a2923;
     border-color: #c62828;

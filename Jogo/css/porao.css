@@ -1,0 +1,27 @@
+#sala {
+    width: 1000px;
+    height: 600px;
+    background-image: url("../../Sprites/fundilho.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#sala > *{
+    margin: 0;
+    padding: 0;
+    position: absolute;
+}
+
+
+#porta-fechada {
+    position: absolute;
+    top: 224px;
+    left: 183px;
+}
+
+#senha-porta {
+    position: absolute;
+    top: 224px;
+    left: 183px;
+}
