@@ -23,100 +23,171 @@ const espelho3 = document.getElementById('espelho3');
 const espelho4 = document.getElementById('espelho4');
 const espelho5 = document.getElementById('espelho5');
 
-let telaAtual = 'sala';
-
 /*imagens dos elementos*/
+const jogo = {
+    telaatual: 'sala',
+    inventario: {
+        chave: false,
+        fenda: false
+    },
+    atualizarMensagens(texto,cor = 'white'){
+        mensagem.textContent = texto;
+        mensagem.style.color = cor;
+    },
+    atualizarInventario(texto){
+        inventario.textContent = 'Inventario: ' + texto;
+    }
+};
+const porta = {
+    x: 60, y: 170, w: 180, h: 360,
+    trancada : true,
 
-let gavetaTrancada = true;
-let gavetaAberta = false;
-let temChave = false;
-let temFenda = false;
-let portaAberta = false;
+    desenhar(ctx){
+        const img = this.trancada ? imgPortaFechada : imgPortaAberta;
+        ctx.drawImage(img, this.x, this.y, this.w, this.h);
+    },
 
-let espelho11 = true;
-let espelho12 = false;
-let espelho13 = false;
-let espelho14 = false;
-let espelho15 = false;
-let espelho16 = false;
-
-let parafuso1 = true;
-let parafuso2 = true;
-let parafuso3 = true;
-let parafuso4 = true;
-let parafuso5 = true;
-let parafuso6 = true;
-
-/*^Variáveis de estado*/
-
-const porta = { x: 60, y: 170, w: 180, h: 360 };
-const gaveta = { x: 520, y: 390, w: 200, h: 140 };
-const chave = { x: 560, y: 405, w: 100, h: 70 };
-const fenda = { x:610, y:200, w:24, h: 80 };
-const espelho = { x: 520, y:115 , w: 196, h:280};
+    interagir(){
+        if (!this.trancada) {
+            jogo.atualizarMensagens('Você escapou! Fim do tutorial.', 'lightgreen');
+        } else if (jogo.inventario.chave) {
+            this.trancada = false;
+            jogo.atualizarInventario('Vazio');
+            jogo.atualizarMensagens('Você destrancou a porta!');
+        } else {
+            jogo.atualizarMensagens('A porta está trancada. Procure uma chave.');
+        }
+    }
+};
+const chave = {
+    x: 560, y: 405, w: 100, h: 70,
+    coletada: false,
+    desenhar(ctx){
+        if(!this.coletada) ctx.drawImage(imgChave, this.x, this.y, this.w, this.h);    
+    },
+    interagir() {
+        if(!this.coletada){
+            this.coletada=true;
+            jogo.inventario.chave = true;
+            jogo.atualizarInventario('Chave');
+            jogo.atualizarMensagens('Você pegou a chave!');
+        }
+    }
+}
+const gaveta = {
+    x: 520, y: 390, w: 200, h: 140,
+    trancada: true,
+    aberta: false,
+    desenhar(ctx){
+        if(this.trancada){
+            ctx.drawImage(imgGavetaTrancada, this.x, this.y, this.w, this.h); 
+                
+        } else if(this.aberta){
+            ctx.drawImage(imgGavetaAberta, this.x, this.y, this.w, this.h); 
+            if(!chave.coletada) ctx.drawImage(imgChave, chave.x, chave.y, chave.w, chave.h);
+        } else{
+            ctx.drawImage(imgGavetaFechada, this.x, this.y, this.w, this.h); 
+        }
+    },
+    interagir() { 
+        if (this.trancada) {
+            jogo.telaatual = 'zoomGaveta';
+            jogo.atualizarMensagens('A gaveta está presa por 6 parafusos.');
+        } else {
+            this.aberta = !this.aberta;
+            jogo.atualizarMensagens(this.aberta ? 'Você abriu a gaveta.' : 'Você fechou a gaveta.');
+        }
+    }
+}
+const fenda = {
+    x:610, y:200, w:24, h: 80,
+    coletada: false,
+    desenhar(ctx){
+        if(!this.coletada) ctx.drawImage(imgFenda, this.x, this.y, this.w, this.h);
+    },
+    interagir() { 
+        if (!this.coletada) {
+            this.coletada = true;
+            jogo.inventario.fenda = true;
+            jogo.atualizarInventario('Chave de Fenda');
+            jogo.atualizarMensagens('Você pegou a chave de fenda!');
+        }
+    }
+}
+const espelho = {
+    x: 520, y:115 , w: 196, h:280,
+    durabilidade:1,
+    imagens: [espelho1, espelho2, espelho3, espelho4, espelho5],
+    desenhar(ctx){
+        ctx.drawImage(this.imagens[this.durabilidade - 1], this.x, this.y, this.w, this.h);
+        if(this.durabilidade === 5) fenda.desenhar(ctx);
+    },
+    interagir(){
+        if(this.durabilidade <5){
+            this.durabilidade++;
+        }
+    }
+};
 
 const btmVoltar = { x: 20, y:20, w:110, h:40};
 const gavetazoom = {x:100,y:90,w:600,h:420};
 
-const p1 = { x: 163, y: 153, w: 36, h: 36 }; 
-const p2 = { x: 601, y: 153, w: 36, h: 36 }; 
-const p3 = { x: 163, y: 411, w: 36, h: 36 }; 
-const p4 = { x: 601, y: 411, w: 36, h: 36 }; 
-const p5 = { x: 311, y: 286, w: 28, h: 28 }; 
-const p6 = { x: 461, y: 286, w: 28, h: 28 };
-
 /*^Objetos e suas posições*/
+function CriarParafusos(x,y){
+    return{
+        x: x, y: y, w: 36, h: 36,
+        removido: false,
+        desenhar(ctx) {
+            if(!this.removido) ctx.drawImage(imgParafuso, this.x, this.y, this.w, this.h);
+        },
+        interagir(){
+            if(!jogo.inventario.fenda){
+                jogo.atualizarMensagens('Você precisa de uma chave de fenda!');
+                return false;
+            } 
+            if(!this.removido){
+                this.removido = true;
+                jogo.atualizarMensagens('Parafuso removido!');
+                return true;
+            }
+            return false;
+        }
+    };
+}
+const parafusos = [
+    CriarParafusos(163, 153), CriarParafusos(601, 153),
+    CriarParafusos(163, 411), CriarParafusos(601, 411),
+    CriarParafusos(305, 283), CriarParafusos(455, 283) 
+];
+
+function verificarGaveta(){
+    const todosRemovidos = parafusos.every(p => p.removido);
+    if(todosRemovidos){
+        gaveta.trancada = false;
+        jogo.telaatual = 'sala';
+        jogo.atualizarMensagens('Você desparafusou toda a gaveta! Agora pode abri-la.');
+    }
+}
+
+function dentro(x, y, objeto) {
+    return x >= objeto.x && x <= objeto.x + objeto.w &&
+           y >= objeto.y && y <= objeto.y + objeto.h;
+}
 
 function desenhar(){
     ctx.clearRect(0, 0, canvas.width, canvas.height); /* Apaga tudo */
-    ctx.drawImage(fundo, 0, 0, canvas.width, canvas.height); /* Pinta a imagem de fundo */
-
-
-    if(telaAtual == 'sala'){
-        if (portaAberta){
-            ctx.drawImage(imgPortaAberta, porta.x,porta.y,porta.w,porta.h);
-        } else {
-            ctx.drawImage(imgPortaFechada, porta.x,porta.y,porta.w,porta.h);
-        }
-        if(gavetaTrancada){
-            ctx.drawImage(imgGavetaTrancada,gaveta.x,gaveta.y,gaveta.w,gaveta.h);
-        }else if(gavetaAberta){
-            ctx.drawImage(imgGavetaAberta, gaveta.x,gaveta.y,gaveta.w,gaveta.h);
-        } else{
-            ctx.drawImage(imgGavetaFechada,gaveta.x,gaveta.y,gaveta.w,gaveta.h)
-        }
-        if(espelho11){
-            ctx.drawImage(espelho1,espelho.x,espelho.y,espelho.w,espelho.h);
-        }else if(espelho12){
-            ctx.drawImage(espelho2,espelho.x,espelho.y,espelho.w,espelho.h);
-        }else if(espelho13){
-            ctx.drawImage(espelho3,espelho.x,espelho.y,espelho.w,espelho.h);
-        }else if(espelho14){
-            ctx.drawImage(espelho4,espelho.x,espelho.y,espelho.w,espelho.h);
-        }else if(espelho15){
-            ctx.drawImage(espelho5,espelho.x,espelho.y,espelho.w,espelho.h);
-        }else if(espelho16){
-            ctx.drawImage(espelho5,espelho.x,espelho.y,espelho.w,espelho.h);
-        }
-    
-        if(espelho15 && !temFenda){
-            ctx.drawImage(imgFenda,fenda.x,fenda.y,fenda.w,fenda.h);
-        }
-        if(gavetaAberta && !temChave){
-            ctx.drawImage(imgChave,chave.x,chave.y,chave.w,chave.h);
-        }
-    } else if(telaAtual == 'zoomGaveta'){
+    if (jogo.telaatual === 'sala') {
+        ctx.drawImage(fundo, 0, 0, canvas.width, canvas.height);
+        porta.desenhar(ctx);
+        gaveta.desenhar(ctx);
+        espelho.desenhar(ctx);
+    } 
+    else if (jogo.telaatual === 'zoomGaveta') {
         ctx.fillStyle = "#1e1e1e";
-        ctx.fillRect(0,0, canvas.width, canvas.height);
-
-        ctx.drawImage(imgGavetaZoom, gavetazoom.x,gavetazoom.y,gavetazoom.w,gavetazoom.h);
-
-        if (parafuso1) ctx.drawImage(imgParafuso, p1.x, p1.y, p1.w, p1.h);
-        if (parafuso2) ctx.drawImage(imgParafuso, p2.x, p2.y, p2.w, p2.h);
-        if (parafuso3) ctx.drawImage(imgParafuso, p3.x, p3.y, p3.w, p3.h);
-        if (parafuso4) ctx.drawImage(imgParafuso, p4.x, p4.y, p4.w, p4.h);
-        if (parafuso5) ctx.drawImage(imgParafuso, p5.x, p5.y, p5.w, p5.h);
-        if (parafuso6) ctx.drawImage(imgParafuso, p6.x, p6.y, p6.w, p6.h);
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(imgGavetaZoom, gavetazoom.x, gavetazoom.y, gavetazoom.w, gavetazoom.h);
+        
+        parafusos.forEach(p => p.desenhar(ctx));
         
         ctx.fillStyle = "#b32424";
         ctx.fillRect(btmVoltar.x, btmVoltar.y, btmVoltar.w, btmVoltar.h);
@@ -124,91 +195,47 @@ function desenhar(){
         ctx.font = "20px Schoolbell, cursive";
         ctx.fillText("Voltar", btmVoltar.x + 28, btmVoltar.y + 27);
     }
+    
 }
     
 
 
-function dentro(x, y, objeto) {
-    return x >= objeto.x && x <= objeto.x + objeto.w &&
-           y >= objeto.y && y <= objeto.y + objeto.h;
-}
+
 
 function cliques(evento){
 
     const x = evento.offsetX * (canvas.width / canvas.clientWidth);
     const y = evento.offsetY * (canvas.height / canvas.clientHeight);
+    jogo.atualizarMensagens('');
     /*Posição do mouse para o jogo*/
-    
-    if(telaAtual == 'sala'){
-        if (gavetaAberta && !temChave && dentro(x,y,chave)){
-            temChave = true;
-            inventario.textContent = 'Inventário: Chave';
-        } else if(dentro(x,y,gaveta)){
-            if (gavetaTrancada) {
-                telaAtual = 'zoomGaveta';
-                mensagem.textContent = 'A gaveta está presa por 6 parafusos.';
-            } else if (!gavetaAberta) {
-                gavetaAberta = true;
-            } else {
-                gavetaAberta = false;
-            }
-        } else if(dentro(x,y,porta)){
-            if(portaAberta){
-                 mensagem.textContent = 'Você escapou! Fim do tutorial.';
-                 mensagem.style.color = 'lightgreen';
-            } else if(temChave){
-                portaAberta = true;
-                inventario.textContent = 'Inventário: Vazio';
-            } else{
-                mensagem.textContent = 'A porta está trancada. Procure uma chave.';
-            }
-        } else if(dentro(x,y,fenda) && espelho15 && !temFenda){
-            temFenda = true;
-            inventario.textContent = 'Inventário: Chave de Fenda';
-        } else if(dentro(x,y,espelho)){
-            if(dentro(x,y,espelho) && espelho11){
-                espelho11 = false;
-                espelho12 = true;
-            }else if(dentro(x,y,espelho) && espelho12){
-                espelho12 = false;
-                espelho13 = true;
-            }else if(dentro(x,y,espelho) && espelho13){
-                espelho13 = false;
-                espelho14 = true;
-            }else if(dentro(x,y,espelho) && espelho14){
-                espelho14 = false;
-                espelho15 = true; 
-            }
+    if (jogo.telaatual === 'sala') {
+        // Ordem de prioridade dos cliques
+        if (gaveta.aberta && !chave.coletada && dentro(x, y, chave)) {
+            chave.interagir();
+        } else if (espelho.durabilidade === 5 && !fenda.coletada && dentro(x, y, fenda)) {
+            fenda.interagir();
+        } else if (dentro(x, y, porta)) {
+            porta.interagir();
+        } else if (dentro(x, y, gaveta)) {
+            gaveta.interagir();
+        } else if (dentro(x, y, espelho)) {
+            espelho.interagir();
         }
-    } else if(telaAtual == 'zoomGaveta'){
-        cliqueZoomGaveta(x,y);
+    } 
+    else if (jogo.telaatual === 'zoomGaveta') {
+        if (dentro(x, y, btmVoltar)) {
+            jogo.telaatual = 'sala';
+        } else {
+            // Verifica se clicou em algum parafuso
+            parafusos.forEach(p => {
+                if (dentro(x, y, p)) {
+                    p.interagir();
+                }
+            });
+            verificarGaveta();
+        }
     }
+    
     desenhar();
-}
-
-function cliqueZoomGaveta(x,y){
-    if(dentro(x,y,btmVoltar)){
-        telaAtual = 'sala';
-        mensagem.textContent = '';
-        return;
-    }
-    if (dentro(x, y, p1) || dentro(x, y, p2) || dentro(x, y, p3) || 
-        dentro(x, y, p4) || dentro(x, y, p5) || dentro(x, y, p6)) {
-            if(!temFenda){
-                mensagem.textContent = 'Você precisa de uma chave de fenda!'
-                return;
-            }
-            if (dentro(x, y, p1) && parafuso1) { parafuso1 = false; mensagem.textContent = 'Parafuso removido!'; }
-            if (dentro(x, y, p2) && parafuso2) { parafuso2 = false; mensagem.textContent = 'Parafuso removido!'; }
-            if (dentro(x, y, p3) && parafuso3) { parafuso3 = false; mensagem.textContent = 'Parafuso removido!'; }
-            if (dentro(x, y, p4) && parafuso4) { parafuso4 = false; mensagem.textContent = 'Parafuso removido!'; }
-            if (dentro(x, y, p5) && parafuso5) { parafuso5 = false; mensagem.textContent = 'Parafuso removido!'; }
-            if (dentro(x, y, p6) && parafuso6) { parafuso6 = false; mensagem.textContent = 'Parafuso removido!'; }
-    }      
-    if (!parafuso1 && !parafuso2 && !parafuso3 && !parafuso4 && !parafuso5 && !parafuso6) {
-        gavetaTrancada = false;
-        telaAtual = 'sala';
-        mensagem.textContent = 'Você desparafusou toda a gaveta! Agora pode abri-la.';
-    }  
 }
 window.onload = desenhar;
