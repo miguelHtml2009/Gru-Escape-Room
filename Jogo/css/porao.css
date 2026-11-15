@@ -20,8 +20,51 @@
     left: 183px;
 }
 
-#senha-porta {
+#porta-aberta {
     position: absolute;
     top: 224px;
-    left: 183px;
+    left: 184px;
+}
+
+#senha-porta {
+    position: absolute;
+    top: 300px;
+    left: 410px;
+}
+
+#senha-porta-w {
+    position: absolute;
+    top: 300px;
+    left: 410px;
+}
+
+#geladeira-fechada {
+    position: absolute;
+    top: 284px;
+    left: 649px;
+}
+#geladeira-aberta {
+    position: absolute;
+    top: 289px;
+    left: 636px;
+}
+
+#geleia {
+    position: absolute;
+    top: 371px;
+    left: 650px;
+}
+
+#bilhete {
+    position: absolute;
+    top: 313px;
+    left: 40px;
+}
+
+#bilhete-de-perto {
+    position: absolute;
+    width: 507px;
+    height: auto;
+    top: -6px;
+    left: 245px;
 }

@@ -87,7 +87,7 @@ footer h2 {
 }
 
 #inventario li {
-    padding: 8px 12px;
+    padding: 0px;
     color: #f5ead5;
     background: #29231e;
     border: 1px solid #806b48;
@@ -191,7 +191,7 @@ footer h2 {
     border-radius: 4px;
 }
 
-#minimapaSalaAtual {
+#minimapa #minimapaSalaAtual {
     color: #fff;
     background: #5a2923;
     border-color: #c62828;

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,67 +9,78 @@
     <link rel="stylesheet" href="../css/porao.css">
     <link rel="shortcut icon" type="imagex/png" href="../../Sprites/icon.ico">
 </head>
+
 <body>
 
-<button id="botao-menu" onclick="pause()">☰</button>
+    <button id="botao-menu" onclick="pause()">☰</button>
 
-<section id="menu-pausa" hidden>
-    <h2>Menu do jogo</h2>
-    <button onclick="saveExit()">Salvar e sair</button>
-    <button onclick="fecharMenu()">Voltar ao jogo</button>
-</section>
+    <section id="menu-pausa" hidden>
+        <h2>Menu do jogo</h2>
+        <button onclick="saveExit()">Salvar e sair</button>
+        <button onclick="fecharMenu()">Voltar ao jogo</button>
+    </section>
 
-<header>
-    <h1>O Porão</h1>
-</header>
+    <header>
+        <h1>O Porão</h1>
+    </header>
 
-<main>
-    <div id="sala">
-        <img src="../../Sprites/porta-fechada.png" id="porta-fechada">
-        <img src="../../Sprites/porta-aberta.png"  id="porta-aberta" hidden>
-        <img src ="../../Sprites/senha-porta.png" id="senha-porta">
-        
-        <!--<img src="../../Sprites/geladeira-fechada.png" id="geladeira-fechada" > -->
-        <!-- <img src="../../Sprites/geladeira-aberta.png"  id="geladeira-aberta" hidden> -->
-        
-    </div>
-</main>
+    <main>
+        <div id="sala">
+            <img src="../../Sprites/porta-fechada.png" id="porta-fechada">
+            <img src="../../Sprites/porta-aberta.png" id="porta-aberta" hidden>
 
-<footer>
+            <img src="../../Sprites/senha-porta.png" id="senha-porta" onclick="abrirPorta()">
+            <img src="../../Sprites/senha-porta-w.png" id="senha-porta-w" hidden>
 
-<section>
-    <h2>Inventário</h2>
-    <ul id="inventario">
-        <li></li>
-        <li></li>
-    </ul>
-</section>
+            <img src="../../Sprites/geladeira-fechada.png" id="geladeira-fechada" onclick="abrirGeladeira()">
+            <img src="../../Sprites/geladeira-aberta.png"  id="geladeira-aberta" hidden>
 
-<button id="abrir-diario" onclick="diario.abrir()">
-    Diário de pistas
-</button>
+            <img src="../../Sprites/geleia-do-gru.png" id="geleia" hidden onclick="pegarGeleia()">
 
-<p id="mensagem">
-    Você acordou em um porão desconhecido...
-</p>
+            <img src="../../Sprites/bilhete.png" id="bilhete" onclick="lerbilhete()">
+            <img src="../../Sprites/bilhete-de-perto.png" id="bilhete-de-perto" hidden onclick="deslerbilhete()">
 
-<nav id="minimapa">
-    <h2>Minimapa</h2>
 
-    <div class="salas">
-        <section class="sala-mapa" id="MinimapaAtual" aria-current="page">Porão</section>
+        </div>
+    </main>
 
-        <a class="sala-mapa" href="./laboratorio.html" onclick="save()">Laboratório</a>
+    <footer>
 
-        <a class="sala-mapa" href="./fliperama.html" onclick="save()">Fliperama</a>
+        <section>
+            <h2>Inventário</h2>
+            <ul id="inventario">
+            </ul>
+        </section>
 
-        <a class="sala-mapa" href="./linha-de-montagem.html" onclick="save()">Linha de montagem</a>
+        <button id="abrir-diario" onclick="diario.abrir()">
+            Diário de pistas
+        </button>
 
-        <a class="sala-mapa" href="./refugio.html" onclick="save()">Refúgio</a>
-    </div>
-</nav>
+        <p id="mensagem">
+            Você acordou em um porão desconhecido...
+        </p>
 
-</footer>
+        <nav id="minimapa">
+            <h2>Minimapa</h2>
+
+            <div class="salas">
+                <section class="sala-mapa" id="minimapaSalaAtual">Porão</section>
+
+                <a class="sala-mapa" href="./laboratorio.html" onclick="save()">Laboratório</a>
+
+                <a class="sala-mapa" href="./fliperama.html" onclick="save()">Fliperama</a>
+
+                <a class="sala-mapa" href="./linha-de-montagem.html" onclick="save()">Linha de montagem</a>
+
+                <a class="sala-mapa" href="./refugio.html" onclick="save()">Refúgio</a>
+            </div>
+        </nav>
+
+    </footer>
+
+    <script src="../js/codigoFonte.js"></script>
+    <script src="../js/porao.js"></script>
 
 </body>
+
 </html>
