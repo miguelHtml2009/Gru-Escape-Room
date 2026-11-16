@@ -70,6 +70,11 @@ img{
     background: linear-gradient(180deg, #3a0a12 0%, #2e070d 45%, #1a0407 100%);
 }
 
+#inicio{
+    width: 40%;
+    height:auto
+}
+
 
 
 
