@@ -1,12 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Escape Room - A Linha de Montagem</title>
+    <link rel="stylesheet" href="../css/CSS.css">
+    <link rel="stylesheet" href="../css/linha-de-montagem.css">
     <link rel="shortcut icon" type="imagex/png" href="../../Sprites/icon.ico">
 </head>
+
 <body>
-    
+
+    <button id="botao-menu" onclick="pause()">☰</button>
+
+    <section id="menu-pausa" hidden>
+        <h2>Menu do jogo</h2>
+        <button onclick="saveExit()">Salvar e sair</button>
+        <button onclick="fecharMenu()">Voltar ao jogo</button>
+    </section>
+
+    <header>
+        <h1>A Linha de Montagem</h1>
+    </header>
+
+    <main>
+        <div id="sala">
+            
+            <img src="../../Sprites/fios-parafusado.png" id="fios-parafusado">
+
+        </div>
+    </main>
+
+    <footer>
+
+        <section>
+            <h2>Inventário</h2>
+            <ul id="inventario">
+            </ul>
+        </section>
+
+        <button id="abrir-diario" onclick="diario.abrir()">
+            Diário de pistas
+        </button>
+
+        <p id="mensagem">
+            Você está na linha de montagem.
+        </p>
+
+        <nav id="minimapa">
+            <h2>Minimapa</h2>
+
+            <div class="salas">
+                
+                <a class="sala-mapa" href="./porao.html" onclick="save()">Porão</a>
+
+                <a class="sala-mapa" href="./laboratorio.html" onclick="save()">Laboratório</a>
+
+                <a class="sala-mapa" href="./fliperama.html" onclick="save()">Fliperama</a>
+
+                <section class="sala-mapa" id="minimapaSalaAtual">Linha de Montagem</section>
+
+                <a class="sala-mapa" href="./refugio.html" onclick="save()">Refúgio</a>
+            </div>
+        </nav>
+
+    </footer>
+    <script src="../js/codigoFonte.js"></script>
+    <script src="../js/linha-de-montagem.js"></script>
+
 </body>
+
 </html>
