@@ -19,4 +19,78 @@
     left: 786px;
 }
 
+#telefone {
+    position: absolute;
+    top: 403px;
+    left: 147px;
+}
+
+#painel-telefone {
+    display: none;
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.conversa-telefone {
+    width: 80%;
+    max-width: 650px;
+    min-height: 300px;
+
+    padding: 30px;
+
+    background: #151515;
+    border: 2px solid #8b0000;
+
+    color: #eee;
+    font-family: 'Special Elite', monospace;
+}
+
+#nome-npc {
+    color: #c62828;
+    border-bottom: 1px solid #555;
+    padding-bottom: 12px;
+}
+
+#fala-npc {
+    min-height: 100px;
+    line-height: 1.6;
+}
+
+#opcoes-telefone {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#opcoes-telefone button,
+#continuar-fala,
+#desligar-telefone {
+    padding: 12px;
+
+    background: #222;
+    color: white;
+
+    border: 1px solid #8b0000;
+
+    font-family: inherit;
+    cursor: pointer;
+    text-align: left;
+}
+
+#opcoes-telefone button:hover,
+#continuar-fala:hover,
+#desligar-telefone:hover {
+    background: #8b0000;
+}
+
+#desligar-telefone {
+    margin-top: 15px;
+}
+
 

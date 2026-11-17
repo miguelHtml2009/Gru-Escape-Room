@@ -26,10 +26,30 @@
 
     <main>
         <div id="sala">
-            
+
             <img src="../../Sprites/fios-parafusado.png" id="fios-parafusado">
+            <img src="../../Sprites/telefone.png" id="telefone" onclick="atender()">
 
         </div>
+        <section id="painel-telefone">
+            <div class="conversa-telefone">
+
+                <h2 id="nome-npc">DESCONHECIDO</h2>
+
+                <p id="fala-npc"></p>
+
+                <div id="opcoes-telefone"></div>
+
+                <button id="continuar-fala" onclick="pularFala()">
+                    Pular diálogo
+                </button>
+
+                <button id="desligar-telefone" onclick="fecharTelefone()">
+                    Desligar
+                </button>
+
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -52,7 +72,7 @@
             <h2>Minimapa</h2>
 
             <div class="salas">
-                
+
                 <a class="sala-mapa" href="./porao.html" onclick="save()">Porão</a>
 
                 <a class="sala-mapa" href="./laboratorio.html" onclick="save()">Laboratório</a>
