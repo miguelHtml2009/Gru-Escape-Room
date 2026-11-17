@@ -1,9 +1,43 @@
-
+const mensagem = document.getElementById("mensagem");
 const painelTelefone = document.getElementById("painel-telefone");
 const nomeNPC = document.getElementById("nome-npc");
 const falaNPC = document.getElementById("fala-npc");
 const opcoesTelefone = document.getElementById("opcoes-telefone");
 const botaoContinuar = document.getElementById("continuar-fala");
+var contp=0;
+
+// Painel dos fios
+const escuro = document.getElementById("escuro");
+const menu_escuro = document.getElementById("escuro-menu");
+
+const p1 = {
+    pa1:document.getElementById("p1"),
+    solto:true
+}
+const p2 = {
+    pa2:document.getElementById("p2"),
+    solto:true
+}
+const p3 = {
+    pa3:document.getElementById("p3"),
+    solto:true
+}
+const p4 = {
+    pa4:document.getElementById("p4"),
+    solto:true
+}
+
+const painelfios = {
+    Fechado: document.getElementById("fios-fechados"),
+    Parafusado: document.getElementById("fios-parafusados"),  
+    Abertomin: document.getElementById("fios-abertosmin"), /*imagem que esta na sala normal, menor*/
+    Abertomax: document.getElementById("fios-abertosmax") /*Imagem que aparece quando clica, maior*/
+};
+
+const chaveFenda = {
+    chave:document.getElementById("chave-fenda"),
+    coletada:false
+};
 
 let intervaloFala;
 let textoAtual = "";
@@ -241,3 +275,56 @@ function fecharTelefone() {
     falando = false;
 
 }
+
+function pegarfenda(){
+    chaveFenda.chave.style.display="none";
+    chaveFenda.coletada=true;
+}
+
+function menuDesparafusar() {
+    if(chaveFenda.coletada){
+        escuro.style.display = "block";
+        menu_escuro.style.display = "block";
+        menu_escuro.style.border = "1px solid #806b48";
+  
+        if (painelfios.Abertomax.style.display != "block") {
+            painelfios.Fechado.style.display = "block";
+            mostrarParafusos();
+        }
+    } else{
+        mensagem.innerHTML="Você não possui a ferramenta certa para isso.";
+    }
+}
+function mostrarParafusos() {
+    [p1.pa1, p2.pa2, p3.pa3, p4.pa4].forEach(function (parafuso) {
+        if (!parafuso.classList.contains("solto")) { 
+            parafuso.style.display = "block";
+        }
+    });
+}
+
+function voltarEscuro(){
+    if(painelfios.Fechado.style.display == "block" || painelfios.Abertomax.style.display == "block"){
+        menu_escuro.style.display = "none";
+        escuro.style.display = "none";
+
+        p1.pa1.style.display = "none";
+        p2.pa2.style.display = "none";
+        p3.pa3.style.display = "none";
+        p4.pa4.style.display = "none";
+    }
+} 
+function tirarParafuso(parafuso) {
+    parafuso.style.display = "none";
+    parafuso.classList.add("solto");
+    contp++;
+}
+ function abrirPainel(){
+    if(contp==4){
+        painelfios.Fechado.style.display = "none";
+        painelfios.Abertomax.style.display = "block";
+
+        painelfios.Parafusado.style.display = "none";
+        painelfios.Abertomin.style.display = "block";
+    }
+ }

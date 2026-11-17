@@ -26,8 +26,22 @@
 
     <main>
         <div id="sala">
+            <div id="escuro" onclick="voltarEscuro()"></div>
+            <div id="escuro-menu">
+                <img src="../../Sprites/fios-fechados.png" id="fios-fechados" onclick="abrirPainel()">
+                <img src="../../Sprites/fios-abertos-max.png" id="fios-abertosmax"> 
+            </div>
+            
+            <img src="../../Sprites/chave-philips.svg " id="chave-fenda" onclick="pegarfenda()" >
+            <img src="../../Sprites/fios-parafusado.png" id="fios-parafusados" onclick="menuDesparafusar()">
+            <img src="../../Sprites/parafuso.png" id="p1" class="parafusos"onclick="tirarParafuso(this)">
+            <img src="../../Sprites/parafuso.png" id="p2" class="parafusos"onclick="tirarParafuso(this)">
+            <img src="../../Sprites/parafuso.png" id="p3" class="parafusos"onclick="tirarParafuso(this)">
+            <img src="../../Sprites/parafuso.png" id="p4" class="parafusos"onclick="tirarParafuso(this)">
 
-            <img src="../../Sprites/fios-parafusado.png" id="fios-parafusado">
+            <img src="../../Sprites/fios-abertos.png" id="fios-abertosmin" onclick="menuDesparafusar()"> 
+            
+
             <img src="../../Sprites/telefone.png" id="telefone" onclick="atender()">
 
         </div>

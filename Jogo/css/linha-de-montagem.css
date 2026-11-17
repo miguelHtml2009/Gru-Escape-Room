@@ -13,11 +13,7 @@
     position: absolute;
 }
 
-#fios-parafusado {
-    position: absolute;
-    top: 402px;
-    left: 786px;
-}
+
 
 #telefone {
     position: absolute;
@@ -92,5 +88,84 @@
 #desligar-telefone {
     margin-top: 15px;
 }
+#chave-fenda {
+    width: 100px;
+    height: 100px;
+    top: 22px;
+    left: 10px;
+}
 
+#escuro{
+    position: fixed;          
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);  
+    z-index: 9999;            
+    display: none;
+}
+#escuro-menu {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
 
+    width: fit-content;        /*Se ajusta ao child*/
+    max-width: 90vw;
+    max-height: 90vh;          
+    padding: 50px;
+    box-sizing: border-box;
+
+    background-color: #222;
+    border-radius: 8px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+#fios-fechados {
+    height: 65vh;              
+    width: auto;               
+    max-width: 100%;
+}
+#fios-abertosmax {
+    height: 65vh;              
+    width: auto;               
+    max-width: 100%;
+    display: none;
+}
+#fios-parafusados {
+    position: absolute;
+    top: 402px;
+    left: 786px;
+}
+#fios-abertosmin {
+    position: absolute;
+    top: 402px;
+    left: 786px;
+    display: none;
+}
+.parafusos {
+    display: none;
+    z-index: 10000;
+    width: 40px;
+    height: 40px;
+}
+#p1 {
+    top: 118px;
+    left: 257px;
+}
+#p2 {
+    top: 542px;
+    left: 257px;
+}
+#p3 {
+    top: 118px;
+    left: 684px;
+}
+#p4 {
+    top: 542px;
+    left: 684px;
+}
