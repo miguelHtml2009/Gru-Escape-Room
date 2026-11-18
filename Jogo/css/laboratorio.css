@@ -1,7 +1,7 @@
 #sala {
     width: 1000px;
     height: 600px;
-    background-image: url("../../Sprites/fundilho2.jpg");
+    background-image: url("../../Sprites/fundilho2.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: center;
@@ -18,6 +18,12 @@
     position: absolute;
     top: 224px;
     left: 183px;
+}
+
+#computador {
+    position: absolute;
+    top: 215px;
+    left: 484px;
 }
 
 
