@@ -1,4 +1,5 @@
 #sala {
+    position: relative;
     width: 1000px;
     height: 600px;
     background-image: url("../../Sprites/fundilho3.png");
@@ -106,45 +107,40 @@
     display: none;
 }
 #escuro-menu {
-    position: fixed;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 10000;
 
-    width: fit-content;        /*Se ajusta ao child*/
-    max-width: 90vw;
-    max-height: 90vh;          
+    width: fit-content;        /*Se ajusta ao child*/          
     padding: 50px;
     box-sizing: border-box;
 
     background-color: #222;
     border-radius: 8px;
     display: none;
-    justify-content: center;
-    align-items: center;
 }
 
 #fios-fechados {
-    height: 65vh;              
+    height: 480px;            
     width: auto;               
-    max-width: 100%;
+    
 }
 #fios-abertosmax {
-    height: 65vh;              
+    height: 480px;             
     width: auto;               
-    max-width: 100%;
     display: none;
 }
 #fios-parafusados {
     position: absolute;
     top: 402px;
-    left: 786px;
+    left: 794px;
 }
 #fios-abertosmin {
     position: absolute;
     top: 402px;
-    left: 786px;
+    left: 794px;
     display: none;
 }
 .parafusos {
@@ -154,18 +150,18 @@
     height: 40px;
 }
 #p1 {
-    top: 118px;
-    left: 257px;
+    top: 108px;
+    left: 304px;
 }
 #p2 {
-    top: 542px;
-    left: 257px;
+    top: 444px;
+    left: 304px;
 }
 #p3 {
-    top: 118px;
-    left: 684px;
+    top: 108px;
+    left: 646px;
 }
 #p4 {
-    top: 542px;
-    left: 684px;
+    top: 444px;
+    left: 646px;
 }

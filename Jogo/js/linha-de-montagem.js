@@ -276,6 +276,7 @@ function fecharTelefone() {
 
 }
 
+// Painel de fios
 function pegarfenda(){
     chaveFenda.chave.style.display="none";
     chaveFenda.coletada=true;
