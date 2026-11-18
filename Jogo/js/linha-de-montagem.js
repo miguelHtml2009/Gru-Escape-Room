@@ -6,6 +6,11 @@ const opcoesTelefone = document.getElementById("opcoes-telefone");
 const botaoContinuar = document.getElementById("continuar-fala");
 var contp=0;
 
+const chaveFenda = {
+    chave:document.getElementById("chave-fenda"),
+    coletada:false
+};
+
 // Painel dos fios
 const escuro = document.getElementById("escuro");
 const menu_escuro = document.getElementById("escuro-menu");
@@ -31,12 +36,45 @@ const painelfios = {
     Fechado: document.getElementById("fios-fechados"),
     Parafusado: document.getElementById("fios-parafusados"),  
     Abertomin: document.getElementById("fios-abertosmin"), /*imagem que esta na sala normal, menor*/
-    Abertomax: document.getElementById("fios-abertosmax") /*Imagem que aparece quando clica, maior*/
+    Abertomax: document.getElementById("fios-abertosmax"), /*Imagem que aparece quando clica, maior*/
+    Conectado: document.getElementById("fios-conectados")
 };
 
-const chaveFenda = {
-    chave:document.getElementById("chave-fenda"),
-    coletada:false
+// Fios
+
+const fios = {
+    amarelo: {
+        tampa: document.getElementById('amarelo-tampa'),
+        tampa2: document.getElementById('amarelo-tampa2'),
+        conectado: document.getElementById('amarelo-conectado'),
+        esquerda: document.getElementById('amarelo-esquerda'),
+        direita: document.getElementById('amarelo-direita'),
+        solto: true
+    },
+    azul: {
+        tampa: document.getElementById('azul-tampa'),
+        tampa2: document.getElementById('azul-tampa2'),
+        conectado: document.getElementById('azul-conectado'),
+        esquerda: document.getElementById('azul-esquerda'),
+        direita: document.getElementById('azul-direita'),
+        solto: true
+    },
+    rosa: {
+        tampa: document.getElementById('rosa-tampa'),
+        tampa2: document.getElementById('rosa-tampa2'),
+        conectado: document.getElementById('rosa-conectado'),
+        esquerda: document.getElementById('rosa-esquerda'),
+        direita: document.getElementById('rosa-direita'),
+        solto: true
+    },
+    vermelho: {
+        tampa: document.getElementById('vermelho-tampa'),
+        tampa2: document.getElementById('vermelho-tampa2'),
+        conectado: document.getElementById('vermelho-conectado'),
+        esquerda: document.getElementById('vermelho-esquerda'),
+        direita: document.getElementById('vermelho-direita'),
+        solto: true
+    }
 };
 
 let intervaloFala;
@@ -327,5 +365,83 @@ function tirarParafuso(parafuso) {
 
         painelfios.Parafusado.style.display = "none";
         painelfios.Abertomin.style.display = "block";
+
+        document.querySelector('.fios-minigame').style.display = "block";
+
+        fios.amarelo.tampa.style.display = "block";
+        fios.amarelo.tampa2.style.display = "block";
+        fios.amarelo.direita.style.display = "block";
+        fios.amarelo.esquerda.style.display = "block";
+
+        fios.azul.tampa.style.display = "block";
+        fios.azul.tampa2.style.display = "block";
+        fios.azul.direita.style.display = "block";
+        fios.azul.esquerda.style.display = "block";
+
+        fios.rosa.tampa.style.display = "block";
+        fios.rosa.tampa2.style.display = "block";
+        fios.rosa.direita.style.display = "block";
+        fios.rosa.esquerda.style.display = "block";
+
+        fios.vermelho.tampa.style.display = "block";
+        fios.vermelho.tampa2.style.display = "block";
+        fios.vermelho.direita.style.display = "block";
+        fios.vermelho.esquerda.style.display = "block";
+    }
+ }
+
+ let fioSelecionado = null;
+
+ function conectarFios(corFio, ladoClicado){
+    if(fios[corFio].solto === false){  //Se ja estiver conectado nem continua
+        return;
+    }
+
+    if(fioSelecionado === null){  //Guardar a cor e o lado do fio
+        fioSelecionado = {
+            cor: corFio,
+            lado: ladoClicado
+        };
+        fios[corFio][ladoClicado].style.filter = "brightness(1.5)"; //Efeito pro usuário saber que clicou no fio
+        return;
+    }
+
+    if (fioSelecionado.cor === corFio && fioSelecionado.lado === ladoClicado) {
+        fios[corFio][ladoClicado].style.filter = "none"; //Se clicar no mesmo fio, ele tira o efeito
+        fioSelecionado = null;
+        return;
+    }
+
+    if(fioSelecionado.cor === corFio && fioSelecionado.lado !== ladoClicado){
+        fios[corFio].esquerda.style.display = "none"; //Se clicar no fio do outro lado, ele some com os lados e mostra o conectado
+        fios[corFio].direita.style.display = "none";
+        fios[corFio].conectado.style.display = "block";
+        fios[corFio].solto = false;
+
+        fios[fioSelecionado.cor][fioSelecionado.lado].style.filter = "none";
+        fioSelecionado = null;
+
+        mensagem.innerHTML = "Fios selecionados corretamente!";
+
+        verificarFios();
+    } else{
+        fios[fioSelecionado.cor][fioSelecionado.lado].style.filter = "none"; //Tira brilho do antigo e ja brilha o novo
+        
+        fioSelecionado = { 
+            cor: corFio, 
+            lado: ladoClicado 
+        };
+        fios[corClicada][ladoClicado].style.filter = "brightness(1.5)";
+
+        mensagem.innerHTML = "Fios selecionados incorretamente!";
+    }
+
+ }
+
+ function verificarFios(){
+    if(fios.amarelo.solto === false & fios.azul.solto === false & fios.rosa.solto === false & fios.vermelho.solto === false ){
+        mensagem.innerHTML = "Painel consertado! A energia foi restaurada.";
+        painelfios.Abertomin.style.display = "none";
+        painelfios.Conectado.style.display = "block";
     }
  }
