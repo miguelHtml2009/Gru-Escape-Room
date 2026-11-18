@@ -13,7 +13,6 @@
     position: absolute;
 }
 
-
 #porta-fechada {
     position: absolute;
     top: 224px;
@@ -26,4 +25,14 @@
     left: 484px;
 }
 
+#zoom {
+    position: absolute;
+    top: 4px;
+    left: 171px;
+}
+#passwordInput {
+    position: absolute;
+    top: 287px;
+    left: 395px;
+}
 

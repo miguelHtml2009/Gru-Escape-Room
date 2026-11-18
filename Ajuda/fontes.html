@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Retrô - Gru</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #050505;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    /* Carcaça do monitor CRT */
+    .monitor-casing {
+      background: linear-gradient(145deg, #f2eef2, #d8d2d8);
+      padding: 35px 40px 25px 40px;
+      border-radius: 36px;
+      box-shadow: 
+        inset 0 4px 10px rgba(255, 255, 255, 0.9),
+        inset 0 -8px 15px rgba(0, 0, 0, 0.2),
+        0 20px 50px rgba(0, 0, 0, 0.8);
+      width: 100%;
+      max-width: 780px;
+      position: relative;
+    }
+
+    /* Detalhe superior da marca no monitor */
+    .monitor-brand {
+      width: 60px;
+      height: 10px;
+      background: #ccc6cc;
+      border-radius: 10px;
+      margin: -18px auto 15px auto;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+    }
+
+    /* Moldura interna da tela */
+    .screen-bezel {
+      background: #1a1a1a;
+      padding: 14px;
+      border-radius: 22px;
+      box-shadow: inset 0 5px 15px rgba(0,0,0,0.9);
+    }
+
+    /* Tela azul do sistema */
+    .screen {
+      background-color: #092147;
+      height: 440px;
+      border-radius: 12px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Efeito sutil de linhas de tubo (CRT) */
+    .screen::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%);
+      background-size: 100% 4px;
+      pointer-events: none;
+    }
+
+    /* Foto de perfil circular */
+    .avatar {
+      width: 135px;
+      height: 135px;
+      border-radius: 50%;
+      object-fit: cover;
+      background-color: #1e3a6e;
+      margin-bottom: 18px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Nome do usuário */
+    .username-display {
+      color: #ffffff;
+      font-size: 26px;
+      font-weight: 400;
+      margin-bottom: 16px;
+      letter-spacing: 0.5px;
+    }
+
+    /* Formulário de login */
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 340px;
+      z-index: 2;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 10px 14px;
+      font-size: 18px;
+      background-color: #d9d9d9;
+      border: 2px solid transparent;
+      color: #222;
+      outline: none;
+      margin-bottom: 10px;
+      transition: border-color 0.2s, background-color 0.2s;
+    }
+
+    .input-field::placeholder {
+      color: #666;
+    }
+
+    .input-field:focus {
+      background-color: #ffffff;
+      border-color: #4a90e2;
+    }
+
+    /* Mensagem de erro */
+    .error-message {
+      color: #ff6b6b;
+      font-size: 14px;
+      min-height: 20px;
+      margin-top: 4px;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    /* Animação de tremor ao errar a senha */
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-8px); }
+      40%, 80% { transform: translateX(8px); }
+    }
+
+    .shake {
+      animation: shake 0.35s ease-in-out;
+    }
+
+    /* Lista de usuários no canto inferior esquerdo */
+    .user-switcher {
+      position: absolute;
+      bottom: 22px;
+      left: 25px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      z-index: 2;
+    }
+
+    .user-option {
+      background: none;
+      border: none;
+      color: #e0e6ed;
+      font-size: 16px;
+      text-align: left;
+      cursor: pointer;
+      padding: 3px 6px;
+      border-radius: 4px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .user-option:hover {
+      background-color: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+    }
+
+    /* Base inferior do monitor */
+    .monitor-base {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 2px solid #beb8be;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .floppy-slot {
+      width: 140px;
+      height: 12px;
+      background: #b5afb5;
+      border-radius: 3px;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.4);
+    }
+
+    .power-slider {
+      width: 180px;
+      height: 10px;
+      background: #b5afb5;
+      border-radius: 4px;
+      position: relative;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.4);
+    }
+
+    .power-knob {
+      width: 28px;
+      height: 14px;
+      background: #e6e2e6;
+      border-radius: 3px;
+      position: absolute;
+      right: 30px;
+      top: -2px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="monitor-casing">
+    <div class="monitor-brand"></div>
+    
+    <div class="screen-bezel">
+      <div class="screen">
+        <!-- Substitua o src abaixo pela URL da imagem do Gru ou outra foto -->
+        <img 
+          id="userAvatar" 
+          class="avatar" 
+          src="https://upload.wikimedia.org/wikipedia/en/2/21/Gru_%28Despicable_Me%29.png" 
+          alt="Avatar do Usuário"
+        >
+
+        <div id="usernameDisplay" class="username-display">Gru</div>
+
+        <form id="loginForm" class="login-form">
+          <!-- Campo extra que só aparece quando "Outro usuário" é clicado -->
+          <input 
+            type="text" 
+            id="customUserInput" 
+            class="input-field" 
+            placeholder="nome de usuário" 
+            style="display: none;"
+            autocomplete="off"
+          >
+
+          <input 
+            type="password" 
+            id="passwordInput" 
+            class="input-field" 
+            placeholder="senha" 
+            required
+          >
+          
+          <!-- Botão oculto para permitir enviar apertando Enter -->
+          <button type="submit" style="display: none;">Entrar</button>
+
+          <div id="errorMessage" class="error-message"></div>
+        </form>
+
+        <!-- Opções clicáveis no canto inferior esquerdo -->
+        <div class="user-switcher">
+          <button type="button" class="user-option" onclick="selectUser('Nefario')">Nefario</button>
+          <button type="button" class="user-option" onclick="selectUser('Outro usuário')">Outro usuário</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="monitor-base">
+      <div class="floppy-slot"></div>
+      <div class="power-slider">
+        <div class="power-knob"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    const passwordInput = document.getElementById('passwordInput');
+    const customUserInput = document.getElementById('customUserInput');
+    const usernameDisplay = document.getElementById('usernameDisplay');
+    const errorMessage = document.getElementById('errorMessage');
+    const userAvatar = document.getElementById('userAvatar');
+    const userSwitcher = document.querySelector('.user-switcher');
+
+    // Dados dos usuários predefinidos
+    const users = {
+      'Gru': {
+        avatar: 'https://upload.wikimedia.org/wikipedia/en/2/21/Gru_%28Despicable_Me%29.png'
+      },
+      'Nefario': {
+        avatar: 'https://static.wikia.nocookie.net/despicableme/images/9/9f/Dr._Nefario.png'
+      },
+      'Outro usuário': {
+        avatar: 'https://cdn-icons-png.flaticon.com/512/847/847969.png'
+      }
+    };
+
+    let currentUser = 'Gru';
+
+    // Sempre que o formulário for enviado (apertando Enter), dá senha incorreta
+    loginForm.addEventListener('submit', function(event) {
+      event.preventDefault(); // Impede a página de recarregar
+
+      if (currentUser === 'Outro usuário' && customUserInput.value.trim() === '') {
+        errorMessage.textContent = 'Digite um nome de usuário.';
+        triggerShake(customUserInput);
+        return;
+      }
+
+      // Exibe o erro de senha incorreta
+      errorMessage.textContent = 'A senha está incorreta. Tente novamente.';
+      passwordInput.value = '';
+      passwordInput.focus();
+      triggerShake(passwordInput);
+    });
+
+    // Função para trocar entre os usuários
+    function selectUser(selected) {
+      currentUser = selected;
+      errorMessage.textContent = '';
+      passwordInput.value = '';
+
+      if (selected === 'Outro usuário') {
+        usernameDisplay.textContent = 'Outro usuário';
+        customUserInput.style.display = 'block';
+        customUserInput.value = '';
+        customUserInput.focus();
+      } else {
+        usernameDisplay.textContent = selected;
+        customUserInput.style.display = 'none';
+        passwordInput.focus();
+      }
+
+      // Atualiza a foto do avatar se existir no objeto
+      if (users[selected]) {
+        userAvatar.src = users[selected].avatar;
+      }
+
+      // Atualiza os botões do canto inferior esquerdo para mostrar sempre os outros dois usuários
+      updateUserButtons();
+    }
+
+    function updateUserButtons() {
+      const allOptions = ['Gru', 'Nefario', 'Outro usuário'];
+      userSwitcher.innerHTML = '';
+
+      allOptions.forEach(user => {
+        if (user !== currentUser) {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'user-option';
+          btn.textContent = user;
+          btn.onclick = () => selectUser(user);
+          userSwitcher.appendChild(btn);
+        }
+      });
+    }
+
+    // Efeito visual de tremor no campo
+    function triggerShake(element) {
+      element.classList.remove('shake');
+      void element.offsetWidth; // Reinicia a animação CSS
+      element.classList.add('shake');
+    }
+  </script>
+
+</body>
+</html>
