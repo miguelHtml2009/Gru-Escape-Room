@@ -524,6 +524,7 @@ function tirarParafuso(parafuso) {
  function verificarFios(){
     if(fios.amarelo.solto === false & fios.azul.solto === false & fios.rosa.solto === false & fios.vermelho.solto === false ){
         mensagem.innerHTML = "Painel consertado! A energia foi restaurada.";
+        localStorage.setItem("energia", "true");
         painelfios.Abertomin.style.display = "none";
         painelfios.Conectado.style.display = "block";
     }

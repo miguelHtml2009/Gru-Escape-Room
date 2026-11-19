@@ -1,4 +1,6 @@
-let energia=false;
+if (cont == 0){
+    localStorage.setItem("energia", "false");
+}
 
 // Função para salvar o progresso sem apagar dados de outras salas
 function save() {
