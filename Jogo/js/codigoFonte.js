@@ -17,15 +17,18 @@ function save() {
             : dadosAntigos.geleiaColetada,
 
         // LABORATÓRIO
-        computadorLigado: document.getElementById("computador-ligado")
-            ? !document.getElementById("computador-ligado").hidden
-            : dadosAntigos.computadorLigado,
+        chaveColetada: document.getElementById("chave")
+            ? document.getElementById("chave").hidden
+            : dadosAntigos.chaveColetada,
 
         // LINHA DE MONTAGEM
-        maquinaLigada: document.getElementById("maquina-ligada")
-            ? !document.getElementById("maquina-ligada").hidden
-            : dadosAntigos.maquinaLigada,
-        
+        tampaAberta: typeof tampaAberta !== "undefined"
+            ? tampaAberta
+            : dadosAntigos.tampaAberta,
+
+        energia: localStorage.getItem("energia") === "true"
+            || dadosAntigos.energia === true,
+
         // FLIPERAMA
 
         // INVENTÁRIO
@@ -72,15 +75,15 @@ function carregarProgresso() {
 
 
     // LABORATÓRIO
-    if (progresso.computadorLigado != null && document.getElementById("computador-ligado")) {
-        document.getElementById("computador-ligado").hidden = !progresso.computadorLigado;
-
+    if (progresso.chaveColetada != null && document.getElementById("chave")) {
+        document.getElementById("chave").hidden = progresso.chaveColetada;
     }
 
 
     // LINHA DE MONTAGEM
-    if (progresso.maquinaLigada != null && document.getElementById("maquina-ligada")) {
-        document.getElementById("maquina-ligada").hidden = !progresso.maquinaLigada;
+    // ENERGIA
+    if (progresso.energia === true) {
+        localStorage.setItem("energia", "true");
     }
 
 

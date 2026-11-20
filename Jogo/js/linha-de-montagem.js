@@ -5,6 +5,7 @@ const falaNPC = document.getElementById("fala-npc");
 const opcoesTelefone = document.getElementById("opcoes-telefone");
 const botaoContinuar = document.getElementById("continuar-fala");
 var contp=0;
+let fioSelecionado = null;
 let tampaAberta = false;
 let telefoneAtendido = false;
 
@@ -398,32 +399,47 @@ function fecharTelefone() {
 
 }
 
+// ==========================================
+// 1. ABRIR MENU PARA DESPARAFUSAR
+// ==========================================
+
 function menuDesparafusar() {
-    // Verifica se a chave foi coletada salvando "true" no localStorage
-    if (localStorage.getItem("chaveFenda") === "true") {
+    // Verifica se a chave de fenda está no inventário
+    if (document.getElementById("item-chaveFenda")) {
+
         escuro.style.display = "block";
         menu_escuro.style.display = "block";
         menu_escuro.style.border = "1px solid #806b48";
-  
-        if (painelfios.Abertomax.style.display != "block") {
+
+        if (tampaAberta) {
+            abrirPainel();
+        } else {
             painelfios.Fechado.style.display = "block";
             mostrarParafusos();
         }
+
     } else {
         mensagem.innerHTML = "Você não possui a ferramenta certa para isso.";
     }
 }
 
 function mostrarParafusos() {
+
     [p1.pa1, p2.pa2, p3.pa3, p4.pa4].forEach(function (parafuso) {
-        if (!parafuso.classList.contains("solto")) { 
+
+        if (!parafuso.classList.contains("solto")) {
             parafuso.style.display = "block";
         }
     });
 }
 
-function voltarEscuro(){
-    if(painelfios.Fechado.style.display == "block" || painelfios.Abertomax.style.display == "block"){
+function voltarEscuro() {
+
+    if (
+        painelfios.Fechado.style.display == "block" ||
+        painelfios.Abertomax.style.display == "block"
+    ) {
+
         menu_escuro.style.display = "none";
         escuro.style.display = "none";
 
@@ -432,15 +448,28 @@ function voltarEscuro(){
         p3.pa3.style.display = "none";
         p4.pa4.style.display = "none";
     }
-} 
+}
+
 function tirarParafuso(parafuso) {
+
+    // Evita contar o mesmo parafuso duas vezes
+    if (parafuso.classList.contains("solto")) {
+        return;
+    }
     parafuso.style.display = "none";
     parafuso.classList.add("solto");
     contp++;
+    if (contp == 4) {
+        abrirPainel();
+    }
+
 }
- function abrirPainel(){
-    if(contp==4){
+
+function abrirPainel() {
+    if (contp == 4 || tampaAberta) {
+
         tampaAberta = true;
+        save();
 
         painelfios.Fechado.style.display = "none";
         painelfios.Abertomax.style.display = "block";
@@ -450,9 +479,11 @@ function tirarParafuso(parafuso) {
 
         document.querySelector('.fios-minigame').style.display = "block";
 
-        // Amarelo
+
+        // AMARELO
         fios.amarelo.tampa.style.display = "block";
         fios.amarelo.tampa2.style.display = "block";
+
         if (fios.amarelo.solto) {
             fios.amarelo.direita.style.display = "block";
             fios.amarelo.esquerda.style.display = "block";
@@ -463,9 +494,11 @@ function tirarParafuso(parafuso) {
             fios.amarelo.conectado.style.display = "block";
         }
 
-        // Azul
+
+        // AZUL
         fios.azul.tampa.style.display = "block";
         fios.azul.tampa2.style.display = "block";
+
         if (fios.azul.solto) {
             fios.azul.direita.style.display = "block";
             fios.azul.esquerda.style.display = "block";
@@ -476,9 +509,11 @@ function tirarParafuso(parafuso) {
             fios.azul.conectado.style.display = "block";
         }
 
-        // Rosa
+
+        // ROSA
         fios.rosa.tampa.style.display = "block";
         fios.rosa.tampa2.style.display = "block";
+
         if (fios.rosa.solto) {
             fios.rosa.direita.style.display = "block";
             fios.rosa.esquerda.style.display = "block";
@@ -489,9 +524,11 @@ function tirarParafuso(parafuso) {
             fios.rosa.conectado.style.display = "block";
         }
 
-        // Vermelho
+
+        // VERMELHO
         fios.vermelho.tampa.style.display = "block";
         fios.vermelho.tampa2.style.display = "block";
+
         if (fios.vermelho.solto) {
             fios.vermelho.direita.style.display = "block";
             fios.vermelho.esquerda.style.display = "block";
@@ -502,77 +539,106 @@ function tirarParafuso(parafuso) {
             fios.vermelho.conectado.style.display = "block";
         }
     }
- }
- function menuDesparafusar() {
-    if(chaveFenda.coletada){
-        escuro.style.display = "block";
-        menu_escuro.style.display = "block";
-        menu_escuro.style.border = "1px solid #806b48";
-  
-    if (tampaAberta) {
-        abrirPainel();
-    } else {
-        painelfios.Fechado.style.display = "block";
-        mostrarParafusos();
-    }
-    } else{
-        mensagem.innerHTML="Você não possui a ferramenta certa para isso.";
-    }
 }
 
- let fioSelecionado = null;
+function conectarFios(corFio, ladoClicado) {
 
- function conectarFios(corFio, ladoClicado){
-    if(fios[corFio].solto === false){  //Se ja estiver conectado nem continua
+    // Não permite clicar em um fio já conectado
+    if (fios[corFio].solto === false) {
         return;
     }
 
-    if(fioSelecionado === null){  //Guardar a cor e o lado do fio
+    // Primeiro clique: seleciona um fio
+    if (fioSelecionado === null) {
+
         fioSelecionado = {
             cor: corFio,
             lado: ladoClicado
         };
-        fios[corFio][ladoClicado].style.filter = "brightness(1.5)"; //Efeito pro usuário saber que clicou no fio
+        fios[corFio][ladoClicado].style.filter = "brightness(1.5)";
         return;
     }
 
-    if (fioSelecionado.cor === corFio && fioSelecionado.lado === ladoClicado) {
-        fios[corFio][ladoClicado].style.filter = "none"; //Se clicar no mesmo fio, ele tira o efeito
+
+    // Segundo clique no mesmo lado: cancela seleção
+    if (
+        fioSelecionado.cor === corFio &&
+        fioSelecionado.lado === ladoClicado
+    ) {
+        fios[corFio][ladoClicado].style.filter = "none";
         fioSelecionado = null;
         return;
     }
 
-    if(fioSelecionado.cor === corFio && fioSelecionado.lado !== ladoClicado){
-        fios[corFio].esquerda.style.display = "none"; //Se clicar no fio do outro lado, ele some com os lados e mostra o conectado
+
+    // Segundo clique no lado oposto da mesma cor: conecta
+    if (
+        fioSelecionado.cor === corFio &&
+        fioSelecionado.lado !== ladoClicado
+    ) {
+        fios[corFio].esquerda.style.display = "none";
         fios[corFio].direita.style.display = "none";
         fios[corFio].conectado.style.display = "block";
         fios[corFio].solto = false;
         fios[fioSelecionado.cor][fioSelecionado.lado].style.filter = "none";
         fioSelecionado = null;
-
         mensagem.innerHTML = "Fios selecionados corretamente!";
-
         verificarFios();
-    } else{
-        fios[fioSelecionado.cor][fioSelecionado.lado].style.filter = "none"; //Tira brilho do antigo e ja brilha o novo
-        
-        fioSelecionado = { 
-            cor: corFio, 
-            lado: ladoClicado 
+
+    } else {
+        // Seleção incorreta: troca o fio selecionado
+        fios[fioSelecionado.cor][fioSelecionado.lado].style.filter = "none";
+
+        fioSelecionado = {
+            cor: corFio,
+            lado: ladoClicado
         };
         fios[corFio][ladoClicado].style.filter = "brightness(1.5)";
-
         mensagem.innerHTML = "Fios selecionados incorretamente!";
     }
+}
 
- }
-
- function verificarFios(){
-    if(fios.amarelo.solto === false && fios.azul.solto === false && fios.rosa.solto === false && fios.vermelho.solto === false ){ 
+function verificarFios() {
+    if (
+        fios.amarelo.solto === false &&
+        fios.azul.solto === false &&
+        fios.rosa.solto === false &&
+        fios.vermelho.solto === false
+    ) {
         mensagem.innerHTML = "Painel consertado! A energia foi restaurada.";
         localStorage.setItem("energia", "true");
+        painelfios.Abertomin.style.display = "none";
+        painelfios.Conectado.style.display = "block";
+        save()
+    }
+
+}
+function carregarLinhaMontagem() {
+
+    const progresso = JSON.parse(
+        localStorage.getItem("escapeRoomProgresso")
+    ) || {};
+
+    tampaAberta = progresso.tampaAberta === true;
+
+    // Se a tampa já foi aberta, mostra o painel aberto
+    if (tampaAberta) {
+        contp = 4;
+        abrirPainel();
+    }
+
+    // Se a energia já foi restaurada, mostra o painel conectado
+    if (localStorage.getItem("energia") === "true") {
+
+        tampaAberta = true;
+        contp = 4;
+
+        abrirPainel();
 
         painelfios.Abertomin.style.display = "none";
         painelfios.Conectado.style.display = "block";
+        document.querySelector(".fios-minigame").style.display = "none";
     }
- }
+}
+
+carregarLinhaMontagem();
