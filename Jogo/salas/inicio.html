@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +12,8 @@
             box-sizing: border-box;
         }
 
-        html, body {
+        html,
+        body {
             width: 100%;
             height: 100%;
             overflow: hidden;
@@ -26,15 +28,22 @@
         }
     </style>
 </head>
+
 <body>
     <video id="inicio" src="../../videos/carregando.mp4" autoplay playsinline></video>
 
     <script>
-        const video = document.getElementById("inicio");
-
-        video.addEventListener("ended", () => {
+        if (localStorage.getItem("assistiuVideo")) {
             window.location.href = "porao.html";
-        });
+        } else {
+            const video = document.getElementById("inicio");
+
+            video.addEventListener("ended", () => {
+                localStorage.setItem("assistiuVideo", "true");
+                window.location.href = "porao.html";
+            });
+        }
     </script>
 </body>
+
 </html>

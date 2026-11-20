@@ -8,23 +8,16 @@ function abrirPorta() {
 function fechar(){
 let senhaDigitada = document.getElementById("senhaInput").value;
 
-    if (senhaDigitada === "1945") {
-        // Se acertou: abre a porta e atualiza a mensagem
+    if (senhaDigitada === "2024") {
         document.getElementById("porta-aberta").hidden = false;
         document.getElementById("porta-fechada").hidden = true;
         document.getElementById("senha-porta").hidden = true;
         document.getElementById("senha-porta-w").hidden = false;
-
         document.getElementById("mensagem").textContent = "Você abriu a porta!";
-        
-        // Opcional: limpa o campo de texto
         document.getElementById("senhaInput").value = "";
     } else {
-        // Se errou: avisa na mensagem
         document.getElementById("mensagem").textContent = "Senha incorreta!";
     }
-
-    // Esconde o input e a imagem de fechar independentemente de acertar ou errar
     document.getElementById("senhaInput").hidden = true;
     document.getElementById("senha-porta2").hidden = true;
 }
@@ -43,20 +36,8 @@ function abrirGeladeira() {
 
 function pegarGeleia() {
     document.getElementById("geleia").hidden = true;
+    adicionarItem("geleia", "../../Sprites/geleia-do-gru.png");
     document.getElementById("mensagem").textContent = "Você pegou a deliciosa geleia do Gru!";
-
-    const novoItem = document.createElement("li");
-
-    const imagemGeleia = document.createElement("img");
-    imagemGeleia.src = "../../Sprites/geleia-do-gru.png";
-    imagemGeleia.alt = "Geleia do Gru";
-
-    imagemGeleia.style.width = "80px";
-    imagemGeleia.style.height = "auto";
-
-    novoItem.appendChild(imagemGeleia);
-
-    document.getElementById("inventario").appendChild(novoItem);
 }
 
 function lerbilhete() {

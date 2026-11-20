@@ -94,6 +94,12 @@ footer h2 {
     border-radius: 4px;
 }
 
+#inventario img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+}
+
 #abrir-diario {
     margin-top: 8px;
 }
