@@ -2,19 +2,31 @@
 let energia = localStorage.getItem("energia") === "true";
 
 function abrirPorta() {
-    let senha = prompt("Digite a senha de 4 dígitos:");
+    document.getElementById("senhaInput").hidden = false;
+    document.getElementById("senha-porta2").hidden = false;
+}
+function fechar(){
+let senhaDigitada = document.getElementById("senhaInput").value;
 
-    if (senha == "1945") {
+    if (senhaDigitada === "1945") {
+        // Se acertou: abre a porta e atualiza a mensagem
         document.getElementById("porta-aberta").hidden = false;
         document.getElementById("porta-fechada").hidden = true;
         document.getElementById("senha-porta").hidden = true;
         document.getElementById("senha-porta-w").hidden = false;
 
         document.getElementById("mensagem").textContent = "Você abriu a porta!";
-    }
-    else if (senha !== null) {
+        
+        // Opcional: limpa o campo de texto
+        document.getElementById("senhaInput").value = "";
+    } else {
+        // Se errou: avisa na mensagem
         document.getElementById("mensagem").textContent = "Senha incorreta!";
     }
+
+    // Esconde o input e a imagem de fechar independentemente de acertar ou errar
+    document.getElementById("senhaInput").hidden = true;
+    document.getElementById("senha-porta2").hidden = true;
 }
 
 function abrirGeladeira() {

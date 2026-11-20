@@ -12,13 +12,14 @@
 
 <body>
 
-    <button id="botao-menu" onclick="pause()">☰</button>
+<button id="botao-menu" onclick="pause()">☰</button>
 
-    <section id="menu-pausa" hidden>
-        <h2>Menu do jogo</h2>
-        <button onclick="saveExit()">Salvar e sair</button>
-        <button onclick="fecharMenu()">Voltar ao jogo</button>
-    </section>
+<section id="menu-pausa" hidden>
+    <h2>Menu do jogo</h2>
+    <button onclick="saveExit()">Salvar e sair</button>
+    <button onclick="deletarProgresso()">Deletar progresso</button>
+    <button onclick="fecharMenu()">Voltar ao jogo</button>
+</section>
 
     <header>
         <h1>O Porão</h1>
@@ -30,7 +31,10 @@
             <img src="../../Sprites/porta-aberta.png" id="porta-aberta" hidden>
 
             <img src="../../Sprites/senha-porta.png" id="senha-porta" onclick="abrirPorta()">
+            <img src="../../Sprites/senha-porta-zoom.png" id="senha-porta2" onclick="fechar()" hidden >
             <img src="../../Sprites/senha-porta-w.png" id="senha-porta-w" hidden>
+
+            <input type="text" id="senhaInput" inputmode="numeric" maxlength="4" pattern="[0-9]{0,4}" placeholder="0000" required hidden>
 
             <img src="../../Sprites/geladeira-fechada.png" id="geladeira-fechada" onclick="abrirGeladeira()">
             <img src="../../Sprites/geladeira-aberta.png"  id="geladeira-aberta" hidden>

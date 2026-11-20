@@ -397,14 +397,9 @@ function fecharTelefone() {
 
 }
 
-// Painel de fios
-function pegarfenda(){
-    chaveFenda.chave.style.display="none";
-    chaveFenda.coletada=true;
-}
-
 function menuDesparafusar() {
-    if(chaveFenda.coletada){
+    // Verifica se a chave foi coletada salvando "true" no localStorage
+    if (localStorage.getItem("chaveFenda") === "true") {
         escuro.style.display = "block";
         menu_escuro.style.display = "block";
         menu_escuro.style.border = "1px solid #806b48";
@@ -413,8 +408,8 @@ function menuDesparafusar() {
             painelfios.Fechado.style.display = "block";
             mostrarParafusos();
         }
-    } else{
-        mensagem.innerHTML="Você não possui a ferramenta certa para isso.";
+    } else {
+        mensagem.innerHTML = "Você não possui a ferramenta certa para isso.";
     }
 }
 function mostrarParafusos() {

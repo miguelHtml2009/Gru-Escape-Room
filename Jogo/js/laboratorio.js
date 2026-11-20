@@ -15,13 +15,14 @@ function pegarChave() {
     const novoItem = document.createElement("li");
 
     const imagemChave = document.createElement("img");
-    imagemChave.src = "../../Sprites/chave-philips.svg";
-    imagemChave.alt = "Geleia do Gru";
-
+    imagemChave.src = "../../Sprites/chave-Philps.png";
+    imagemChave.alt = "Chave de Fenda";
     imagemChave.style.width = "80px";
     imagemChave.style.height = "auto";
 
-    novoItem.appendChild(imagemGeleia);
-
+    novoItem.appendChild(imagemChave);
     document.getElementById("inventario").appendChild(novoItem);
+
+    localStorage.setItem("chaveFenda", "true");
+    save(); // Salva o inventário e o estado da chave imediatamente
 }

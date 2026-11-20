@@ -1,17 +1,14 @@
-if (cont == 0){
-    localStorage.setItem("energia", "false");
-}
+
 
 // Função para salvar o progresso sem apagar dados de outras salas
 function save() {
-    // Pega o progresso antigo que já está salvo (para não perder dados de outras salas)
     const dadosAntigos = JSON.parse(localStorage.getItem("escapeRoomProgresso")) || {};
 
-    // Cria um objeto atualizando apenas os elementos que existem na página atual
     const progressoAtual = {
         portaAberta: document.getElementById("porta-aberta") ? !document.getElementById("porta-aberta").hidden : dadosAntigos.portaAberta,
         geladeiraAberta: document.getElementById("geladeira-aberta") ? !document.getElementById("geladeira-aberta").hidden : dadosAntigos.geladeiraAberta,
         geleiaColetada: document.getElementById("geleia") ? document.getElementById("geleia").hidden : dadosAntigos.geleiaColetada,
+        chaveColetada: document.getElementById("chave") ? document.getElementById("chave").hidden : dadosAntigos.chaveColetada,
         inventarioHTML: document.getElementById("inventario") ? document.getElementById("inventario").innerHTML : dadosAntigos.inventarioHTML
     };
 
@@ -32,7 +29,6 @@ function carregarProgresso() {
 
     const progresso = JSON.parse(dadosSalvos);
 
-    // Restaura a porta (só se os elementos existirem nesta página)
     if (progresso.portaAberta && document.getElementById("porta-aberta")) {
         const pAberta = document.getElementById("porta-aberta");
         const pFechada = document.getElementById("porta-fechada");
@@ -45,7 +41,6 @@ function carregarProgresso() {
         if (sPortaW) sPortaW.hidden = false;
     }
 
-    // Restaura a geladeira (só se os elementos existirem nesta página)
     if (progresso.geladeiraAberta && document.getElementById("geladeira-aberta")) {
         const gAberta = document.getElementById("geladeira-aberta");
         const gFechada = document.getElementById("geladeira-fechada");
@@ -53,13 +48,15 @@ function carregarProgresso() {
         if (gFechada) gFechada.hidden = true;
     }
 
-    // Restaura a geleia no cenário (só se o elemento existir nesta página)
     if (progresso.geleiaColetada && document.getElementById("geleia")) {
-        const geleia = document.getElementById("geleia");
-        if (geleia) geleia.hidden = true;
+        document.getElementById("geleia").hidden = true;
     }
 
-    // Restaura o inventário (se existir na página)
+    // Esconde a chave se ela já tiver sido coletada
+    if ((progresso.chaveColetada || localStorage.getItem("chaveFenda") === "true") && document.getElementById("chave")) {
+        document.getElementById("chave").hidden = true;
+    }
+
     const inventario = document.getElementById("inventario");
     if (inventario && progresso.inventarioHTML) {
         inventario.innerHTML = progresso.inventarioHTML;

@@ -68,3 +68,22 @@
     top: -6px;
     left: 245px;
 }
+
+#senhaInput {
+    position: absolute;
+    top: 157px;
+    left: 406px;
+    z-index: 6;
+    background-color: rgb(234, 255, 0);
+    height: 40px;
+    padding: 4px;
+}
+
+#senha-porta2 {
+    position: absolute;
+    top: 90px;
+    left: 350px;
+    width: 32%;
+    height: auto;
+    z-index: 5;
+}
