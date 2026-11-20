@@ -4,7 +4,7 @@ const nomeNPC = document.getElementById("nome-npc");
 const falaNPC = document.getElementById("fala-npc");
 const opcoesTelefone = document.getElementById("opcoes-telefone");
 const botaoContinuar = document.getElementById("continuar-fala");
-var contp=0;
+var contp = 0;
 let fioSelecionado = null;
 let tampaAberta = false;
 let telefoneAtendido = false;
@@ -13,8 +13,8 @@ const minutos = document.getElementById("min");
 const segundos = document.getElementById("sec");
 
 const chaveFenda = {
-    chave:document.getElementById("chave-fenda"),
-    coletada:false
+    chave: document.getElementById("chave-fenda"),
+    coletada: false
 };
 
 // Painel dos fios
@@ -22,25 +22,25 @@ const escuro = document.getElementById("escuro");
 const menu_escuro = document.getElementById("escuro-menu");
 
 const p1 = {
-    pa1:document.getElementById("p1"),
-    solto:true
+    pa1: document.getElementById("p1"),
+    solto: true
 }
 const p2 = {
-    pa2:document.getElementById("p2"),
-    solto:true
+    pa2: document.getElementById("p2"),
+    solto: true
 }
 const p3 = {
-    pa3:document.getElementById("p3"),
-    solto:true
+    pa3: document.getElementById("p3"),
+    solto: true
 }
 const p4 = {
-    pa4:document.getElementById("p4"),
-    solto:true
+    pa4: document.getElementById("p4"),
+    solto: true
 }
 
 const painelfios = {
     Fechado: document.getElementById("fios-fechados"),
-    Parafusado: document.getElementById("fios-parafusados"),  
+    Parafusado: document.getElementById("fios-parafusados"),
     Abertomin: document.getElementById("fios-abertosmin"), /*imagem que esta na sala normal, menor*/
     Abertomax: document.getElementById("fios-abertosmax"), /*Imagem que aparece quando clica, maior*/
     Conectado: document.getElementById("fios-conectados")
@@ -420,7 +420,7 @@ function fecharTelefone() {
 function menuDesparafusar() {
 
     if (localStorage.getItem("energia") === "true") {
-    return;
+        return;
     }
 
     // Verifica se a chave de fenda está no inventário
@@ -563,7 +563,7 @@ function abrirPainel() {
 function conectarFios(corFio, ladoClicado) {
 
     if (localStorage.getItem("energia") === "true") {
-    return;
+        return;
     }
 
     // Não permite clicar em um fio já conectado
@@ -637,9 +637,19 @@ function verificarFios() {
 
             // Toca o som apenas uma vez
             if (localStorage.getItem("somEnergiaTocado") !== "true") {
+
                 const som = document.getElementById("som-energia");
-                som.play();
-                localStorage.setItem("somEnergiaTocado", "true");
+
+                som.currentTime = 0;
+
+                som.play()
+                    .then(() => {
+                        localStorage.setItem("somEnergiaTocado", "true");
+                        save();
+                    })
+                    .catch(erro => {
+                        console.error("Erro ao reproduzir o áudio:", erro);
+                    });
             }
         }
 
@@ -647,7 +657,6 @@ function verificarFios() {
         painelfios.Conectado.style.display = "block";
 
         document.querySelector(".fios-minigame").style.display = "none";
-        localStorage.setItem("somEnergiaTocado", "true");
         save();
 
     }
@@ -682,33 +691,33 @@ function carregarLinhaMontagem() {
 
 carregarLinhaMontagem();
 
-function timer(){
+function timer() {
     var min = 5;
     var sec = 0;
-    var timer = setInterval(function(){
-        if(sec==-1){
+    var timer = setInterval(function () {
+        if (sec == -1) {
             min--;
-            sec=59;
+            sec = 59;
         }
-        if(sec>=10){
+        if (sec >= 10) {
             segundos.innerHTML = sec;
-            sec --;
-        } else{
+            sec--;
+        } else {
             segundos.innerHTML = '0' + sec;
-            sec --;
+            sec--;
         }
-        if(min>=10){
-            minutos.innerHTML = min +':';
-        } else{
-            minutos.innerHTML = '0'+ min +':';
+        if (min >= 10) {
+            minutos.innerHTML = min + ':';
+        } else {
+            minutos.innerHTML = '0' + min + ':';
         }
-        
-        if(sec < 0 && min < 0){
+
+        if (sec < 0 && min < 0) {
             clearInterval(timer);
         }
     }, 1000);
 }
 
-window.onload = function (){
+window.onload = function () {
     timer();
 }

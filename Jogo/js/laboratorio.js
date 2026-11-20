@@ -1,4 +1,3 @@
-var quadroRasgado = false;
 function abrirComputador() {
         document.getElementById("zoom").hidden = false;
         document.getElementById("passwordInput").hidden=false;

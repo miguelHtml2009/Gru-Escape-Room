@@ -1,7 +1,9 @@
 function save() {
     const dadosAntigos = JSON.parse(localStorage.getItem("escapeRoomProgresso")) || {};
+    var quadroRasgado = false;
 
     const progressoAtual = {
+        
 
         // PORÃO
         portaAberta: document.getElementById("porta-aberta")
@@ -21,9 +23,11 @@ function save() {
             ? document.getElementById("chave").hidden
             : dadosAntigos.chaveColetada,
 
-    quadroRasgado: typeof quadroRasgado !== "undefined"
-    ? quadroRasgado
-    : dadosAntigos.quadroRasgado,
+        quadroRasgado: typeof quadroRasgado !== "undefined"
+            ? quadroRasgado
+            : dadosAntigos.quadroRasgado,
+
+
 
         // LINHA DE MONTAGEM
         tampaAberta: typeof tampaAberta !== "undefined"
@@ -91,6 +95,15 @@ function carregarProgresso() {
     // LABORATÓRIO
     if (progresso.chaveColetada != null && document.getElementById("chave")) {
         document.getElementById("chave").hidden = progresso.chaveColetada;
+    }
+    if (progresso.quadroRasgado === true) {
+        const quadro = document.getElementById("quadro");
+
+        if (quadro) {
+            quadro.classList.add("sumir");
+        }
+
+        quadroRasgado = true;
     }
 
 
