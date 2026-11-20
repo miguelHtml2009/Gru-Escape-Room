@@ -159,3 +159,49 @@ function deletarProgresso() {
         window.location.href = "../../index.html";
     }
 }
+// ==========================================
+// 6. Diário de bordo
+// ==========================================
+const diario = {
+
+    pistas: [],
+    abrir: function () {
+        document.getElementById("fundo-diario").hidden = false;
+        this.atualizar();
+    },
+
+    fechar: function () {
+        document.getElementById("fundo-diario").hidden = true;
+    },
+
+    anotar: function (pista) {
+
+        if (!this.pistas.includes(pista)) {
+            this.pistas.push(pista);
+            this.salvar();
+            this.atualizar();
+        }
+    },
+
+    atualizar: function () {
+
+        const anotacoes = document.getElementById("anotacoes");
+        anotacoes.innerHTML = "<ol></ol>";
+        const lista = anotacoes.querySelector("ol");
+        this.pistas.forEach(pista => {
+            lista.innerHTML += `<li>${pista}</li>`;
+        });
+    },
+
+    salvar: function () {
+        localStorage.setItem("pistasDiario", JSON.stringify(this.pistas));
+    },
+
+    carregar: function () {
+        this.pistas = JSON.parse(
+            localStorage.getItem("pistasDiario")
+        ) || [];
+    }
+};
+
+diario.carregar();
