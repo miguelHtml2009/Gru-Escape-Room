@@ -15,6 +15,7 @@ function save() {
         //Guarda variável, verifica se ela exista na sala, se sim salva o valor, caso contrario, mantem o dado de antes
         contp: typeof contp !== 'undefined' ? contp : dadosAntigos.contp,
         
+        tampaAberta: typeof tampaAberta !== 'undefined' ? tampaAberta : dadosAntigos.tampaAberta,
         //Parafusos
         p1Solto: document.getElementById("p1") ? document.getElementById("p1").classList.contains("solto") : dadosAntigos.p1Solto,
         p2Solto: document.getElementById("p2") ? document.getElementById("p2").classList.contains("solto") : dadosAntigos.p2Solto,
@@ -105,7 +106,10 @@ function carregarProgresso() {
             document.getElementById("p4").classList.add("solto");
             contp++; 
         }
-        if(contp === 4){
+        if(progresso.tampaAberta === true && typeof tampaAberta !== 'undefined'){
+            tampaAberta = true;
+        }
+        if(typeof tampaAberta !== 'undefined' && tampaAberta === true){
             if (painelfios.Fechado) painelfios.Fechado.style.display = "none";
             if (painelfios.Parafusado) painelfios.Parafusado.style.display = "none";
             if (painelfios.Abertomin) painelfios.Abertomin.style.display = "block";

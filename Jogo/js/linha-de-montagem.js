@@ -5,6 +5,7 @@ const falaNPC = document.getElementById("fala-npc");
 const opcoesTelefone = document.getElementById("opcoes-telefone");
 const botaoContinuar = document.getElementById("continuar-fala");
 var contp=0;
+let tampaAberta = false;
 let telefoneAtendido = false;
 
 const chaveFenda = {
@@ -403,22 +404,7 @@ function pegarfenda(){
     chaveFenda.coletada=true;
 }
 
-function menuDesparafusar() {
-    if(chaveFenda.coletada){
-        escuro.style.display = "block";
-        menu_escuro.style.display = "block";
-        menu_escuro.style.border = "1px solid #806b48";
-  
-    if (contp === 4) {
-        abrirPainel();
-    } else {
-        painelfios.Fechado.style.display = "block";
-        mostrarParafusos();
-    }
-    } else{
-        mensagem.innerHTML="Você não possui a ferramenta certa para isso.";
-    }
-}
+
 function mostrarParafusos() {
     [p1.pa1, p2.pa2, p3.pa3, p4.pa4].forEach(function (parafuso) {
         if (!parafuso.classList.contains("solto")) { 
@@ -445,6 +431,8 @@ function tirarParafuso(parafuso) {
 }
  function abrirPainel(){
     if(contp==4){
+        tampaAberta = true;
+
         painelfios.Fechado.style.display = "none";
         painelfios.Abertomax.style.display = "block";
 
@@ -506,6 +494,22 @@ function tirarParafuso(parafuso) {
         }
     }
  }
+ function menuDesparafusar() {
+    if(chaveFenda.coletada){
+        escuro.style.display = "block";
+        menu_escuro.style.display = "block";
+        menu_escuro.style.border = "1px solid #806b48";
+  
+    if (tampaAberta) {
+        abrirPainel();
+    } else {
+        painelfios.Fechado.style.display = "block";
+        mostrarParafusos();
+    }
+    } else{
+        mensagem.innerHTML="Você não possui a ferramenta certa para isso.";
+    }
+}
 
  let fioSelecionado = null;
 
