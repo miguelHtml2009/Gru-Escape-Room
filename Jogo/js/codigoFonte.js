@@ -148,6 +148,36 @@ function carregarProgresso() {
     }
 
 }
+
+// Funções do Menu de Pausa
+function pause() {
+    const menuPausa = document.getElementById("menu-pausa");
+    if (menuPausa) {
+        menuPausa.hidden = !menuPausa.hidden;
+    }
+}
+
+function fecharMenu() {
+    const menuPausa = document.getElementById("menu-pausa");
+    if (menuPausa) {
+        menuPausa.hidden = true;
+    }
+}
+
+function saveExit() {
+    if (typeof save === "function") {
+        save();
+    }
+    window.location.href = "../../index.html";
+}
+
+function deletarProgresso() {
+    if (confirm("Tem certeza que deseja apagar todo o progresso do jogo?")) {
+        localStorage.clear();
+        window.location.href = "../../index.html";
+    }
+}
+
 // Executa o carregamento ao abrir a página
     window.onload = function() {
         carregarProgresso();
