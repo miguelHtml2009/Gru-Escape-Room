@@ -409,10 +409,12 @@ function menuDesparafusar() {
         menu_escuro.style.display = "block";
         menu_escuro.style.border = "1px solid #806b48";
   
-        if (painelfios.Abertomax.style.display != "block") {
-            painelfios.Fechado.style.display = "block";
-            mostrarParafusos();
-        }
+    if (contp === 4) {
+        abrirPainel();
+    } else {
+        painelfios.Fechado.style.display = "block";
+        mostrarParafusos();
+    }
     } else{
         mensagem.innerHTML="Você não possui a ferramenta certa para isso.";
     }
@@ -451,25 +453,57 @@ function tirarParafuso(parafuso) {
 
         document.querySelector('.fios-minigame').style.display = "block";
 
+        // Amarelo
         fios.amarelo.tampa.style.display = "block";
         fios.amarelo.tampa2.style.display = "block";
-        fios.amarelo.direita.style.display = "block";
-        fios.amarelo.esquerda.style.display = "block";
+        if (fios.amarelo.solto) {
+            fios.amarelo.direita.style.display = "block";
+            fios.amarelo.esquerda.style.display = "block";
+            fios.amarelo.conectado.style.display = "none";
+        } else {
+            fios.amarelo.direita.style.display = "none";
+            fios.amarelo.esquerda.style.display = "none";
+            fios.amarelo.conectado.style.display = "block";
+        }
 
+        // Azul
         fios.azul.tampa.style.display = "block";
         fios.azul.tampa2.style.display = "block";
-        fios.azul.direita.style.display = "block";
-        fios.azul.esquerda.style.display = "block";
+        if (fios.azul.solto) {
+            fios.azul.direita.style.display = "block";
+            fios.azul.esquerda.style.display = "block";
+            fios.azul.conectado.style.display = "none";
+        } else {
+            fios.azul.direita.style.display = "none";
+            fios.azul.esquerda.style.display = "none";
+            fios.azul.conectado.style.display = "block";
+        }
 
+        // Rosa
         fios.rosa.tampa.style.display = "block";
         fios.rosa.tampa2.style.display = "block";
-        fios.rosa.direita.style.display = "block";
-        fios.rosa.esquerda.style.display = "block";
+        if (fios.rosa.solto) {
+            fios.rosa.direita.style.display = "block";
+            fios.rosa.esquerda.style.display = "block";
+            fios.rosa.conectado.style.display = "none";
+        } else {
+            fios.rosa.direita.style.display = "none";
+            fios.rosa.esquerda.style.display = "none";
+            fios.rosa.conectado.style.display = "block";
+        }
 
+        // Vermelho
         fios.vermelho.tampa.style.display = "block";
         fios.vermelho.tampa2.style.display = "block";
-        fios.vermelho.direita.style.display = "block";
-        fios.vermelho.esquerda.style.display = "block";
+        if (fios.vermelho.solto) {
+            fios.vermelho.direita.style.display = "block";
+            fios.vermelho.esquerda.style.display = "block";
+            fios.vermelho.conectado.style.display = "none";
+        } else {
+            fios.vermelho.direita.style.display = "none";
+            fios.vermelho.esquerda.style.display = "none";
+            fios.vermelho.conectado.style.display = "block";
+        }
     }
  }
 
@@ -500,7 +534,6 @@ function tirarParafuso(parafuso) {
         fios[corFio].direita.style.display = "none";
         fios[corFio].conectado.style.display = "block";
         fios[corFio].solto = false;
-
         fios[fioSelecionado.cor][fioSelecionado.lado].style.filter = "none";
         fioSelecionado = null;
 
@@ -514,7 +547,7 @@ function tirarParafuso(parafuso) {
             cor: corFio, 
             lado: ladoClicado 
         };
-        fios[corClicada][ladoClicado].style.filter = "brightness(1.5)";
+        fios[corFio][ladoClicado].style.filter = "brightness(1.5)";
 
         mensagem.innerHTML = "Fios selecionados incorretamente!";
     }
@@ -522,9 +555,10 @@ function tirarParafuso(parafuso) {
  }
 
  function verificarFios(){
-    if(fios.amarelo.solto === false & fios.azul.solto === false & fios.rosa.solto === false & fios.vermelho.solto === false ){
+    if(fios.amarelo.solto === false && fios.azul.solto === false && fios.rosa.solto === false && fios.vermelho.solto === false ){ 
         mensagem.innerHTML = "Painel consertado! A energia foi restaurada.";
         localStorage.setItem("energia", "true");
+
         painelfios.Abertomin.style.display = "none";
         painelfios.Conectado.style.display = "block";
     }

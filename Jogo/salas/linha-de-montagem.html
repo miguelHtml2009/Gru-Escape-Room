@@ -7,7 +7,7 @@
     <title>Escape Room - A Linha de Montagem</title>
     <link rel="stylesheet" href="../css/CSS.css">
     <link rel="stylesheet" href="../css/linha-de-montagem.css">
-    <link rel="shortcut icon" type="imagex/png" href="../../Sprites/icon.ico">
+    <link rel="shortcut icon" type="image/png" href="../../Sprites/icon.ico">
 </head>
 
 <body>
@@ -31,7 +31,6 @@
                 <img src="../../Sprites/fios-fechados.png" id="fios-fechados" onclick="abrirPainel()">
                 <img src="../../Sprites/fios-abertos-max.png" id="fios-abertosmax"> 
                 <div class="fios-minigame">
-                    <div class="fios-minigame">
                         <!-- Amarelo -->
                         <img src="../../Sprites/Painel-Fios/amarelo-conectado.png" id="amarelo-conectado">
                         <img src="../../Sprites/Painel-Fios/amarelo-esquerda.png" id="amarelo-esquerda" onclick="conectarFios('amarelo', 'esquerda')">
@@ -59,12 +58,10 @@
                         <img src="../../Sprites/Painel-Fios/vermelho-direita.png" id="vermelho-direita" onclick="conectarFios('vermelho', 'direita')">
                         <img src="../../Sprites/Painel-Fios/vermelho-tampa.png" id="vermelho-tampa">
                         <img src="../../Sprites/Painel-Fios/vermelho-tampa.png" id="vermelho-tampa2">
-                    </div>
-                
                 </div>
                 
             </div>
-            
+            <img src="../../Sprites/chave-philips.svg" id="chave-fenda" onclick="pegarfenda()" >
             <img src="../../Sprites/fios-parafusado.png" id="fios-parafusados" onclick="menuDesparafusar()">
             <img src="../../Sprites/parafuso.png" id="p1" class="parafusos"onclick="tirarParafuso(this)">
             <img src="../../Sprites/parafuso.png" id="p2" class="parafusos"onclick="tirarParafuso(this)">
@@ -133,9 +130,9 @@
         </nav>
 
     </footer>
-    <script src="../js/codigoFonte.js"></script>
-    <script src="../js/linha-de-montagem.js"></script>
-
+    <script src="../js/codigoFonte.js" defer></script>
+    <script src="../js/linha-de-montagem.js" defer></script>
+    
 </body>
 
 </html>
