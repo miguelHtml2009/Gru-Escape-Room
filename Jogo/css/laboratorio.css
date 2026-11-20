@@ -13,12 +13,6 @@
     position: absolute;
 }
 
-#porta-fechada {
-    position: absolute;
-    top: 224px;
-    left: 183px;
-}
-
 #computador {
     position: absolute;
     top: 215px;
@@ -34,5 +28,35 @@
     position: absolute;
     top: 287px;
     left: 395px;
+}
+
+#quadro {
+    position: absolute;
+    top: 56px;
+    left: 686px;
+    transform: rotate(345deg);
+    z-index: 2;
+
+    transition: top 1s ease, opacity 1s ease;
+}
+
+#quadro.sumir {
+    top: 500px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+#buraco{
+    position: absolute;
+    top: 109px;
+    left: 686px;
+    z-index:0
+}
+#chave {
+    position: absolute;
+    top: 153px;
+    left: 724px;
+    z-index: 1;
+    width: 6.5%;
 }
 

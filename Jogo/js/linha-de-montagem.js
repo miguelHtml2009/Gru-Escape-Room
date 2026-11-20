@@ -285,26 +285,37 @@ const conversasTelefone = {
     laboratorio: {
         nome: "Dr. Nefário",
         fala: "Ótimo! Quando conseguir acessar o computador, procure a opção de segurança e desative todos os sistemas de vigilância. Avise-me quando terminar.",
-        opcoes: []
-    }
+        opcoes: [],
 
+    }
 };
 
 
 
 
+var telefoneBloqueadoAvisado = false;
+
+var telefoneBloqueadoAvisado = false;
+
 function atender() {
 
+    if (localStorage.getItem("energia") !== "true") {
+        if (!telefoneBloqueadoAvisado) {
+            document.getElementById("mensagem").textContent =
+                "Você é o Vector, você não sabe mexer com telefones arcaicos.";
+
+            telefoneBloqueadoAvisado = true;
+            save();
+        }
+        return;
+    }
     if (telefoneAtendido) {
         return;
     }
-
     telefoneAtendido = true;
-
+    save();
     painelTelefone.style.display = "flex";
-
     mostrarDialogo("inicio");
-
 }
 
 
@@ -394,12 +405,11 @@ function pularFala() {
 
 // Fechar telefone
 function fecharTelefone() {
-
     clearInterval(intervaloFala);
-
     painelTelefone.style.display = "none";
-
     falando = false;
+
+    document.getElementById("mensagem").textContent = "A chamada foi encerrada.";
 
 }
 
@@ -408,6 +418,11 @@ function fecharTelefone() {
 // ==========================================
 
 function menuDesparafusar() {
+
+    if (localStorage.getItem("energia") === "true") {
+    return;
+    }
+
     // Verifica se a chave de fenda está no inventário
     if (document.getElementById("item-chaveFenda")) {
 
@@ -547,6 +562,10 @@ function abrirPainel() {
 
 function conectarFios(corFio, ladoClicado) {
 
+    if (localStorage.getItem("energia") === "true") {
+    return;
+    }
+
     // Não permite clicar em um fio já conectado
     if (fios[corFio].solto === false) {
         return;
@@ -610,12 +629,28 @@ function verificarFios() {
         fios.vermelho.solto === false
     ) {
         mensagem.innerHTML = "Painel consertado! A energia foi restaurada.";
-        localStorage.setItem("energia", "true");
+
+        // Verifica se a energia já tinha sido restaurada
+        if (localStorage.getItem("energia") !== "true") {
+
+            localStorage.setItem("energia", "true");
+
+            // Toca o som apenas uma vez
+            if (localStorage.getItem("somEnergiaTocado") !== "true") {
+                const som = document.getElementById("som-energia");
+                som.play();
+                localStorage.setItem("somEnergiaTocado", "true");
+            }
+        }
+
         painelfios.Abertomin.style.display = "none";
         painelfios.Conectado.style.display = "block";
-        save()
-    }
 
+        document.querySelector(".fios-minigame").style.display = "none";
+        localStorage.setItem("somEnergiaTocado", "true");
+        save();
+
+    }
 }
 function carregarLinhaMontagem() {
 
@@ -649,7 +684,7 @@ carregarLinhaMontagem();
 
 function timer(){
     var min = 5;
-    var sec = 14;
+    var sec = 0;
     var timer = setInterval(function(){
         if(sec==-1){
             min--;

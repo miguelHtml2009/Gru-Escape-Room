@@ -21,6 +21,10 @@ function save() {
             ? document.getElementById("chave").hidden
             : dadosAntigos.chaveColetada,
 
+    quadroRasgado: typeof quadroRasgado !== "undefined"
+    ? quadroRasgado
+    : dadosAntigos.quadroRasgado,
+
         // LINHA DE MONTAGEM
         tampaAberta: typeof tampaAberta !== "undefined"
             ? tampaAberta
@@ -28,6 +32,16 @@ function save() {
 
         energia: localStorage.getItem("energia") === "true"
             || dadosAntigos.energia === true,
+
+        somEnergiaTocado: localStorage.getItem("somEnergiaTocado") === "true"
+            || dadosAntigos.somEnergiaTocado === true,
+
+        telefoneAtendido: typeof telefoneAtendido !== "undefined"
+            ? telefoneAtendido
+            : dadosAntigos.telefoneAtendido,
+
+        telefoneBloqueadoAvisado: localStorage.getItem("telefoneBloqueadoAvisado") === "true"
+            || dadosAntigos.telefoneBloqueadoAvisado === true,
 
         // FLIPERAMA
 
@@ -84,6 +98,19 @@ function carregarProgresso() {
     // ENERGIA
     if (progresso.energia === true) {
         localStorage.setItem("energia", "true");
+    }
+    // SOM DA ENERGIA
+    if (progresso.somEnergiaTocado === true) {
+        localStorage.setItem("somEnergiaTocado", "true");
+    }
+
+    // TELEFONE
+    if (progresso.telefoneAtendido != null) {
+        telefoneAtendido = progresso.telefoneAtendido;
+    }
+
+    if (progresso.telefoneBloqueadoAvisado === true) {
+        localStorage.setItem("telefoneBloqueadoAvisado", "true");
     }
 
 
