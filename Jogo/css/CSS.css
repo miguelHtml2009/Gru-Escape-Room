@@ -248,3 +248,7 @@ footer h2 {
         min-width: 140px;
     }
 }
+#timer{
+    display: flex;
+    justify-content: center;
+}

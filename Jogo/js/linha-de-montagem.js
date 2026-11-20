@@ -9,6 +9,9 @@ let fioSelecionado = null;
 let tampaAberta = false;
 let telefoneAtendido = false;
 
+const minutos = document.getElementById("min");
+const segundos = document.getElementById("sec");
+
 const chaveFenda = {
     chave:document.getElementById("chave-fenda"),
     coletada:false
@@ -642,3 +645,34 @@ function carregarLinhaMontagem() {
 }
 
 carregarLinhaMontagem();
+
+function timer(){
+    var min = 5;
+    var sec = 14;
+    var timer = setInterval(function(){
+        if(sec==-1){
+            min--;
+            sec=59;
+        }
+        if(sec>=10){
+            segundos.innerHTML = sec;
+            sec --;
+        } else{
+            segundos.innerHTML = '0' + sec;
+            sec --;
+        }
+        if(min>=10){
+            minutos.innerHTML = min +':';
+        } else{
+            minutos.innerHTML = '0'+ min +':';
+        }
+        
+        if(sec < 0 && min < 0){
+            clearInterval(timer);
+        }
+    }, 1000);
+}
+
+window.onload = function (){
+    timer();
+}
