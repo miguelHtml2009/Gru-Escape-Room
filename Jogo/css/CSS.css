@@ -104,6 +104,50 @@ footer h2 {
     margin-top: 8px;
 }
 
+#fundo-diario {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#fundo-diario[hidden] {
+    display: none;
+}
+
+#bloco-diario {
+    position: relative;
+    width: 600px;
+    max-width: 90%;
+}
+
+#bloco-diario img {
+    width: 100%;
+    display: block;
+}
+
+#anotacoes {
+    position: absolute;
+    top: 12%;
+    left: 4%;
+    width: 80%;
+    height: 60%;
+    overflow-y: auto;
+    color: #35291c;
+    font-family: 'Special Elite', monospace;
+    font-size: 18px;
+    transform: rotate(-1deg);
+}
+
+#bloco-diario button {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+}
+
 #mensagem {
     color: #e7c88b;
 }

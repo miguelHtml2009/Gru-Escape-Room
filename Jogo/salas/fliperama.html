@@ -1,62 +1,73 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Escape Room - O Fliperama</title>
-    <link rel="stylesheet" href="../CSS.css">
+    <link rel="stylesheet" href="../css/CSS.css">
+    <link rel="stylesheet" href="../css/fliperama.css">
     <link rel="shortcut icon" type="imagex/png" href="../../Sprites/icon.ico">
 </head>
+
 <body>
 
-<button id="botao-menu" type="button" onclick="abrirMenu()">☰</button>
+    <button id="botao-menu" type="button" onclick="abrirMenu()">☰</button>
 
-<section id="menu-pausa" hidden>
-    <h2>Menu do jogo</h2>
-    <button onclick="saveExit()">Salvar e sair</button>
-    <button onclick="deletarProgresso()">Deletar progresso</button>
-    <button onclick="fecharMenu()">Voltar ao jogo</button>
-</section>
-
-<header>
-    <h1>O Fliperama</h1>
-</header>
-
-<main class="sala">
-    <div class="palco" id="palco">
-        <canvas id="sala" width="800" height="600"></canvas>
-    </div>
-</main>
-
-<footer>
-    <section>
-        <h2>Inventário</h2>
-        <ul id="inventario">
-            <li>Vazio</li>
-        </ul>
+    <section id="menu-pausa" hidden>
+        <h2>Menu do jogo</h2>
+        <button onclick="saveExit()">Salvar e sair</button>
+        <button onclick="deletarProgresso()">Deletar progresso</button>
+        <button onclick="fecharMenu()">Voltar ao jogo</button>
     </section>
 
-    <button id="abrir-diario" type="button" onclick="diario.abrir()">
-        Diário de pistas
-    </button>
+    <header>
+        <h1>O Fliperama</h1>
+    </header>
 
-    <p id="mensagem" aria-live="polite"></p>
-
-    <nav id="minimapa" aria-label="Minimapa de salas">
-        <h2>Minimapa</h2>
-
-        <div class="salas">
-            <a class="sala-mapa" href="./porao.html" onclick="salvarJogo()">Porão</a>
-            <a class="sala-mapa" href="./laboratorio.html" onclick="salvarJogo()">Laboratório</a>
-            <section class="sala-mapa" aria-current="page">Fliperama</section>
-            <a class="sala-mapa" href="./linha-de-montagem.html" onclick="salvarJogo()">Linha de montagem</a>
-            <a class="sala-mapa" href="./refugio.html" onclick="salvarJogo()">Refúgio</a>
+    <main class="sala">
+        <canvas id="sala" width="1000" height="600"></canvas>
         </div>
-    </nav>
-</footer>
+    </main>
 
-<script src="../js/codigoFonte.js"></script>
-<script src="../js/fliperama.js"></script>
+    <footer>
+        <section>
+            <h2>Inventário</h2>
+            <ul id="inventario">
+                <li></li>
+            </ul>
+        </section>
+
+        <button id="abrir-diario" onclick="diario.abrir()">
+            Diário de pistas
+        </button>
+
+        <div id="fundo-diario" hidden onclick="diario.fechar()">
+            <div id="bloco-diario" onclick="event.stopPropagation()">
+                <img src="../../Sprites/diario.png" alt="Diário aberto">
+                <div id="anotacoes"></div>
+                <button onclick="diario.fechar()">Fechar</button>
+            </div>
+        </div>
+
+        <p id="mensagem" aria-live="polite"></p>
+
+        <nav id="minimapa" aria-label="Minimapa de salas">
+            <h2>Minimapa</h2>
+
+            <div class="salas">
+                <a class="sala-mapa" href="./porao.html" onclick="salvarJogo()">Porão</a>
+                <a class="sala-mapa" href="./laboratorio.html" onclick="salvarJogo()">Laboratório</a>
+                <section class="sala-mapa" aria-current="page">Fliperama</section>
+                <a class="sala-mapa" href="./linha-de-montagem.html" onclick="salvarJogo()">Linha de montagem</a>
+                <a class="sala-mapa" href="./refugio.html" onclick="salvarJogo()">Refúgio</a>
+            </div>
+        </nav>
+    </footer>
+
+    <script src="../js/codigoFonte.js"></script>
+    <script src="../js/fliperama.js"></script>
 
 </body>
+
 </html>

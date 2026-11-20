@@ -266,7 +266,8 @@ const conversasTelefone = {
             {
                 texto: "E se a senha não funcionar? *",
                 proximo: "senha"
-            }
+            },
+            diario.anotar("A senha do computador é Minions123.")
         ]
     },
 

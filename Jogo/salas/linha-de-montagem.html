@@ -14,12 +14,12 @@
 
     <button id="botao-menu" onclick="pause()">☰</button>
 
-<section id="menu-pausa" hidden>
-    <h2>Menu do jogo</h2>
-    <button onclick="saveExit()">Salvar e sair</button>
-    <button onclick="deletarProgresso()">Deletar progresso</button>
-    <button onclick="fecharMenu()">Voltar ao jogo</button>
-</section>
+    <section id="menu-pausa" hidden>
+        <h2>Menu do jogo</h2>
+        <button onclick="saveExit()">Salvar e sair</button>
+        <button onclick="deletarProgresso()">Deletar progresso</button>
+        <button onclick="fecharMenu()">Voltar ao jogo</button>
+    </section>
 
     <header>
         <h1>A Linha de Montagem</h1>
@@ -34,47 +34,55 @@
             <div id="escuro" onclick="voltarEscuro()"></div>
             <div id="escuro-menu">
                 <img src="../../Sprites/fios-fechados.png" id="fios-fechados" onclick="abrirPainel()">
-                <img src="../../Sprites/fios-abertos-max.png" id="fios-abertosmax"> 
+                <img src="../../Sprites/fios-abertos-max.png" id="fios-abertosmax">
                 <div class="fios-minigame">
-                        <!-- Amarelo -->
-                        <img src="../../Sprites/Painel-Fios/amarelo-conectado.png" id="amarelo-conectado">
-                        <img src="../../Sprites/Painel-Fios/amarelo-esquerda.png" id="amarelo-esquerda" onclick="conectarFios('amarelo', 'esquerda')">
-                        <img src="../../Sprites/Painel-Fios/amarelo-direita.png" id="amarelo-direita" onclick="conectarFios('amarelo', 'direita')">
-                        <img src="../../Sprites/Painel-Fios/amarela-tampa.png" id="amarelo-tampa">
-                        <img src="../../Sprites/Painel-Fios/amarela-tampa.png" id="amarelo-tampa2">
+                    <!-- Amarelo -->
+                    <img src="../../Sprites/Painel-Fios/amarelo-conectado.png" id="amarelo-conectado">
+                    <img src="../../Sprites/Painel-Fios/amarelo-esquerda.png" id="amarelo-esquerda"
+                        onclick="conectarFios('amarelo', 'esquerda')">
+                    <img src="../../Sprites/Painel-Fios/amarelo-direita.png" id="amarelo-direita"
+                        onclick="conectarFios('amarelo', 'direita')">
+                    <img src="../../Sprites/Painel-Fios/amarela-tampa.png" id="amarelo-tampa">
+                    <img src="../../Sprites/Painel-Fios/amarela-tampa.png" id="amarelo-tampa2">
 
-                        <!-- Azul -->
-                        <img src="../../Sprites/Painel-Fios/azul-conectado.png" id="azul-conectado">
-                        <img src="../../Sprites/Painel-Fios/azul-esquerda.png" id="azul-esquerda" onclick="conectarFios('azul', 'esquerda')">
-                        <img src="../../Sprites/Painel-Fios/azul-direita.png" id="azul-direita" onclick="conectarFios('azul', 'direita')">
-                        <img src="../../Sprites/Painel-Fios/azul-tampa.png" id="azul-tampa">
-                        <img src="../../Sprites/Painel-Fios/azul-tampa.png" id="azul-tampa2">
+                    <!-- Azul -->
+                    <img src="../../Sprites/Painel-Fios/azul-conectado.png" id="azul-conectado">
+                    <img src="../../Sprites/Painel-Fios/azul-esquerda.png" id="azul-esquerda"
+                        onclick="conectarFios('azul', 'esquerda')">
+                    <img src="../../Sprites/Painel-Fios/azul-direita.png" id="azul-direita"
+                        onclick="conectarFios('azul', 'direita')">
+                    <img src="../../Sprites/Painel-Fios/azul-tampa.png" id="azul-tampa">
+                    <img src="../../Sprites/Painel-Fios/azul-tampa.png" id="azul-tampa2">
 
-                        <!-- Rosa -->
-                        <img src="../../Sprites/Painel-Fios/rosa-conectado.png" id="rosa-conectado">
-                        <img src="../../Sprites/Painel-Fios/rosa-esquerda.png" id="rosa-esquerda" onclick="conectarFios('rosa', 'esquerda')">
-                        <img src="../../Sprites/Painel-Fios/rosa-direita.png" id="rosa-direita" onclick="conectarFios('rosa', 'direita')">
-                        <img src="../../Sprites/Painel-Fios/rosa-tampa.png" id="rosa-tampa">
-                        <img src="../../Sprites/Painel-Fios/rosa-tampa.png" id="rosa-tampa2">
+                    <!-- Rosa -->
+                    <img src="../../Sprites/Painel-Fios/rosa-conectado.png" id="rosa-conectado">
+                    <img src="../../Sprites/Painel-Fios/rosa-esquerda.png" id="rosa-esquerda"
+                        onclick="conectarFios('rosa', 'esquerda')">
+                    <img src="../../Sprites/Painel-Fios/rosa-direita.png" id="rosa-direita"
+                        onclick="conectarFios('rosa', 'direita')">
+                    <img src="../../Sprites/Painel-Fios/rosa-tampa.png" id="rosa-tampa">
+                    <img src="../../Sprites/Painel-Fios/rosa-tampa.png" id="rosa-tampa2">
 
-                        <!-- Vermelho -->
-                        <img src="../../Sprites/Painel-Fios/vermelho-conectado.png" id="vermelho-conectado">
-                        <img src="../../Sprites/Painel-Fios/vermelho-esquerda.png" id="vermelho-esquerda" onclick="conectarFios('vermelho', 'esquerda')">
-                        <img src="../../Sprites/Painel-Fios/vermelho-direita.png" id="vermelho-direita" onclick="conectarFios('vermelho', 'direita')">
-                        <img src="../../Sprites/Painel-Fios/vermelho-tampa.png" id="vermelho-tampa">
-                        <img src="../../Sprites/Painel-Fios/vermelho-tampa.png" id="vermelho-tampa2">
+                    <!-- Vermelho -->
+                    <img src="../../Sprites/Painel-Fios/vermelho-conectado.png" id="vermelho-conectado">
+                    <img src="../../Sprites/Painel-Fios/vermelho-esquerda.png" id="vermelho-esquerda"
+                        onclick="conectarFios('vermelho', 'esquerda')">
+                    <img src="../../Sprites/Painel-Fios/vermelho-direita.png" id="vermelho-direita"
+                        onclick="conectarFios('vermelho', 'direita')">
+                    <img src="../../Sprites/Painel-Fios/vermelho-tampa.png" id="vermelho-tampa">
+                    <img src="../../Sprites/Painel-Fios/vermelho-tampa.png" id="vermelho-tampa2">
                 </div>
-                
+
             </div>
             <img src="../../Sprites/fios-parafusado.png" id="fios-parafusados" onclick="menuDesparafusar()">
-            <img src="../../Sprites/parafuso.png" id="p1" class="parafusos"onclick="tirarParafuso(this)">
-            <img src="../../Sprites/parafuso.png" id="p2" class="parafusos"onclick="tirarParafuso(this)">
-            <img src="../../Sprites/parafuso.png" id="p3" class="parafusos"onclick="tirarParafuso(this)">
-            <img src="../../Sprites/parafuso.png" id="p4" class="parafusos"onclick="tirarParafuso(this)">
+            <img src="../../Sprites/parafuso.png" id="p1" class="parafusos" onclick="tirarParafuso(this)">
+            <img src="../../Sprites/parafuso.png" id="p2" class="parafusos" onclick="tirarParafuso(this)">
+            <img src="../../Sprites/parafuso.png" id="p3" class="parafusos" onclick="tirarParafuso(this)">
+            <img src="../../Sprites/parafuso.png" id="p4" class="parafusos" onclick="tirarParafuso(this)">
 
             <img src="../../Sprites/fios-abertos.png" id="fios-abertosmin" onclick="menuDesparafusar()">
-            <img src="../../Sprites/fios-conectados.png" id="fios-conectados" onclick="menuDesparafusar()"> 
-            
+            <img src="../../Sprites/fios-conectados.png" id="fios-conectados" onclick="menuDesparafusar()">
+
 
             <img src="../../Sprites/telefone.png" id="telefone" onclick="atender()">
 
@@ -112,6 +120,14 @@
             Diário de pistas
         </button>
 
+        <div id="fundo-diario" hidden onclick="diario.fechar()">
+            <div id="bloco-diario" onclick="event.stopPropagation()">
+                <img src="../../Sprites/diario.png" alt="Diário aberto">
+                <div id="anotacoes"></div>
+                <button onclick="diario.fechar()">Fechar</button>
+            </div>
+        </div>
+
         <p id="mensagem">
             Você está na linha de montagem.
         </p>
@@ -136,7 +152,7 @@
     </footer>
     <script src="../js/codigoFonte.js" defer></script>
     <script src="../js/linha-de-montagem.js" defer></script>
-    
+
 </body>
 
 </html>

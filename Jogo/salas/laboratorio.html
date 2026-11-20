@@ -14,12 +14,12 @@
 
     <button id="botao-menu" onclick="pause()">☰</button>
 
-<section id="menu-pausa" hidden>
-    <h2>Menu do jogo</h2>
-    <button onclick="saveExit()">Salvar e sair</button>
-    <button onclick="deletarProgresso()">Deletar progresso</button>
-    <button onclick="fecharMenu()">Voltar ao jogo</button>
-</section>
+    <section id="menu-pausa" hidden>
+        <h2>Menu do jogo</h2>
+        <button onclick="saveExit()">Salvar e sair</button>
+        <button onclick="deletarProgresso()">Deletar progresso</button>
+        <button onclick="fecharMenu()">Voltar ao jogo</button>
+    </section>
 
     <header>
         <h1>O Laboratório</h1>
@@ -27,14 +27,14 @@
 
     <main>
         <div id="sala">
-            
+
             <img src="../../Sprites/computador.png" id="computador" onclick="abrirComputador()">
             <img src="../../Sprites/zoom.png" id="zoom" onclick="sairZoom()" hidden>
             <input type="password" id="passwordInput" class="input-field" placeholder="senha" required hidden>
 
-            <img src="../../Sprites/chave-Philps.png" id="chave" onclick="pegarChave()" >
+            <img src="../../Sprites/chave-Philps.png" id="chave" onclick="pegarChave()">
 
-            
+
 
         </div>
     </main>
@@ -51,6 +51,14 @@
             Diário de pistas
         </button>
 
+        <div id="fundo-diario" hidden onclick="diario.fechar()">
+            <div id="bloco-diario" onclick="event.stopPropagation()">
+                <img src="../../Sprites/diario.png" alt="Diário aberto">
+                <div id="anotacoes"></div>
+                <button onclick="diario.fechar()">Fechar</button>
+            </div>
+        </div>
+
         <p id="mensagem">
             Você está no laboratório.
         </p>
@@ -59,7 +67,7 @@
             <h2>Minimapa</h2>
 
             <div class="salas">
-                
+
                 <a class="sala-mapa" href="./porao.html" onclick="save()">Porão</a>
 
                 <section class="sala-mapa" id="minimapaSalaAtual">Laboratório</section>
