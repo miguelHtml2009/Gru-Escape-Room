@@ -1,9 +1,16 @@
+let tempoRestante = 300;
+let intervaloTimer;
+
 function save() {
     const dadosAntigos = JSON.parse(localStorage.getItem("escapeRoomProgresso")) || {};
     var quadroRasgado = false;
 
     const progressoAtual = {
         
+        //Timer
+        tempoRestante: typeof tempoRestante !== "undefined"
+        ? tempoRestante
+        : dadosAntigos.tempoRestante,
 
         // PORÃO
         portaAberta: document.getElementById("porta-aberta")
@@ -76,6 +83,11 @@ function carregarProgresso() {
     const dadosSalvos = localStorage.getItem("escapeRoomProgresso");
     if (!dadosSalvos) return;
     const progresso = JSON.parse(dadosSalvos);
+    
+    //Timer
+    if (progresso.tempoRestante != null) {
+        tempoRestante = progresso.tempoRestante;
+    }
 
     // PORÃO
     if (progresso.portaAberta != null && document.getElementById("porta-aberta")) {
@@ -245,3 +257,47 @@ const diario = {
 };
 
 diario.carregar();
+
+// ==========================================
+// 7. TIMER
+// ==========================================
+
+function atualizarTimer() {
+    const minutos = document.getElementById("min");
+    const segundos = document.getElementById("sec");
+    if (!minutos || !segundos) return;
+
+    let min = Math.floor(tempoRestante / 60);
+    let sec = tempoRestante % 60;
+
+    if (min < 10) {
+        min = "0" + min;
+    }
+    if (sec < 10) {
+        sec = "0" + sec;
+    }
+    minutos.innerText = min + ":";
+    segundos.innerText = sec;
+}
+
+function contarSegundos() {
+    if (tempoRestante > 0) {
+        tempoRestante--;
+        atualizarTimer();
+        save();
+    } else {
+        clearInterval(intervaloTimer);
+        
+        localStorage.clear();
+        
+        window.location.href = "../salas/finais/finalTempo/finalTempo.html";
+    }
+}
+
+function iniciarTimer() {
+    atualizarTimer();
+    clearInterval(intervaloTimer);
+    intervaloTimer = setInterval(contarSegundos, 1000);
+}
+
+iniciarTimer();

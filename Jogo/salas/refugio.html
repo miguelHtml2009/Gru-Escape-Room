@@ -3,10 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Refugio</title>
+    <title>Escape Room - O Refugio</title>
+    <link rel="stylesheet" href="../css/CSS.css">
+    <link rel="stylesheet" href="../css/fliperama.css">
     <link rel="shortcut icon" type="imagex/png" href="../../Sprites/icon.ico">
 </head>
 <body>
+    <button id="botao-menu" type="button" onclick="abrirMenu()">☰</button>
+
+    <section id="menu-pausa" hidden>
+        <h2>Menu do jogo</h2>
+        <button onclick="saveExit()">Salvar e sair</button>
+        <button onclick="deletarProgresso()">Deletar progresso</button>
+        <button onclick="fecharMenu()">Voltar ao jogo</button>
+    </section>
+
+    <header>
+        <h1>O Refúgio</h1>
+         <div id="timer">
+            <p id="min">05:</p>
+            <p id="sec">00</p>
+        </div>
+    </header>
+
+    <main class="sala">
+        <canvas id="sala" width="1000" height="600"></canvas>
+        </div>
+    </main>
+
+    <footer>
+        <section>
+            <h2>Inventário</h2>
+            <ul id="inventario">
+                <li></li>
+            </ul>
+        </section>
+
+        <button id="abrir-diario" onclick="diario.abrir()">
+            Diário de pistas
+        </button>
+
+        <div id="fundo-diario" hidden onclick="diario.fechar()">
+            <div id="bloco-diario" onclick="event.stopPropagation()">
+                <img src="../../Sprites/diario.png" alt="Diário aberto">
+                <div id="anotacoes"></div>
+                <button onclick="diario.fechar()">Fechar</button>
+            </div>
+        </div>
+
+        <p id="mensagem" aria-live="polite"></p>
+
+        <nav id="minimapa" aria-label="Minimapa de salas">
+            <h2>Minimapa</h2>
+
+            <div class="salas">
+                <a class="sala-mapa" href="./porao.html" onclick="salvarJogo()">Porão</a>
+                <a class="sala-mapa" href="./laboratorio.html" onclick="salvarJogo()">Laboratório</a>
+                <a class="sala-mapa" href="./fliperama.html" onclick="save()">Fliperama</a>
+                <a class="sala-mapa" href="./linha-de-montagem.html" onclick="salvarJogo()">Linha de montagem</a>
+                <section class="sala-mapa" aria-current="page">Refúgio</section>
+            </div>
+        </nav>
+    </footer>
+
+    <script src="../js/codigoFonte.js" defer></script>
+    <script src="../js/fliperama.js"></script>
+
     
 </body>
 </html>

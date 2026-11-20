@@ -295,4 +295,5 @@ footer h2 {
 #timer{
     display: flex;
     justify-content: center;
+    font-size: 21px;
 }

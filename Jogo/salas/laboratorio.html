@@ -23,6 +23,10 @@
 
     <header>
         <h1>O Laboratório</h1>
+        <div id="timer">
+            <p id="min">05:</p>
+            <p id="sec">00</p>
+        </div>
     </header>
 
     <main>
@@ -31,10 +35,8 @@
             <img src="../../Sprites/computador.png" id="computador" onclick="abrirComputador()">
             <img src="../../Sprites/zoom.png" id="zoom" onclick="sairZoom()" hidden>
             <input type="password" id="passwordInput" class="input-field" placeholder="senha" required hidden>
-
             <img src="../../Sprites/quadro.png" id="quadro" onclick="rasgarPintura()">
             <img src="../../Sprites/buraco.png" id="buraco">
-
             <img src="../../Sprites/chave-Philps.png" id="chave" onclick="pegarChave()">
 
 
@@ -84,7 +86,7 @@
         </nav>
 
     </footer>
-    <script src="../js/codigoFonte.js"></script>
+    <script src="../js/codigoFonte.js" defer></script>
     <script src="../js/laboratorio.js"></script>
 
 </body>

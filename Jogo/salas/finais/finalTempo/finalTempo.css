@@ -1,0 +1,40 @@
+#Reinicia{
+    padding: 30px;
+    font-size: 20px;
+}
+#titulo{
+    margin-top: 260px;
+}
+body {
+    margin: 0;
+    padding: 20px;
+    background: #101010;
+    color: #eee;
+    font-family: 'Special Elite', monospace;
+    display: flex;
+    flex-direction:column ;
+    align-items: center;
+}
+header {
+    color: #c62828;
+    letter-spacing: 4px;
+    margin-bottom: 8px;
+}
+button {
+    cursor: pointer;
+    padding: 8px 12px;
+    margin: 4px;
+    color: #f5ead5;
+    background: #29231e;
+    border: 1px solid #806b48;
+    border-radius: 4px;
+}
+
+button:hover {
+    background: #403426;
+}
+
+button:focus-visible {
+    outline: 2px solid #e7c88b;
+    outline-offset: 2px;
+}
