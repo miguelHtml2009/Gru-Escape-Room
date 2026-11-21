@@ -1,5 +1,7 @@
 let tempoRestante = 300;
 let intervaloTimer;
+const imagensClicaveis = document.querySelectorAll("#sala img[onclick]");
+const botoesPagina = document.querySelectorAll("button");
 
 function save() {
     const dadosAntigos = JSON.parse(localStorage.getItem("escapeRoomProgresso")) || {};
@@ -207,6 +209,8 @@ function saveExit() {
 }
 function deletarProgresso() {
     if (confirm("Tem certeza que deseja apagar todo o progresso do jogo?")) {
+        clearInterval(intervaloTimer);
+        tempoRestante = 300;
         localStorage.clear();
         window.location.href = "../../index.html";
     }
@@ -276,7 +280,7 @@ function atualizarTimer() {
     if (sec < 10) {
         sec = "0" + sec;
     }
-    minutos.innerText = min + ":";
+    minutos.innerText = min;
     segundos.innerText = sec;
 }
 
@@ -295,9 +299,54 @@ function contarSegundos() {
 }
 
 function iniciarTimer() {
+    if (!document.getElementById("min") || !document.getElementById("sec")) {
+        return;
+    }
     atualizarTimer();
     clearInterval(intervaloTimer);
     intervaloTimer = setInterval(contarSegundos, 1000);
 }
 
 iniciarTimer();
+
+//// ACESIBILIDADE ////
+// Se clicar com TAB, ele vai passando pelos elementos clicáveis
+
+for (let i = 0; i < imagensClicaveis.length; i++) {
+    imagensClicaveis[i].setAttribute("role", "button");
+    imagensClicaveis[i].setAttribute("tabindex", "0");
+
+    imagensClicaveis[i].onkeydown = function (event) {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            this.click();
+        }
+    };
+}
+//É possivel fechar os menus apenas com esc
+document.onkeydown = function (event) {
+    if (event.key === "Escape") {
+        if (typeof voltarEscuro === "function") {
+            voltarEscuro();
+        }
+        if (typeof diario !== "undefined" && typeof diario.fechar === "function") {
+            diario.fechar();
+        }
+        if (typeof fecharMenu === "function") {
+            fecharMenu();
+        }
+        if (typeof fecharTelefone === "function") {
+            fecharTelefone();
+        }
+        if (typeof sairZoom === "function") {
+            sairZoom();
+        }
+        if (typeof fechar === "function") {
+            fechar();
+        }
+        if (typeof deslerbilhete === "function") {
+            deslerbilhete();
+        }
+    }
+};
+

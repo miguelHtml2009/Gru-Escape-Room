@@ -296,6 +296,9 @@ var telefoneBloqueadoAvisado = false;
 
 var telefoneBloqueadoAvisado = false;
 
+function tocarTelefone(){
+    mensagem.innerHTML = "O telefone está tocando!";
+}
 function atender() {
 
     if (localStorage.getItem("energia") !== "true") {
@@ -416,6 +419,23 @@ function fecharTelefone() {
 // 1. ABRIR MENU PARA DESPARAFUSAR
 // ==========================================
 
+function focarProximoFio() {
+    const cores = ["amarelo", "azul", "rosa", "vermelho"];
+    for (let i = 0; i < cores.length; i++) {
+        const cor = cores[i];
+        if (fios[cor].solto) {
+            if (fios[cor].esquerda.style.display !== "none") {
+                fios[cor].esquerda.focus();
+                return;
+            }
+            if (fios[cor].direita.style.display !== "none") {
+                fios[cor].direita.focus();
+                return;
+            }
+        }
+    }
+}
+
 function menuDesparafusar() {
 
     if (localStorage.getItem("energia") === "true") {
@@ -434,6 +454,7 @@ function menuDesparafusar() {
         } else {
             painelfios.Fechado.style.display = "block";
             mostrarParafusos();
+            painelfios.Fechado.focus();
         }
 
     } else {
@@ -465,6 +486,12 @@ function voltarEscuro() {
         p2.pa2.style.display = "none";
         p3.pa3.style.display = "none";
         p4.pa4.style.display = "none";
+
+        if (painelfios.Abertomin.style.display !== "none") {
+            painelfios.Abertomin.focus();
+        } else if (painelfios.Parafusado.style.display !== "none") {
+            painelfios.Parafusado.focus();
+        }
     }
 }
 
@@ -479,6 +506,14 @@ function tirarParafuso(parafuso) {
     contp++;
     if (contp == 4) {
         abrirPainel();
+    } else {
+        const listaParafusos = [p1.pa1, p2.pa2, p3.pa3, p4.pa4];
+        for (let i = 0; i < listaParafusos.length; i++) {
+            if (!listaParafusos[i].classList.contains("solto")) {
+                listaParafusos[i].focus();
+                break;
+            }
+        }
     }
 
 }
@@ -557,6 +592,7 @@ function abrirPainel() {
             fios.vermelho.conectado.style.display = "block";
         }
     }
+    focarProximoFio();
 }
 
 function conectarFios(corFio, ladoClicado) {
@@ -606,6 +642,7 @@ function conectarFios(corFio, ladoClicado) {
         fioSelecionado = null;
         mensagem.innerHTML = "Fios selecionados corretamente!";
         verificarFios();
+        focarProximoFio();
     } else {
         // Seleção incorreta: troca o fio selecionado
         fios[fioSelecionado.cor][fioSelecionado.lado].style.filter = "none";
@@ -678,4 +715,3 @@ function carregarLinhaMontagem() {
 }
 
 carregarLinhaMontagem();
-

@@ -7,70 +7,70 @@
     <title>Escape Room - O Fliperama</title>
     <link rel="stylesheet" href="../css/CSS.css">
     <link rel="stylesheet" href="../css/fliperama.css">
-    <link rel="shortcut icon" type="imagex/png" href="../../Sprites/icon.ico">
+    <link rel="shortcut icon" type="image/png" href="../../Sprites/icon.ico">
 </head>
 
 <body>
 
-    <button id="botao-menu" type="button" onclick="abrirMenu()">☰</button>
+    <button id="botao-menu" type="button" onclick="pause()" aria-label="Abrir menu do jogo">☰</button>
 
-    <section id="menu-pausa" hidden>
-        <h2>Menu do jogo</h2>
-        <button onclick="saveExit()">Salvar e sair</button>
-        <button onclick="deletarProgresso()">Deletar progresso</button>
-        <button onclick="fecharMenu()">Voltar ao jogo</button>
+    <section id="menu-pausa" role="dialog" aria-modal="true" aria-labelledby="titulo-menu" hidden>
+        <h2 id="titulo-menu">Menu do jogo</h2>
+        <button type="button" onclick="saveExit()">Salvar e sair</button>
+        <button type="button" onclick="deletarProgresso()">Deletar progresso</button>
+        <button type="button" onclick="fecharMenu()">Voltar ao jogo</button>
     </section>
 
     <header>
         <h1>O Fliperama</h1>
-         <div id="timer">
-            <p id="min">05:</p>
-            <p id="sec">00</p>
+        <div id="timer" role="timer" aria-label="Tempo restante">
+            <span id="min">05</span>:<span id="sec">00</span>
         </div>
     </header>
 
-    <main class="sala">
-        <canvas id="sala" width="1000" height="600"></canvas>
+    <main>
+        <div id="sala" role="region" aria-label="Fliperama do Gru, com um minion roxo ao meio e uma máquina de fliperama à direita">
+
         </div>
     </main>
 
     <footer>
         <section>
             <h2>Inventário</h2>
-            <ul id="inventario">
-                <li></li>
-            </ul>
+            <ul id="inventario"></ul>
         </section>
 
-        <button id="abrir-diario" onclick="diario.abrir()">
+        <button id="abrir-diario" type="button" onclick="diario.abrir()">
             Diário de pistas
         </button>
 
-        <div id="fundo-diario" hidden onclick="diario.fechar()">
+        <div id="fundo-diario" role="dialog" aria-modal="true" aria-label="Diário de pistas" hidden onclick="diario.fechar()">
             <div id="bloco-diario" onclick="event.stopPropagation()">
-                <img src="../../Sprites/diario.png" alt="Diário aberto">
+                <img src="../../Sprites/diario.png" alt="Ilustração de um diário antigo aberto com páginas para anotações de pistas">
                 <div id="anotacoes"></div>
-                <button onclick="diario.fechar()">Fechar</button>
+                <button type="button" onclick="diario.fechar()">Fechar</button>
             </div>
         </div>
 
-        <p id="mensagem" aria-live="polite"></p>
+        <p id="mensagem" aria-live="polite">
+            Você está no fliperama.
+        </p>
 
         <nav id="minimapa" aria-label="Minimapa de salas">
             <h2>Minimapa</h2>
 
             <div class="salas">
-                <a class="sala-mapa" href="./porao.html" onclick="salvarJogo()">Porão</a>
-                <a class="sala-mapa" href="./laboratorio.html" onclick="salvarJogo()">Laboratório</a>
-                <section class="sala-mapa" aria-current="page">Fliperama</section>
-                <a class="sala-mapa" href="./linha-de-montagem.html" onclick="salvarJogo()">Linha de montagem</a>
-                <a class="sala-mapa" href="./refugio.html" onclick="salvarJogo()">Refúgio</a>
+                <a class="sala-mapa" href="./porao.html" onclick="save()">Porão</a>
+                <a class="sala-mapa" href="./laboratorio.html" onclick="save()">Laboratório</a>
+                <span class="sala-mapa" id="minimapaSalaAtual" aria-current="page">Fliperama</span>
+                <a class="sala-mapa" href="./linha-de-montagem.html" onclick="save()">Linha de montagem</a>
+                <a class="sala-mapa" href="./refugio.html" onclick="save()">Refúgio</a>
             </div>
         </nav>
     </footer>
 
     <script src="../js/codigoFonte.js" defer></script>
-    <script src="../js/refugio.js"></script>
+    <script src="../js/fliperama.js" defer></script>
 
 </body>
 

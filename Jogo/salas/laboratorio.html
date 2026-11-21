@@ -7,41 +7,36 @@
     <title>Escape Room - O Laboratório</title>
     <link rel="stylesheet" href="../css/CSS.css">
     <link rel="stylesheet" href="../css/laboratorio.css">
-    <link rel="shortcut icon" type="imagex/png" href="../../Sprites/icon.ico">
+    <link rel="shortcut icon" type="image/png" href="../../Sprites/icon.ico">
 </head>
 
 <body>
 
-    <button id="botao-menu" onclick="pause()">☰</button>
+    <button id="botao-menu" type="button" onclick="pause()" aria-label="Abrir menu do jogo">☰</button>
 
-    <section id="menu-pausa" hidden>
-        <h2>Menu do jogo</h2>
-        <button onclick="saveExit()">Salvar e sair</button>
-        <button onclick="deletarProgresso()">Deletar progresso</button>
-        <button onclick="fecharMenu()">Voltar ao jogo</button>
+    <section id="menu-pausa" role="dialog" aria-modal="true" aria-labelledby="titulo-menu" hidden>
+        <h2 id="titulo-menu">Menu do jogo</h2>
+        <button type="button" onclick="saveExit()">Salvar e sair</button>
+        <button type="button" onclick="deletarProgresso()">Deletar progresso</button>
+        <button type="button" onclick="fecharMenu()">Voltar ao jogo</button>
     </section>
 
     <header>
         <h1>O Laboratório</h1>
-        <div id="timer">
-            <p id="min">05:</p>
-            <p id="sec">00</p>
+        <div id="timer" role="timer" aria-label="Tempo restante">
+            <span id="min">05</span>:<span id="sec">00</span>
         </div>
     </header>
 
     <main>
-        <div id="sala">
-
-            <img src="../../Sprites/computador.png" id="computador" onclick="abrirComputador()">
-            <img src="../../Sprites/zoom.png" id="zoom" onclick="sairZoom()" hidden>
-            <button onclick="sairZoom()" id="fechar" hidden>X</button>
-            <input type="password" id="passwordInput" class="input-field" placeholder="senha" required hidden>
-            <img src="../../Sprites/quadro.png" id="quadro" onclick="rasgarPintura()">
-            <img src="../../Sprites/buraco.png" id="buraco">
-            <img src="../../Sprites/chave-Philps.png" id="chave" onclick="pegarChave()">
-
-
-
+        <div id="sala" role="region" aria-label="Laboratório do Gru, com um computador ao centro e um quadro dos minions à direita">
+            <img src="../../Sprites/computador.png" id="computador" alt="Computador central do laboratório" onclick="abrirComputador()">
+            <img src="../../Sprites/zoom.png" id="zoom" alt="Tela do computador ampliada pedindo senha" onclick="sairZoom()" hidden>
+            <button type="button" onclick="sairZoom()" id="fechar" aria-label="Fechar tela do computador" hidden>X</button>
+            <input type="password" id="passwordInput" class="input-field" placeholder="senha" aria-label="Digite a senha do computador" required hidden>
+            <img src="../../Sprites/quadro.png" id="quadro" alt="Quadro de um minion na parede à direita" onclick="rasgarPintura()">
+            <img src="../../Sprites/buraco.png" id="buraco" alt="Buraco escondido na parede atrás do quadro">
+            <img src="../../Sprites/chave-Philps.png" id="chave" alt="Chave Phillips dentro do buraco na parede" onclick="pegarChave()">
         </div>
     </main>
 
@@ -53,30 +48,30 @@
             </ul>
         </section>
 
-        <button id="abrir-diario" onclick="diario.abrir()">
+        <button type="button" id="abrir-diario" onclick="diario.abrir()">
             Diário de pistas
         </button>
 
-        <div id="fundo-diario" hidden onclick="diario.fechar()">
+        <div id="fundo-diario" role="dialog" aria-modal="true" aria-label="Diário de pistas" hidden onclick="diario.fechar()">
             <div id="bloco-diario" onclick="event.stopPropagation()">
-                <img src="../../Sprites/diario.png" alt="Diário aberto">
+                <img src="../../Sprites/diario.png" alt="Ilustração de um diário antigo aberto com páginas para anotações de pistas">
                 <div id="anotacoes"></div>
-                <button onclick="diario.fechar()">Fechar</button>
+                <button type="button" onclick="diario.fechar()">Fechar</button>
             </div>
         </div>
 
-        <p id="mensagem">
+        <p id="mensagem" aria-live="polite">
             Você está no laboratório.
         </p>
 
-        <nav id="minimapa">
+        <nav id="minimapa" aria-label="Minimapa de salas">
             <h2>Minimapa</h2>
 
             <div class="salas">
 
                 <a class="sala-mapa" href="./porao.html" onclick="save()">Porão</a>
 
-                <section class="sala-mapa" id="minimapaSalaAtual">Laboratório</section>
+                <span class="sala-mapa" id="minimapaSalaAtual" aria-current="page">Laboratório</span>
 
                 <a class="sala-mapa" href="./fliperama.html" onclick="save()">Fliperama</a>
 
@@ -88,7 +83,7 @@
 
     </footer>
     <script src="../js/codigoFonte.js" defer></script>
-    <script src="../js/laboratorio.js"></script>
+    <script src="../js/laboratorio.js" defer></script>
 
 </body>
 

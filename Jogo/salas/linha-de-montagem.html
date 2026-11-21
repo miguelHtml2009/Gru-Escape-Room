@@ -12,96 +12,96 @@
 
 <body>
 
-    <button id="botao-menu" onclick="pause()">☰</button>
+    <button id="botao-menu" type="button" onclick="pause()" aria-label="Abrir menu do jogo">☰</button>
 
-    <section id="menu-pausa" hidden>
-        <h2>Menu do jogo</h2>
-        <button onclick="saveExit()">Salvar e sair</button>
-        <button onclick="deletarProgresso()">Deletar progresso</button>
-        <button onclick="fecharMenu()">Voltar ao jogo</button>
+    <section id="menu-pausa" role="dialog" aria-modal="true" aria-labelledby="titulo-menu" hidden>
+        <h2 id="titulo-menu">Menu do jogo</h2>
+        <button type="button" onclick="saveExit()">Salvar e sair</button>
+        <button type="button" onclick="deletarProgresso()">Deletar progresso</button>
+        <button type="button" onclick="fecharMenu()">Voltar ao jogo</button>
     </section>
 
     <header>
         <h1>A Linha de Montagem</h1>
-        <div id="timer">
-            <p id="min">05:</p>
-            <p id="sec">00</p>
+        <div id="timer" role="timer" aria-label="Tempo restante">
+            <span id="min">05</span>:<span id="sec">00</span>
         </div>
     </header>
     <main>
         
-        <div id="sala">
+        <div id="sala" role="region" aria-label="Linha de Montagem, com um telefone vermelho à esquerda e uma esteira com um painel trancado à direita">
             <div id="escuro" onclick="voltarEscuro()"></div>
             <div id="escuro-menu">
-                <img src="../../Sprites/fios-fechados.png" id="fios-fechados" onclick="abrirPainel()">
-                <img src="../../Sprites/fios-abertos-max.png" id="fios-abertosmax">
+
+                <img src="../../Sprites/fios-fechados.png" id="fios-fechados" alt="Painel elétrico fechado com tampa metálica" onclick="abrirPainel()">
+                <img src="../../Sprites/fios-abertos-max.png" id="fios-abertosmax" alt="Interior aberto do painel elétrico com terminais de fios">
                 <div class="fios-minigame">
                     <!-- Amarelo -->
-                    <img src="../../Sprites/Painel-Fios/amarelo-conectado.png" id="amarelo-conectado">
-                    <img src="../../Sprites/Painel-Fios/amarelo-esquerda.png" id="amarelo-esquerda"
+                    <img src="../../Sprites/Painel-Fios/amarelo-conectado.png" id="amarelo-conectado" alt="Fio amarelo conectado entre os dois terminais">
+                    <img src="../../Sprites/Painel-Fios/amarelo-esquerda.png" id="amarelo-esquerda" alt="Ponta esquerda do fio amarelo"
                         onclick="conectarFios('amarelo', 'esquerda')">
-                    <img src="../../Sprites/Painel-Fios/amarelo-direita.png" id="amarelo-direita"
+                    <img src="../../Sprites/Painel-Fios/amarelo-direita.png" id="amarelo-direita" alt="Ponta direita do fio amarelo"
                         onclick="conectarFios('amarelo', 'direita')">
-                    <img src="../../Sprites/Painel-Fios/amarela-tampa.png" id="amarelo-tampa">
-                    <img src="../../Sprites/Painel-Fios/amarela-tampa.png" id="amarelo-tampa2">
+                    <img src="../../Sprites/Painel-Fios/amarela-tampa.png" id="amarelo-tampa" alt="">
+                    <img src="../../Sprites/Painel-Fios/amarela-tampa.png" id="amarelo-tampa2" alt="">
 
                     <!-- Azul -->
-                    <img src="../../Sprites/Painel-Fios/azul-conectado.png" id="azul-conectado">
-                    <img src="../../Sprites/Painel-Fios/azul-esquerda.png" id="azul-esquerda"
+                    <img src="../../Sprites/Painel-Fios/azul-conectado.png" id="azul-conectado" alt="Fio azul conectado entre os dois terminais">
+                    <img src="../../Sprites/Painel-Fios/azul-esquerda.png" id="azul-esquerda" alt="Ponta esquerda do fio azul"
                         onclick="conectarFios('azul', 'esquerda')">
-                    <img src="../../Sprites/Painel-Fios/azul-direita.png" id="azul-direita"
+                    <img src="../../Sprites/Painel-Fios/azul-direita.png" id="azul-direita" alt="Ponta direita do fio azul"
                         onclick="conectarFios('azul', 'direita')">
-                    <img src="../../Sprites/Painel-Fios/azul-tampa.png" id="azul-tampa">
-                    <img src="../../Sprites/Painel-Fios/azul-tampa.png" id="azul-tampa2">
+                    <img src="../../Sprites/Painel-Fios/azul-tampa.png" id="azul-tampa" alt="">
+                    <img src="../../Sprites/Painel-Fios/azul-tampa.png" id="azul-tampa2" alt="">
 
                     <!-- Rosa -->
-                    <img src="../../Sprites/Painel-Fios/rosa-conectado.png" id="rosa-conectado">
-                    <img src="../../Sprites/Painel-Fios/rosa-esquerda.png" id="rosa-esquerda"
+                    <img src="../../Sprites/Painel-Fios/rosa-conectado.png" id="rosa-conectado" alt="Fio rosa conectado entre os dois terminais">
+                    <img src="../../Sprites/Painel-Fios/rosa-esquerda.png" id="rosa-esquerda" alt="Ponta esquerda do fio rosa"
                         onclick="conectarFios('rosa', 'esquerda')">
-                    <img src="../../Sprites/Painel-Fios/rosa-direita.png" id="rosa-direita"
+                    <img src="../../Sprites/Painel-Fios/rosa-direita.png" id="rosa-direita" alt="Ponta direita do fio rosa"
                         onclick="conectarFios('rosa', 'direita')">
-                    <img src="../../Sprites/Painel-Fios/rosa-tampa.png" id="rosa-tampa">
-                    <img src="../../Sprites/Painel-Fios/rosa-tampa.png" id="rosa-tampa2">
+                    <img src="../../Sprites/Painel-Fios/rosa-tampa.png" id="rosa-tampa" alt="">
+                    <img src="../../Sprites/Painel-Fios/rosa-tampa.png" id="rosa-tampa2" alt="">
 
                     <!-- Vermelho -->
-                    <img src="../../Sprites/Painel-Fios/vermelho-conectado.png" id="vermelho-conectado">
-                    <img src="../../Sprites/Painel-Fios/vermelho-esquerda.png" id="vermelho-esquerda"
+                    <img src="../../Sprites/Painel-Fios/vermelho-conectado.png" id="vermelho-conectado" alt="Fio vermelho conectado entre os dois terminais">
+                    <img src="../../Sprites/Painel-Fios/vermelho-esquerda.png" id="vermelho-esquerda" alt="Ponta esquerda do fio vermelho"
                         onclick="conectarFios('vermelho', 'esquerda')">
-                    <img src="../../Sprites/Painel-Fios/vermelho-direita.png" id="vermelho-direita"
+                    <img src="../../Sprites/Painel-Fios/vermelho-direita.png" id="vermelho-direita" alt="Ponta direita do fio vermelho"
                         onclick="conectarFios('vermelho', 'direita')">
-                    <img src="../../Sprites/Painel-Fios/vermelho-tampa.png" id="vermelho-tampa">
-                    <img src="../../Sprites/Painel-Fios/vermelho-tampa.png" id="vermelho-tampa2">
+                    <img src="../../Sprites/Painel-Fios/vermelho-tampa.png" id="vermelho-tampa" alt="">
+                    <img src="../../Sprites/Painel-Fios/vermelho-tampa.png" id="vermelho-tampa2" alt="">
                 </div>
 
             </div>
-            <img src="../../Sprites/fios-parafusado.png" id="fios-parafusados" onclick="menuDesparafusar()">
-            <img src="../../Sprites/parafuso.png" id="p1" class="parafusos" onclick="tirarParafuso(this)">
-            <img src="../../Sprites/parafuso.png" id="p2" class="parafusos" onclick="tirarParafuso(this)">
-            <img src="../../Sprites/parafuso.png" id="p3" class="parafusos" onclick="tirarParafuso(this)">
-            <img src="../../Sprites/parafuso.png" id="p4" class="parafusos" onclick="tirarParafuso(this)">
+            <img src="../../Sprites/fios-parafusado.png" id="fios-parafusados" alt="Painel de fios parafusado na esteira" onclick="menuDesparafusar()">
+            <img src="../../Sprites/parafuso.png" id="p1" class="parafusos" alt="Parafuso superior esquerdo do painel" onclick="tirarParafuso(this)">
+            <img src="../../Sprites/parafuso.png" id="p2" class="parafusos" alt="Parafuso superior direito do painel" onclick="tirarParafuso(this)">
+            <img src="../../Sprites/parafuso.png" id="p3" class="parafusos" alt="Parafuso inferior esquerdo do painel" onclick="tirarParafuso(this)">
+            <img src="../../Sprites/parafuso.png" id="p4" class="parafusos" alt="Parafuso inferior direito do painel" onclick="tirarParafuso(this)">
 
-            <img src="../../Sprites/fios-abertos.png" id="fios-abertosmin" onclick="menuDesparafusar()">
-            <img src="../../Sprites/fios-conectados.png" id="fios-conectados" onclick="menuDesparafusar()">
+            <img src="../../Sprites/fios-abertos.png" id="fios-abertosmin" alt="Painel de fios destampado na esteira" onclick="menuDesparafusar()">
+            <img src="../../Sprites/fios-conectados.png" id="fios-conectados" alt="Painel de fios na esteira com todos os cabos conectados">
 
-            <img src="../../Sprites/telefone.png" id="telefone" onclick="atender()">
+            <img src="../../Sprites/telefone.png" id="telefone" alt="Telefone vermelho antigo sobre a bancada à esquerda" onclick="atender()">
 
         </div>
 
-        <audio id="som-energia" src="../../Sons/ringing.mp3"></audio>
-        <section id="painel-telefone">
+        <audio id="som-energia" src="../../Sons/ringing.mp3" onplay="tocarTelefone()"></audio>
+        <section id="painel-telefone" role="dialog" aria-modal="true" aria-labelledby="nome-npc">
             <div class="conversa-telefone">
 
                 <h2 id="nome-npc">Desconhecido</h2>
 
-                <p id="fala-npc"></p>
+                <p id="fala-npc" aria-live="polite"></p>
 
                 <div id="opcoes-telefone"></div>
 
-                <button id="continuar-fala" onclick="pularFala()">
+                <button type="button" id="continuar-fala" onclick="pularFala()">
                     Pular diálogo
                 </button>
 
-                <button id="desligar-telefone" onclick="fecharTelefone()">
+                <button type="button" id="desligar-telefone" onclick="fecharTelefone()">
                     Desligar
                 </button>
 
@@ -117,23 +117,23 @@
             </ul>
         </section>
 
-        <button id="abrir-diario" onclick="diario.abrir()">
+        <button type="button" id="abrir-diario" onclick="diario.abrir()">
             Diário de pistas
         </button>
 
-        <div id="fundo-diario" hidden onclick="diario.fechar()">
+        <div id="fundo-diario" role="dialog" aria-modal="true" aria-label="Diário de pistas" hidden onclick="diario.fechar()">
             <div id="bloco-diario" onclick="event.stopPropagation()">
-                <img src="../../Sprites/diario.png" alt="Diário aberto">
+                <img src="../../Sprites/diario.png" alt="Ilustração de um diário antigo aberto com páginas para anotações de pistas">
                 <div id="anotacoes"></div>
-                <button onclick="diario.fechar()">Fechar</button>
+                <button type="button" onclick="diario.fechar()">Fechar</button>
             </div>
         </div>
 
-        <p id="mensagem">
+        <p id="mensagem" aria-live="polite">
             Você está na linha de montagem.
         </p>
 
-        <nav id="minimapa">
+        <nav id="minimapa" aria-label="Minimapa de salas">
             <h2>Minimapa</h2>
 
             <div class="salas">
@@ -144,8 +144,8 @@
 
                 <a class="sala-mapa" href="./fliperama.html" onclick="save()">Fliperama</a>
 
-                <section class="sala-mapa" id="minimapaSalaAtual">Linha de Montagem</section>
-
+                <span class="sala-mapa" id="minimapaSalaAtual" aria-current="page">Linha de montagem</span>
+                
                 <a class="sala-mapa" href="./refugio.html" onclick="save()">Refúgio</a>
             </div>
         </nav>
