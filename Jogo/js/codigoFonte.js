@@ -1,11 +1,12 @@
 let tempoRestante = 300;
 let intervaloTimer;
+let quadroRasgado = false;
 const imagensClicaveis = document.querySelectorAll("#sala img[onclick]");
 const botoesPagina = document.querySelectorAll("button");
 
 function save() {
     const dadosAntigos = JSON.parse(localStorage.getItem("escapeRoomProgresso")) || {};
-    var quadroRasgado = false;
+    
 
     const progressoAtual = {
         
@@ -112,9 +113,13 @@ function carregarProgresso() {
     }
     if (progresso.quadroRasgado === true) {
         const quadro = document.getElementById("quadro");
+        const buraco = document.getElementById("buraco");
 
         if (quadro) {
             quadro.classList.add("sumir");
+        }
+        if(buraco){
+            buraco.hidden = false;
         }
 
         quadroRasgado = true;

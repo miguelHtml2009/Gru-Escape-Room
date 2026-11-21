@@ -1,25 +1,22 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="finalTempo.css">
-    <link rel="shortcut icon" type="imagex/png" href="../../../../Sprites/icon.ico">
-    <title>Escape Room - Game Over</title>
+    <link rel="shortcut icon" type="image/png" href="../../../../Sprites/icon.ico">
+    <title>Escape Room - Game Over - Fim do tempo</title>
 </head>
 <body>
-    <header>
-        <h1 id="titulo">Final: acabou o tempo (<--placeholder)</h1>
-    </header>
     <main>
-        <button onclick="Reiniciar()" id="Reinicia">Jogar Novamente</button>
-    </main>
-    <nav>
-        
-    </nav>
-    <footer>
+        <video id="inicio" src="../../../../videos/Cutscene_Tempo.mp4" autoplay playsinline onclick="ativarSom()" onended="mostrarFinal()" aria-label="Cena final: o tempo acabou e Gru concluiu sua vingança"></video>
 
-    </footer>
-    <script src="finalTempo.js"></script>
+        <div id="tela-final" hidden>
+            <h1 id="titulo"> Acabou o tempo</h1>
+            <button type="button" onclick="Reiniciar()" id="Reinicia">Jogar Novamente</button>
+        </div>
+    </main>
+
+    <script src="finalTempo.js" defer></script>
 </body>
 </html>

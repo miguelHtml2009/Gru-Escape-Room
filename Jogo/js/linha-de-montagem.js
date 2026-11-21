@@ -4,6 +4,7 @@ const nomeNPC = document.getElementById("nome-npc");
 const falaNPC = document.getElementById("fala-npc");
 const opcoesTelefone = document.getElementById("opcoes-telefone");
 const botaoContinuar = document.getElementById("continuar-fala");
+const tel = document.getElementById("telefone");
 var contp = 0;
 let fioSelecionado = null;
 let tampaAberta = false;
@@ -325,17 +326,20 @@ function atender() {
 function mostrarDialogo(id) {
 
     const dialogo = conversasTelefone[id];
-
     if (!dialogo) return;
 
     dialogoAtual = dialogo;
 
     nomeNPC.textContent = dialogo.nome;
-
     textoAtual = dialogo.fala;
     indiceTexto = 0;
-
     falaNPC.textContent = "";
+
+    //Escreve a frase completa no elemento, ferramentas de acessibilidade leem melhor assim
+    const falaCompleta = document.getElementById("fala-completa");
+    if (falaCompleta) {
+        falaCompleta.textContent = dialogo.nome + ": " + dialogo.fala;
+    }
 
     opcoesTelefone.innerHTML = "";
 
@@ -407,12 +411,23 @@ function pularFala() {
 
 // Fechar telefone
 function fecharTelefone() {
+    if (painelTelefone.style.display === "none" || painelTelefone.style.display === "") {
+        return; 
+    }
+    // Não faz nada se o telefone já estiver fechado
+
     clearInterval(intervaloFala);
     painelTelefone.style.display = "none";
     falando = false;
 
-    document.getElementById("mensagem").textContent = "A chamada foi encerrada.";
+    if (dialogoAtual && dialogoAtual.opcoes.length > 0) {
+        telefoneAtendido = false;
+    }
+    // Se fechou antes de terminar a conversa, permite atender novamente
 
+    document.getElementById("mensagem").textContent = "A chamada foi encerrada.";
+    if (tel) tel.focus();
+    // Se fechar o telefone, ele ainda fica focado nele com o TAB
 }
 
 // ==========================================

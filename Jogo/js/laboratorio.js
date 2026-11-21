@@ -1,3 +1,6 @@
+const buraco = document.getElementById("buraco");
+const chave = document.getElementById("chave");
+
 let energia = localStorage.getItem("energia") === "true";
 
 function abrirComputador() {
@@ -5,9 +8,8 @@ function abrirComputador() {
         document.getElementById("zoom").hidden = false;
         document.getElementById("passwordInput").hidden=false;
         document.getElementById("fechar").hidden=false;
-    }
-    else document.getElementById("mensagem").textContent = "Não tá ligando";
-
+    }else 
+        document.getElementById("mensagem").textContent = "Não tá ligando";
 }
 
 function sairZoom() {
@@ -24,6 +26,16 @@ function pegarChave() {
 
 function rasgarPintura() {
     document.getElementById("quadro").classList.add("sumir");
+    
     quadroRasgado = true;
+    buraco.hidden = false;
+    
+    if (!document.getElementById("item-chaveFenda")) {
+        chave.hidden = false;
+    }
+    
     save();
+
+    document.getElementById("mensagem").textContent = "Você rasgou o quadro e encontrou uma chave Phillips escondida no buraco!";
+    chave.focus(); //Volta o foco pra chave quando o quadro cai
 }
