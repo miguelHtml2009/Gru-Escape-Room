@@ -23,11 +23,13 @@
     position: absolute;
     top: 4px;
     left: 171px;
+    z-index: 4;
 }
 #passwordInput {
     position: absolute;
     top: 287px;
     left: 395px;
+    z-index: 5;
 }
 
 #quadro {
@@ -58,5 +60,12 @@
     left: 724px;
     z-index: 1;
     width: 6.5%;
+}
+
+#fechar {
+    position: absolute;
+    top: 17px;
+    left: 848px;
+    padding:15px
 }
 

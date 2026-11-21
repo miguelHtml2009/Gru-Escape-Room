@@ -1,11 +1,19 @@
+let energia = localStorage.getItem("energia") === "true";
+
 function abrirComputador() {
+    if(energia==true){
         document.getElementById("zoom").hidden = false;
         document.getElementById("passwordInput").hidden=false;
+        document.getElementById("fechar").hidden=false;
+    }
+    else document.getElementById("mensagem").textContent = "Não tá ligando";
+
 }
 
 function sairZoom() {
     document.getElementById("zoom").hidden = true;
     document.getElementById("passwordInput").hidden=true;
+    document.getElementById("fechar").hidden=true;
 }
 function pegarChave() {
     document.getElementById("chave").hidden = true;
@@ -15,10 +23,7 @@ function pegarChave() {
 }
 
 function rasgarPintura() {
-
     document.getElementById("quadro").classList.add("sumir");
-
     quadroRasgado = true;
-
     save();
 }

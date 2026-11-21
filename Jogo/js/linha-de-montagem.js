@@ -207,8 +207,10 @@ const conversasTelefone = {
             {
                 texto: "Entendi. Vamos voltar ao plano.",
                 proximo: "plano"
-            }
+            },
+            diario.anotar("Os minions sabem a senha.")
         ]
+        
     },
 
     plano: {
@@ -604,11 +606,9 @@ function conectarFios(corFio, ladoClicado) {
         fioSelecionado = null;
         mensagem.innerHTML = "Fios selecionados corretamente!";
         verificarFios();
-
     } else {
         // Seleção incorreta: troca o fio selecionado
         fios[fioSelecionado.cor][fioSelecionado.lado].style.filter = "none";
-
         fioSelecionado = {
             cor: corFio,
             lado: ladoClicado
@@ -626,19 +626,14 @@ function verificarFios() {
         fios.vermelho.solto === false
     ) {
         mensagem.innerHTML = "Painel consertado! A energia foi restaurada.";
-
         // Verifica se a energia já tinha sido restaurada
         if (localStorage.getItem("energia") !== "true") {
-
             localStorage.setItem("energia", "true");
 
             // Toca o som apenas uma vez
             if (localStorage.getItem("somEnergiaTocado") !== "true") {
-
                 const som = document.getElementById("som-energia");
-
                 som.currentTime = 0;
-
                 som.play()
                     .then(() => {
                         localStorage.setItem("somEnergiaTocado", "true");
@@ -652,8 +647,7 @@ function verificarFios() {
 
         painelfios.Abertomin.style.display = "none";
         painelfios.Conectado.style.display = "block";
-
-        document.querySelector(".fios-minigame").style.display = "none";
+        
         save();
 
     }
@@ -674,12 +668,9 @@ function carregarLinhaMontagem() {
 
     // Se a energia já foi restaurada, mostra o painel conectado
     if (localStorage.getItem("energia") === "true") {
-
         tampaAberta = true;
         contp = 4;
-
         abrirPainel();
-
         painelfios.Abertomin.style.display = "none";
         painelfios.Conectado.style.display = "block";
         document.querySelector(".fios-minigame").style.display = "none";
