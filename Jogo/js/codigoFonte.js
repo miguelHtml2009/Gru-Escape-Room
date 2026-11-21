@@ -1,6 +1,6 @@
 let tempoRestante = 300;
 let intervaloTimer;
-let quadroRasgado = false;
+let quadroRasgado = false
 const imagensClicaveis = document.querySelectorAll("#sala img[onclick]");
 const botoesPagina = document.querySelectorAll("button");
 
@@ -116,9 +116,9 @@ function carregarProgresso() {
         const buraco = document.getElementById("buraco");
 
         if (quadro) {
-            quadro.classList.add("sumir");
+            quadro.hidden = true;
         }
-        if(buraco){
+        if (buraco) {
             buraco.hidden = false;
         }
 
