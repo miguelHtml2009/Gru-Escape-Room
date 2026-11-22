@@ -18,7 +18,7 @@ let falaAtual = 0;
 
 function jogarMinigame() {
     save(); // guarda o tempo antes de sair da sala
-    window.location.href = "../../minigame1.html";
+    window.location.href = "Minigames/minigame1.html";
 }
 
 function perguntar() {

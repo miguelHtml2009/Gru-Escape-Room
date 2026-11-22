@@ -8,3 +8,6 @@ aria-describedby = Associa um elemento com uma descrição mais longa, como um p
 
 aria-current="page" = Indica que o botão atual representa a página que ele está agora
 
+Math.random() = Sorteia numero decimal aleatório, vai até 1(100%)
+
+Math.floor() = arredondar, pega apenas o inteiro, 0.85=0, 1.377 = 1, 2.34342231231231 = 2, etc.

@@ -1,0 +1,164 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #181824;
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#cabecalho {
+    width: 100%;
+    padding: 15px;
+    background-color: #232336;
+    border-bottom: 2px solid #3f3f5a;
+    text-align: center;
+}
+
+#cabecalho h1 {
+    font-family: 'Iceberg', sans-serif;
+    font-size: 42px;
+    letter-spacing: 3px;
+    color: #e0f7ff;
+    margin-bottom: 9px;
+}
+
+.placar {
+    font-size: 16px;
+    margin-top: 8px;
+}
+
+#texto-progresso,
+#texto-vidas {
+    font-weight: bold;
+    color: #4cc9f0;
+}
+
+#area-jogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0;
+}
+
+#cenario {
+    position: relative;
+    width: 540px;
+    height: 780px;
+    background-color: #2f2f3f;
+    border: 3px solid #ffffff;
+    overflow: hidden;
+}
+
+.pista {
+    position: absolute;
+    top: 0;
+    width: 180px;
+    height: 100%;
+    border-right: 2px dashed rgba(255, 255, 255, 0.3);
+}
+
+.pista:last-of-type {
+    border-right: none;
+}
+
+#vector {
+    position: absolute;
+    top: 40px;
+    left: 225px;
+    width: 90px;
+    height: 90px;
+    background-image: url('../../../../Sprites/Minigame2/vector_rosto.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: left 0.1s ease;
+    z-index: 3;
+}
+
+#vector.congelado {
+    background-image: url('../../../../Sprites/Minigame2/vector_congelado_rosto.png');
+}
+
+#gru {
+    position: absolute;
+    bottom: 15px;
+    left: 217px;
+    width: 106px;
+    height: 106px;
+    background-image: url('../../../../Sprites/Minigame2/gru_rosto.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: left 0.2s ease;
+    z-index: 3;
+}
+
+.raio {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    background-image: url('../../../../Sprites/Minigame2/raio_congelante.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 2;
+}
+
+#tela-fim {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    z-index: 10;
+}
+
+#tela-fim.oculto {
+    display: none;
+}
+
+
+#tela-fim h2 {
+    font-family: 'Iceberg', sans-serif;
+    font-size: 40px;
+    letter-spacing: 2px;
+    color: #e0f7ff;
+    margin-bottom: 20px;
+}
+
+#tela-fim button {
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #4cc9f0;
+    color: #000000;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+#rodape {
+    width: 100%;
+    padding: 12px;
+    background-color: #232336;
+    border-top: 2px solid #3f3f5a;
+    text-align: center;
+    font-size: 14px;
+    color: #cccccc;
+}

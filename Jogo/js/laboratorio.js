@@ -103,3 +103,7 @@ function atualizarSeguranca() {
 }
 
 interruptor.addEventListener("change", atualizarSeguranca);
+
+function fugirPorao(){
+    window.location.href="Minigames/minigame2/fuga-gru.html";
+}

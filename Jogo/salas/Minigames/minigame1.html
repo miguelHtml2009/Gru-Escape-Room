@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>arcade</title>
-    <link rel="stylesheet" href="Jogo/css/CSS.css">
+    <link rel="stylesheet" href="../../css/CSS.css">
     <style>
         canvas {
             position: absolute;
@@ -21,8 +21,8 @@
         </div>
     </header>
     
-<button type="button" onclick="window.location.href='Jogo/salas/fliperama.html'">Voltar</button>
-<script src="Jogo/js/codigoFonte.js" defer></script>
+<button type="button" onclick="window.location.href='../fliperama.html'">Voltar</button>
+<script src="../../js/codigoFonte.js" defer></script>
 <script>
     // Variáveis globais de controle do jogo
     var canvas, ctx, ALTURA, LARGURA, Frames = 0, maxPulos = 3, velocidade = 6, estadoAtual, record;
@@ -179,24 +179,24 @@
     function carregaAssets() {
         // Imagens
         img = new Image();
-        img.src = "./Sprites/80amarelo.jpg";
+        img.src = "../../../Sprites/80amarelo.jpg";
         
         bananaImg = new Image();
-        bananaImg.src = "./Sprites/banana.png";
+        bananaImg.src = "../../../Sprites/banana.png";
         Bloco.img = bananaImg;
         
         bananatronImg = new Image();
-        bananatronImg.src = "./Sprites/bananatron.png";
+        bananatronImg.src = "../../../Sprites/bananatron.png";
         
         gameOverImg = new Image();
-        gameOverImg.src = "./Sprites/game-over.png";
+        gameOverImg.src = "../../../Sprites/game-over.png";
 
         // Sons (Crie uma pasta chamada "Sons" e coloque seus arquivos lá, ou ajuste o caminho)
         somPulo = new Audio();
-        somPulo.src = "./Sons/pulo.mp3"; 
+        somPulo.src = "../../../Sons/pulo.mp3"; 
         
         somPerdeu = new Audio();
-        somPerdeu.src = "./Sons/gameover.mp3";
+        somPerdeu.src = "../../../Sons/gameover.mp3";
     }
 
     // Gerencia cliques do mouse para pular ou reiniciar

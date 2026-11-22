@@ -73,3 +73,6 @@ function sair() {
         window.location.href = "./finais/finalBom/finalBom.html";
     }
 }
+function fugirPorao(){
+    window.location.href="Minigames/minigame2/fuga-gru.html";
+}

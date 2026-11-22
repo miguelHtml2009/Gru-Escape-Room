@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minigame - Fuga do Gru</title>
+    <link href="https://fonts.googleapis.com/css2?family=Iceberg&family=Rubik+Distressed&family=Snowburst+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="fuga-gru.css">
+</head>
+<body>  
+
+    <header id="cabecalho">
+        <h1>Fuja do Gru!</h1>
+        <p class="placar">Progresso da fuga: <span id="texto-progresso">0%</span></p>
+        <p class="placar">Vidas: <span id="texto-vidas">3</span></p>
+    </header>
+    <main id="area-jogo">
+        <section id="cenario">
+            <div class="pista" style="left: 0px;"></div>
+            <div class="pista" style="left: 180px;"></div>
+            <div class="pista" style="left: 360px;"></div>
+
+            <div id="vector"></div>
+
+            <div id="camada-raios"></div>
+
+            <div id="gru"></div>
+
+            <div id="tela-fim" class="oculto">
+                <h2 id="titulo-fim">Você fugiu!</h2>
+                <button onclick="iniciarJogo()">Jogar Novamente</button>
+            </div>
+        </section>
+    </main>
+    <footer id="rodape">
+        <p> Controles: Setas ⬅ e ➡ ou A e D</p>
+    </footer>
+    <script src="fuga-gru.js"></script>
+</body>
+</html>
