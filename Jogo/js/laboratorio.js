@@ -4,22 +4,27 @@ const chave = document.getElementById("chave");
 let energia = localStorage.getItem("energia") === "true";
 
 function abrirComputador() {
-    if(energia==true){
+    if (energia == true) {
         document.getElementById("zoom").hidden = false;
-        document.getElementById("passwordInput").hidden=false;
-        document.getElementById("fechar").hidden=false;
-        document.getElementById("nefario").hidden=false;
-    }else 
+        document.getElementById("passwordInput").hidden = false;
+        document.getElementById("fechar").hidden = false;
+        document.getElementById("nefario").hidden = false;
+    } else
         document.getElementById("mensagem").textContent = "Não tá ligando";
 }
 
 function sairZoom() {
     document.getElementById("zoom").hidden = true;
-    document.getElementById("passwordInput").hidden=true;
-    document.getElementById("fechar").hidden=true;
-    document.getElementById("nefario").hidden=true;
+    document.getElementById("passwordInput").hidden = true;
+    document.getElementById("fechar").hidden = true;
+    document.getElementById("nefario").hidden = true;
     document.getElementById("zoom2").hidden = true;
     document.getElementById("passwordInput2").hidden = true;
+    document.getElementById("area-trabalho").hidden = true;
+    document.getElementById("app").hidden = true;
+    document.getElementById("desativar").hidden = true;
+    document.getElementById("desativado").hidden = true;
+    document.getElementById("painel-seguranca").hidden = true;
 
 }
 function pegarChave() {
@@ -31,10 +36,10 @@ function pegarChave() {
 
 function rasgarPintura() {
     document.getElementById("quadro").classList.add("sumir");
-    
+
     quadroRasgado = true;
     buraco.hidden = false;
-    
+
     if (!document.getElementById("item-chaveFenda")) {
         chave.hidden = false;
     }
@@ -44,7 +49,10 @@ function rasgarPintura() {
 }
 
 function bloqueioNefario() {
-    sairZoom();
+    document.getElementById("zoom").hidden = true;
+    document.getElementById("passwordInput").hidden = true;
+    document.getElementById("nefario").hidden = true;
+
 
     document.getElementById("zoom2").hidden = false;
     document.getElementById("passwordInput2").hidden = false;
@@ -55,11 +63,14 @@ function bloqueioNefario() {
 function areaDeTrabalho() {
     let senha = document.getElementById("passwordInput2").value;
 
-    if (senha === "Minion123") {
+    if (senha === "Minions123") {
+
         document.getElementById("zoom2").hidden = true;
         document.getElementById("passwordInput2").hidden = true;
         document.getElementById("area-trabalho").hidden = false;
+        document.getElementById("app").hidden = false;
         document.getElementById("mensagem").textContent = "Acesso autorizado!";
+        
 
     } else {
 
@@ -68,4 +79,25 @@ function areaDeTrabalho() {
         document.getElementById("passwordInput2").focus();
 
     }
+}
+function quase() {
+    document.getElementById("area-trabalho").hidden = true;
+    document.getElementById("app").hidden = true;
+
+    document.getElementById("desativar").hidden = false;
+    document.getElementById("segurança").hidden = false;
+    
+    const interruptor = document.getElementById("segurança");
+
+    // Recupera o estado salvo
+    interruptor.checked = localStorage.getItem("segurança") === "true";
+
+
+}
+
+function desativar() {
+
+    document.getElementById("desativar").hidden = true;
+    document.getElementById("desativado").hidden = false;
+
 }

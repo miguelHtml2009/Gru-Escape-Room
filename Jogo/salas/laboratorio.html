@@ -41,14 +41,20 @@
 
             <img src="../../Sprites/area-de-trabalho.png" id="area-trabalho" hidden>
             <span id="nefario" hidden onclick="bloqueioNefario()">Dr. Nefário</span>
+            <img src="../../Sprites/app.png" id="app" onclick="quase()" hidden>
 
-            <img src="../../Sprites/zoom2.png" id="zoom2" alt="Tela de autenticação" hidden>
+            <img src="../../Sprites/zoom2.png" id="zoom2" hidden>
 
-            <img src="../../Sprites/quadro.png" id="quadro" alt="Quadro de um minion na parede à direita"
-                onclick="rasgarPintura()">
-            <img src="../../Sprites/buraco.png" id="buraco" alt="Buraco escondido na parede atrás do quadro" hidden>
-            <img src="../../Sprites/chave-Philps.png" id="chave" alt="Chave Phillips dentro do buraco na parede"
-                onclick="pegarChave()" hidden>
+            <img src="../../Sprites/quadro.png" id="quadro" onclick="rasgarPintura()">
+            <img src="../../Sprites/buraco.png" id="buraco" hidden>
+            <img src="../../Sprites/chave-Philps.png" id="chave" onclick="pegarChave()" hidden>
+
+            <img src="../../Sprites/desativar.png" id="desativar" onclick="desativar()" hidden>
+            <img src="../../Sprites/desativado.png" id="desativado" hidden>
+            <label class="interruptor" id="painel-seguranca" hidden>
+                <input type="checkbox" id="seguranca">
+                <span class="trilho"></span>
+            </label>
         </div>
     </main>
 

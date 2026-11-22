@@ -97,6 +97,79 @@
     left: 171px;
     z-index: 4;
 }
+#app {
+    position: absolute;
+    top: 271px;
+    left: 597px;
+    z-index: 5;
+    width: 2.5%;
+}
 
+.interruptor {
+    position: relative;
+    display: inline-block;
+    width: 125px;
+    height: 62px;
+    cursor: pointer;
+}
+
+.interruptor input {
+    display: none;
+}
+
+.trilho {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(#aaa, #777);
+    border-radius: 50px;
+    box-shadow:
+        0 7px 10px #0003,
+        inset 0 3px 5px #0003;
+    transition: 0.3s;
+}
+
+.trilho::before {
+    content: "";
+    position: absolute;
+    width: 43px;
+    height: 43px;
+    left: 8px;
+    top: 9px;
+    background: linear-gradient(white, #ddd);
+    border-radius: 50%;
+    box-shadow: 0 3px 6px #0004;
+    transition: 0.3s;
+}
+
+.interruptor input:checked + .trilho {
+    background: linear-gradient(#00e52b, #00a91d);
+}
+
+.interruptor input:checked + .trilho::before {
+    transform: translateX(66px);
+}
+#desativar{
+    position: absolute;
+    top: 4px;
+    left: 171px;
+    z-index: 4;
+
+}
+#desativado{
+    position: absolute;
+    top: 4px;
+    left: 171px;
+    z-index: 4;
+}
+#painel-seguranca {
+    position: absolute;
+    top: 300px;
+    left: 415px;
+    z-index: 6;
+}
+
+[hidden] {
+    display: none !important;
+}
 
 
