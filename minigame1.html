@@ -14,7 +14,15 @@
     </style>
 </head>
 <body>
-<button type="button" onclick="window.location.href='jogo/salas/fliperama.html'">Voltar</button>
+    <header>
+        <h1>Bananatron</h1>
+        <div id="timer" role="timer" aria-label="Tempo restante">
+            <span id="min">05</span>:<span id="sec">00</span>
+        </div>
+    </header>
+    
+<button type="button" onclick="window.location.href='Jogo/salas/fliperama.html'">Voltar</button>
+<script src="Jogo/js/codigoFonte.js" defer></script>
 <script>
     // Variáveis globais de controle do jogo
     var canvas, ctx, ALTURA, LARGURA, Frames = 0, maxPulos = 3, velocidade = 6, estadoAtual, record;

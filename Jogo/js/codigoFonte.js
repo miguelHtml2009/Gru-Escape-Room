@@ -1,4 +1,4 @@
-let tempoRestante = 300;
+let tempoRestante = 10;
 let intervaloTimer;
 let quadroRasgado = false
 const imagensClicaveis = document.querySelectorAll("#sala img[onclick]");
@@ -308,7 +308,7 @@ function contarSegundos() {
 
         localStorage.clear();
 
-        window.location.href = "../salas/finais/finalTempo/finalTempo.html";
+        window.location.href = "/Jogo/salas/finais/finalTempo/finalTempo.html";
     }
 }
 
