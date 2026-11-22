@@ -18,6 +18,9 @@ function sairZoom() {
     document.getElementById("passwordInput").hidden=true;
     document.getElementById("fechar").hidden=true;
     document.getElementById("nefario").hidden=true;
+    document.getElementById("zoom2").hidden = true;
+    document.getElementById("passwordInput2").hidden = true;
+
 }
 function pegarChave() {
     document.getElementById("chave").hidden = true;
@@ -40,18 +43,29 @@ function rasgarPintura() {
     chave.focus(); //Volta o foco pra chave quando o quadro cai
 }
 
+function bloqueioNefario() {
+    sairZoom();
+
+    document.getElementById("zoom2").hidden = false;
+    document.getElementById("passwordInput2").hidden = false;
+    document.getElementById("passwordInput2").value = "";
+    document.getElementById("area-trabalho").hidden = true;
+}
+
 function areaDeTrabalho() {
-    const senha = document.getElementById("passwordInput2").value;
-        // Esconde as telas antigas
-        document.getElementById("zoom").hidden = true;
-        document.getElementById("passwordInput").hidden = true;
-        document.getElementById("nefario").hidden = true;
+    let senha = document.getElementById("passwordInput2").value;
 
-        // Esconde o campo de senha
-        document.getElementById("passwordInput2").hidden = true;
+    if (senha === "Minion123") {
         document.getElementById("zoom2").hidden = true;
+        document.getElementById("passwordInput2").hidden = true;
         document.getElementById("area-trabalho").hidden = false;
-
         document.getElementById("mensagem").textContent = "Acesso autorizado!";
+
+    } else {
+
         document.getElementById("mensagem").textContent = "Senha incorreta!";
+        document.getElementById("passwordInput2").value = "";
+        document.getElementById("passwordInput2").focus();
+
+    }
 }

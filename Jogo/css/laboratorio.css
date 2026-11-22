@@ -81,12 +81,13 @@
     top: 4px;
     left: 171px;
     z-index: 4;
+    width:65%;
 }
 
 #passwordInput2 {
     position: absolute;
-    top: 287px;
-    left: 395px;
+    top: 303px;
+    left: 415px;
     z-index: 5;
 }
 

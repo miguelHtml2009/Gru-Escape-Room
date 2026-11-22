@@ -31,17 +31,18 @@
     <main>
         <div id="sala" role="region"
             aria-label="Laboratório do Gru, com um computador ao centro e um quadro dos minions à direita">
-            <img src="../../Sprites/computador.png" id="computador" alt="Computador central do laboratório"
-                onclick="abrirComputador()">
-            <img src="../../Sprites/zoom.png" id="zoom" alt="Tela do computador ampliada pedindo senha" hidden>
+            <img src="../../Sprites/computador.png" id="computador" onclick="abrirComputador()">
+            <img src="../../Sprites/zoom.png" id="zoom" hidden>
             <button type="button" onclick="sairZoom()" id="fechar" hidden>X</button>
             <input type="password" id="passwordInput" placeholder="senha" required hidden>
-            <input type="password" id="passwordInput2" placeholder="senha" required hidden>
-            <span id="nefario" hidden onclick="areaDeTrabalho()">Dr. Nefário</span>
+            <form onsubmit="areaDeTrabalho(); return false;">
+                <input type="password" id="passwordInput2" placeholder="senha" required hidden>
+            </form>
+
+            <img src="../../Sprites/area-de-trabalho.png" id="area-trabalho" hidden>
+            <span id="nefario" hidden onclick="bloqueioNefario()">Dr. Nefário</span>
 
             <img src="../../Sprites/zoom2.png" id="zoom2" alt="Tela de autenticação" hidden>
-            <input type="password" id="passwordInput2" placeholder="senha" required hidden>
-            <img src="../../Sprites/areadetrabalho.png" id="area-trabalho" alt="Área de trabalho do computador" hidden>
 
             <img src="../../Sprites/quadro.png" id="quadro" alt="Quadro de um minion na parede à direita"
                 onclick="rasgarPintura()">
