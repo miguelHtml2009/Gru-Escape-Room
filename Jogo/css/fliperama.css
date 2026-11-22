@@ -1,0 +1,28 @@
+#sala {
+    width: 1000px;
+    height: 600px;
+    background-image: url("../../Sprites/fundilho4.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#minion1{
+    position: absolute;
+    top: 364px;
+    left: 407px;
+    width: 18%;
+}
+#minion1roxo{
+    position: absolute;
+    top: 303px;
+    left: 368px;
+    width: 26%;
+
+}
+#fliperama_maquina{
+    position: absolute;
+    top: 284px;
+    left: 645px;
+    width: 17%;
+    
+}
