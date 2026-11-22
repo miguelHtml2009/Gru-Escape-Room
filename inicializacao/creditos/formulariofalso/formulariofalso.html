@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../CSS_inicialização.css">
     <link rel="stylesheet" href="formulariofalso.css">
-    <link rel="shortcut icon" type="imagex/png" href="../../../Sprites/icon.ico">
-
+    <link rel="icon" type="image/x-icon" href="../../../Sprites/icon.ico">
     <title>Formulário</title>
 </head>
 <body>
@@ -15,28 +15,30 @@
         </header>
 
         <main>
-            <form> 
+            <form aria-label="Formulário de contato">
                 <fieldset class="forms">
-                    <label for="nomeid" >Nome:</label>
-                    <input type="text" id="nomeid" placeholder="Informe o seu nome" required>
+                    <legend class="sr-only">Dados para contato</legend>
+
+                    <label for="nomeid">Nome:</label>
+                    <input type="text" id="nomeid" name="nome" autocomplete="name" placeholder="Informe o seu nome" required>
 
                     <label for="emailid">Email:</label>
-                    <input type="email" id="emailid"  placeholder="Informe um Email válido" required>
+                    <input type="email" id="emailid" name="email" autocomplete="email" placeholder="Informe um Email válido" required>
 
                     <label for="idadeid">Idade:</label>
-                    <input type="number" id="idadeid" placeholder="Informe sua idade" min="0" max="120"required>
+                    <input type="number" id="idadeid" name="idade" placeholder="Informe sua idade" min="0" max="120" required>
 
                     <label for="mmid">Mensagem:</label>
-                    <textarea id="mmid" required placeholder="O que deseja nos dizer?"></textarea>
-                        
+                    <textarea id="mmid" name="mensagem" required placeholder="O que deseja nos dizer?"></textarea>
+
                     <input type="submit" id="enviaid" value="Enviar">
                 </fieldset>
             </form>
         </main>
 
         <footer>
-            <nav>
-                <a href="../creditos.html">Créditos</a> 
+            <nav aria-label="Navegação do formulário">
+                <a href="../creditos.html">Créditos</a>
                 <a href="../../../index.html">Menu principal</a>
             </nav>
         </footer>

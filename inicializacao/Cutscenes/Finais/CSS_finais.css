@@ -1,0 +1,83 @@
+video {
+    width: 75%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    border: 3px solid #5e0c19;
+    border-radius: 5px;
+}
+
+.elementos {
+    padding: 0 15px 5vh;
+}
+
+/* --- MENU DE FINAIS --- */
+
+footer {
+    width: 80%;
+    margin: 40px auto 0;
+    padding-top: 22px;
+    border-top: 2px solid #5e0c19;
+}
+
+footer nav {
+    gap: 0;
+}
+
+footer h2 {
+    font-size: 30px;
+    color: #ffffff;
+    letter-spacing: 2px;
+    margin: 0 0 18px;
+    text-shadow: 2px 2px 0 #5e0c19;
+}
+
+.Finais {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    width: 100%;
+}
+
+.sala-mapa {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    max-width: none;
+    min-width: 165px;
+    padding: 12px 22px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-decoration: none;
+    white-space: nowrap;
+    box-sizing: border-box;
+    transition: transform 0.2s ease, background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.2s ease;
+}
+
+/* Botões dos outros finais */
+a.sala-mapa {
+    background-color: #000000;
+    color: #ffffff;
+    border: 2px solid #5e0c19;
+}
+
+a.sala-mapa:hover {
+    background-color: #5e0c19;
+    color: #ffffff;
+    border-color: #5e0c19;
+    transform: translateY(-2px);
+}
+
+/* Botão do final em que o jogador está agora */
+#FinalAtual {
+    background-color: #ffffff;
+    color: #e01b2b;
+    border: 2px solid #e01b2b;
+    box-shadow: 0 4px 0 #5e0c19;
+    cursor: default;
+}

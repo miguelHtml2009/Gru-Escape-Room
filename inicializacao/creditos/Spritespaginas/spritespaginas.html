@@ -3,38 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../CSS_inicialização.css">
     <link rel="stylesheet" href="spritespaginas.css">
-    <link rel="shortcut icon" type="imagex/png" href="../../../Sprites/icon.ico">
+    <link rel="icon" type="image/x-icon" href="../../../Sprites/icon.ico">
     <title>Sprites</title>
 </head>
 <body>
     <div class="elementos">
         <header>
-            <h1>Sprites</h1> 
+            <h1>Sprites</h1>
         </header>
         <main>
-            <div id="galeria">
+            <div id="galeria" role="region" aria-label="Galeria de sprites">
                 <p id="cont">1/4</p>
                 <p id="cate">Menu</p>
                 <img id="img" src="../../../Sprites/gru_brine.jpeg" alt="Gru malvado">
+                <p id="status-galeria" class="sr-only" aria-live="polite">Categoria Menu, imagem 1 de 4: Gru malvado</p>
             </div>
             <div id="botoes">
-                <button id="botao2" class="botao" onclick="anterior()">Imagem anterior</button>
+                <button type="button" id="botao2" class="botao" onclick="anterior()">Imagem anterior</button>
+                <label for="cat" class="sr-only">Categoria de sprites</label>
                 <select id="cat" class="botao" onchange="escolhercategoria()">
                     <option value="Menu">Menu</option>
                     <option value="Porão">Porão</option>
                     <option value="Fliperama">Fliperama</option>
                 </select>
-                <button id="botao" class="botao" onclick="proxima()">Próxima imagem</button>
+                <button type="button" id="botao" class="botao" onclick="proxima()">Próxima imagem</button>
             </div>
         </main>
         <footer>
-            <nav>
-                <a href="../creditos.html">Créditos</a> 
+            <nav aria-label="Navegação da galeria de sprites">
+                <a href="../creditos.html">Créditos</a>
                 <a href="../../../index.html">Menu principal</a>
             </nav>
         </footer>
     </div>
-     <script src="spritespaginas.js" defer></script>
+    <script src="spritespaginas.js" defer></script>
 </body>
 </html>

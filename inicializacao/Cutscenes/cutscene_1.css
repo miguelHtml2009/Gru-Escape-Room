@@ -1,82 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Schoolbell&display=swap');
-body{
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    font-family: 'Schoolbell', cursive;
-    color: white;
-    background-color: black;
-    margin: 0;
-    padding: 20px;
-    box-sizing: border-box;
-}
-h1{
-     font-size: 45px;
-    color: #e01b2b;
-    letter-spacing: 3px;
-    margin: 12px 0 28px;
-}
-a{
-    background-color: white;
-    color: black;
-    text-decoration: none;
-    white-space: nowrap;
-    padding: 15px 25px;
-    border-radius: 8px;
-    transition-duration: 0.5s;
-    border: solid black 2px;
-    letter-spacing: 1px;
-    font-weight: bold;
-    max-width: 80%;
-    width: 100%;
-    box-sizing: border-box;
-    text-align: center;
-}
-a:hover{
-    background-color: rgb(0, 0, 0);
-    color: white;
-    border: 2px solid white;
-}
-footer{
-    margin-top: 50px;
-    margin-bottom: 20px;
-}
-footer nav{
-    flex-direction: column;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-img{
+img {
     width: 85%;
-    height: auto;
-    object-fit: contain;
-    display: block;
-    margin: 0 auto;
-    border: 3px solid #5e0c19 ;
-    border-radius: 5px;
-}
-.elementos{
-    text-align: center;
-    background-color: gray;
-    width: 100%;
-    max-width: 1200px;
-    min-height: 90vh;
-    margin:20px auto;
-    padding: 0 10px 5vh;
-    border:3px solid #5e0c19;
-    border-radius: 5px;
-    background: linear-gradient(180deg, #3a0a12 0%, #2e070d 45%, #1a0407 100%);
 }
 
-#inicio{
+#inicio {
     width: 40%;
-    height:auto
+    height: auto;
 }
-
-
-
-
-
-

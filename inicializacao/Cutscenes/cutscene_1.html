@@ -3,21 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS_inicialização.css">
     <link rel="stylesheet" href="cutscene_1.css">
-    <link rel="shortcut icon" type="image/x-icon" href="../../Sprites/icon.ico">
-    <title>Cutscene</title>
+    <link rel="icon" type="image/x-icon" href="../../Sprites/icon.ico">
+    <title>História - Cutscene</title>
 </head>
 <body>
     <div class="elementos">
-        <header><h1>História</h1></header>
+        <header>
+            <h1>História</h1>
+        </header>
         <main>
             <p>Neste Jogo, você é o Vector e foi capturado pelo vilão Gru,após você gentilente incinerar a casa dele deixando-omuito bravo por motivo algum.</p>
-            <video src="../../videos/carregando.mp4" controls id="inicio"></video>
+            <video src="../../videos/carregando.mp4" controls id="inicio" aria-label="Vídeo da cutscene inicial da história" aria-describedby="desc-video-inicio">
+                Seu navegador não suporta a reprodução deste vídeo.
+            </video>
+            <p id="desc-video-inicio" class="sr-only">Animação de carregamento introduzindo a história em que Vector é capturado por Gru.</p>
         </main>
         <footer>
-            <nav>
+            <nav aria-label="Navegação da história">
                 <a href="../../index.html">Menu principal</a>
-                <a href="Finais/finais.html">Finais</a>
+                <a href="Finais/tempo/tempo.html">Finais</a>
             </nav>
         </footer>
     </div>
