@@ -69,10 +69,33 @@
     padding:15px
 }
 
-nefario{
+#nefario {
+    position: absolute;
+    top: 391px;
+    left: 276px;
+    z-index: 5;
+}
+
+#zoom2 {
+    position: absolute;
+    top: 4px;
+    left: 171px;
+    z-index: 4;
+}
+
+#passwordInput2 {
     position: absolute;
     top: 287px;
     left: 395px;
     z-index: 5;
 }
+
+#area-trabalho {
+    position: absolute;
+    top: 4px;
+    left: 171px;
+    z-index: 4;
+}
+
+
 

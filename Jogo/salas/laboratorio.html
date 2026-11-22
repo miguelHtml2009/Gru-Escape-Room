@@ -29,16 +29,25 @@
     </header>
 
     <main>
-        <div id="sala" role="region" aria-label="Laboratório do Gru, com um computador ao centro e um quadro dos minions à direita">
-            <img src="../../Sprites/computador.png" id="computador" alt="Computador central do laboratório" onclick="abrirComputador()">
+        <div id="sala" role="region"
+            aria-label="Laboratório do Gru, com um computador ao centro e um quadro dos minions à direita">
+            <img src="../../Sprites/computador.png" id="computador" alt="Computador central do laboratório"
+                onclick="abrirComputador()">
             <img src="../../Sprites/zoom.png" id="zoom" alt="Tela do computador ampliada pedindo senha" hidden>
             <button type="button" onclick="sairZoom()" id="fechar" hidden>X</button>
             <input type="password" id="passwordInput" placeholder="senha" required hidden>
-            <span id="nefario">Dr. Nefário</span>
+            <input type="password" id="passwordInput2" placeholder="senha" required hidden>
+            <span id="nefario" hidden onclick="areaDeTrabalho()">Dr. Nefário</span>
 
-            <img src="../../Sprites/quadro.png" id="quadro" alt="Quadro de um minion na parede à direita" onclick="rasgarPintura()">
+            <img src="../../Sprites/zoom2.png" id="zoom2" alt="Tela de autenticação" hidden>
+            <input type="password" id="passwordInput2" placeholder="senha" required hidden>
+            <img src="../../Sprites/areadetrabalho.png" id="area-trabalho" alt="Área de trabalho do computador" hidden>
+
+            <img src="../../Sprites/quadro.png" id="quadro" alt="Quadro de um minion na parede à direita"
+                onclick="rasgarPintura()">
             <img src="../../Sprites/buraco.png" id="buraco" alt="Buraco escondido na parede atrás do quadro" hidden>
-            <img src="../../Sprites/chave-Philps.png" id="chave" alt="Chave Phillips dentro do buraco na parede" onclick="pegarChave()" hidden>
+            <img src="../../Sprites/chave-Philps.png" id="chave" alt="Chave Phillips dentro do buraco na parede"
+                onclick="pegarChave()" hidden>
         </div>
     </main>
 
@@ -54,9 +63,11 @@
             Diário de pistas
         </button>
 
-        <div id="fundo-diario" role="dialog" aria-modal="true" aria-label="Diário de pistas" hidden onclick="diario.fechar()">
+        <div id="fundo-diario" role="dialog" aria-modal="true" aria-label="Diário de pistas" hidden
+            onclick="diario.fechar()">
             <div id="bloco-diario" onclick="event.stopPropagation()">
-                <img src="../../Sprites/diario.png" alt="Ilustração de um diário antigo aberto com páginas para anotações de pistas">
+                <img src="../../Sprites/diario.png"
+                    alt="Ilustração de um diário antigo aberto com páginas para anotações de pistas">
                 <div id="anotacoes"></div>
                 <button type="button" onclick="diario.fechar()">Fechar</button>
             </div>
