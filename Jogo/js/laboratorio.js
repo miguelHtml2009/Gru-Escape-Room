@@ -33,9 +33,7 @@ function rasgarPintura() {
     if (!document.getElementById("item-chaveFenda")) {
         chave.hidden = false;
     }
-    
     save();
-
     document.getElementById("mensagem").textContent = "Você rasgou o quadro e encontrou uma chave Phillips escondida no buraco!";
     chave.focus(); //Volta o foco pra chave quando o quadro cai
 }
