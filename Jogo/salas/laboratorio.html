@@ -12,9 +12,11 @@
 
 <body>
 
-    <button id="botao-menu" type="button" onclick="pause()" aria-label="Abrir menu do jogo">☰</button>
+    <button id="botao-menu" type="button" onclick="pause()"
+        aria-label="Abrir menu do jogo">☰</button>
 
-    <section id="menu-pausa" role="dialog" aria-modal="true" aria-labelledby="titulo-menu" hidden>
+    <section id="menu-pausa" role="dialog" aria-modal="true"
+        aria-labelledby="titulo-menu" hidden>
         <h2 id="titulo-menu">Menu do jogo</h2>
         <button type="button" onclick="saveExit()">Salvar e sair</button>
         <button type="button" onclick="deletarProgresso()">Deletar progresso</button>
@@ -30,13 +32,18 @@
 
     <main>
         <div id="sala" role="region"
-            aria-label="Laboratório do Gru, com um computador ao centro e um quadro dos minions à direita">
-            <img src="../../Sprites/computador.png" id="computador" onclick="abrirComputador()">
+            aria-label="Laboratório do Gru, com um computador ao centro
+            e um quadro dos minions à direita">
+
+            <img src="../../Sprites/computador.png" id="computador"
+                onclick="abrirComputador()">
             <img src="../../Sprites/zoom.png" id="zoom" hidden>
             <button type="button" onclick="sairZoom()" id="fechar" hidden>X</button>
             <input type="password" id="passwordInput" placeholder="senha" required hidden>
+
             <form onsubmit="areaDeTrabalho(); return false;">
-                <input type="password" id="passwordInput2" placeholder="senha" required hidden>
+                <input type="password" id="passwordInput2"
+                    placeholder="senha" required hidden>
             </form>
 
             <img src="../../Sprites/area-de-trabalho.png" id="area-trabalho" hidden>
@@ -45,13 +52,16 @@
 
             <img src="../../Sprites/zoom2.png" id="zoom2" hidden>
 
-            <img src="../../Sprites/quadro.png" id="quadro" onclick="rasgarPintura()">
+            <img src="../../Sprites/quadro.png" id="quadro"
+                onclick="rasgarPintura()">
             <img src="../../Sprites/buraco.png" id="buraco" hidden>
-            <img src="../../Sprites/chave-Philps.png" id="chave" onclick="pegarChave()" hidden>
+            <img src="../../Sprites/chave-Philps.png" id="chave"
+                onclick="pegarChave()" hidden>
 
-            <img src="../../Sprites/desativar.png" id="desativar" onclick="desativar()" hidden>
+            <img src="../../Sprites/desativar.png" id="desativar" hidden>
             <img src="../../Sprites/desativado.png" id="desativado" hidden>
-            <label class="interruptor" id="painel-seguranca" hidden>
+
+            <label class="interruptor" id="painel-seguranca" style="display: none;">
                 <input type="checkbox" id="seguranca">
                 <span class="trilho"></span>
             </label>
@@ -70,11 +80,12 @@
             Diário de pistas
         </button>
 
-        <div id="fundo-diario" role="dialog" aria-modal="true" aria-label="Diário de pistas" hidden
-            onclick="diario.fechar()">
+        <div id="fundo-diario" role="dialog" aria-modal="true"
+            aria-label="Diário de pistas" hidden onclick="diario.fechar()">
             <div id="bloco-diario" onclick="event.stopPropagation()">
                 <img src="../../Sprites/diario.png"
-                    alt="Ilustração de um diário antigo aberto com páginas para anotações de pistas">
+                    alt="Ilustração de um diário antigo aberto
+                    com páginas para anotações de pistas">
                 <div id="anotacoes"></div>
                 <button type="button" onclick="diario.fechar()">Fechar</button>
             </div>
@@ -88,16 +99,19 @@
             <h2>Minimapa</h2>
 
             <div class="salas">
-
                 <a class="sala-mapa" href="./porao.html" onclick="save()">Porão</a>
 
-                <span class="sala-mapa" id="minimapaSalaAtual" aria-current="page">Laboratório</span>
+                <span class="sala-mapa" id="minimapaSalaAtual"
+                    aria-current="page">Laboratório</span>
 
-                <a class="sala-mapa" href="./fliperama.html" onclick="save()">Fliperama</a>
+                <a class="sala-mapa" href="./fliperama.html"
+                    onclick="save()">Fliperama</a>
 
-                <a class="sala-mapa" href="./linha-de-montagem.html" onclick="save()">Linha de montagem</a>
+                <a class="sala-mapa" href="./linha-de-montagem.html"
+                    onclick="save()">Linha de montagem</a>
 
-                <a class="sala-mapa" href="./refugio.html" onclick="save()">Refúgio</a>
+                <a class="sala-mapa" href="./refugio.html"
+                    onclick="save()">Refúgio</a>
             </div>
         </nav>
 
