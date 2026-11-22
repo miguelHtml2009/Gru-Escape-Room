@@ -6,14 +6,14 @@ const botoesPagina = document.querySelectorAll("button");
 
 function save() {
     const dadosAntigos = JSON.parse(localStorage.getItem("escapeRoomProgresso")) || {};
-    
+
 
     const progressoAtual = {
-        
+
         //Timer
         tempoRestante: typeof tempoRestante !== "undefined"
-        ? tempoRestante
-        : dadosAntigos.tempoRestante,
+            ? tempoRestante
+            : dadosAntigos.tempoRestante,
 
         // PORÃO
         portaAberta: document.getElementById("porta-aberta")
@@ -58,6 +58,9 @@ function save() {
             || dadosAntigos.telefoneBloqueadoAvisado === true,
 
         // FLIPERAMA
+        minionCurado: document.getElementById("minion1")
+            ? !document.getElementById("minion1").hidden
+            : dadosAntigos.minionCurado,
 
         // INVENTÁRIO
         inventarioHTML: document.getElementById("inventario")
@@ -86,7 +89,7 @@ function carregarProgresso() {
     const dadosSalvos = localStorage.getItem("escapeRoomProgresso");
     if (!dadosSalvos) return;
     const progresso = JSON.parse(dadosSalvos);
-    
+
     //Timer
     if (progresso.tempoRestante != null) {
         tempoRestante = progresso.tempoRestante;
@@ -143,6 +146,12 @@ function carregarProgresso() {
 
     if (progresso.telefoneBloqueadoAvisado === true) {
         localStorage.setItem("telefoneBloqueadoAvisado", "true");
+    }
+    //flipersama
+        if (progresso.minionCurado === true
+        && document.getElementById("minion1")) {
+        document.getElementById("minion1roxo").hidden = true;
+        document.getElementById("minion1").hidden = false;
     }
 
 
@@ -296,9 +305,9 @@ function contarSegundos() {
         save();
     } else {
         clearInterval(intervaloTimer);
-        
+
         localStorage.clear();
-        
+
         window.location.href = "../salas/finais/finalTempo/finalTempo.html";
     }
 }

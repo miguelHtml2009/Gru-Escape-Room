@@ -59,3 +59,17 @@ function lerbilhete() {
 function deslerbilhete() {
     document.getElementById("bilhete-de-perto").hidden = true;
 }
+
+function sair() {
+    // Sem nada salvo, a segurança conta como ativa (true)
+    const segurancaAtiva = localStorage.getItem("seguranca") !== "false";
+
+    clearInterval(intervaloTimer);
+    localStorage.clear();
+
+    if (segurancaAtiva) {
+        window.location.href = "./finais/finalVerdadeiro/finalVerdadeiro.html";
+    } else {
+        window.location.href = "./finais/finalBom/finalBom.html";
+    }
+}

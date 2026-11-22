@@ -29,10 +29,14 @@
     </header>
 
     <main>
-        <div id="sala" role="region" aria-label="Fliperama do Gru, com um minion roxo ao meio e uma máquina de fliperama à direita">
-            <img src="../../Sprites/minion1roxo.png" id="minion1roxo" alt="minion roxo louco com roupa de prisioneiro">
-            <img src="../../Sprites/minion1.png" id="minion1" alt="minion com roupa de prisioneiro" hidden>
-            <img src="../../Sprites/minigame1.png" id="fliperama_maquina" alt="Máquina de fliperama">
+        <div id="sala" role="region"
+            aria-label="Fliperama do Gru, com um minion roxo ao meio e uma máquina de fliperama à direita">
+            <img src="../../Sprites/minion1roxo.png" id="minion1roxo" alt="minion roxo louco com roupa de prisioneiro"
+                onclick="curar()">
+            <img src="../../Sprites/minion1.png" id="minion1" alt="minion com roupa de prisioneiro"
+                onclick="perguntar()" hidden>
+            <img src="../../Sprites/minigame1.png" id="fliperama_maquina" alt="Máquina de fliperama"
+                onclick="jogarMinigame()">
         </div>
     </main>
 
@@ -46,9 +50,11 @@
             Diário de pistas
         </button>
 
-        <div id="fundo-diario" role="dialog" aria-modal="true" aria-label="Diário de pistas" hidden onclick="diario.fechar()">
+        <div id="fundo-diario" role="dialog" aria-modal="true" aria-label="Diário de pistas" hidden
+            onclick="diario.fechar()">
             <div id="bloco-diario" onclick="event.stopPropagation()">
-                <img src="../../Sprites/diario.png" alt="Ilustração de um diário antigo aberto com páginas para anotações de pistas">
+                <img src="../../Sprites/diario.png"
+                    alt="Ilustração de um diário antigo aberto com páginas para anotações de pistas">
                 <div id="anotacoes"></div>
                 <button type="button" onclick="diario.fechar()">Fechar</button>
             </div>
