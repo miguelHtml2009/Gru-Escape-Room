@@ -7,3 +7,4 @@ aria-labelledby = Reaproveita o id para ser o texto que vai ser lido
 aria-describedby = Associa um elemento com uma descrição mais longa, como um parágrafo
 
 aria-current="page" = Indica que o botão atual representa a página que ele está agora
+
