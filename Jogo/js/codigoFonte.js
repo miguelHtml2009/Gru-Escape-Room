@@ -1,4 +1,4 @@
-let tempoRestante = 10;
+let tempoRestante = 300;
 let intervaloTimer;
 let quadroRasgado = false
 const imagensClicaveis = document.querySelectorAll("#sala img[onclick]");

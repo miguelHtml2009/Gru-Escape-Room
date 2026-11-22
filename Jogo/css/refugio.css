@@ -1,0 +1,8 @@
+#sala {
+    width: 1000px;
+    height: 600px;
+    background-image: url("../../Sprites/fundilho5.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}

@@ -171,5 +171,8 @@
 [hidden] {
     display: none !important;
 }
+#nefario{
+    cursor: default;
+}
 
 
