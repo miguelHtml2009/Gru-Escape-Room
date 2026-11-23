@@ -37,10 +37,10 @@
         } else {
             const video = document.getElementById("inicio");
 
-            video.addEventListener("ended", () => {
+            video.onended = function () {
                 localStorage.setItem("assistiuVideo", "true");
                 window.location.href = "porao.html";
-            });
+            }
         }
     </script>
 </body>

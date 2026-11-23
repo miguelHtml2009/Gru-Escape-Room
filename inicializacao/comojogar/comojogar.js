@@ -161,7 +161,13 @@ const parafusos = [
 ];
 
 function verificarGaveta(){
-    const todosRemovidos = parafusos.every(p => p.removido);
+    let todosRemovidos = true;
+    for (let i = 0; i < parafusos.length; i++) {
+        if (!parafusos[i].removido) {
+            todosRemovidos = false;
+            break;
+        }
+    }
     if(todosRemovidos){
         gaveta.trancada = false;
         jogo.telaatual = 'sala';
@@ -187,7 +193,9 @@ function desenhar(){
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(imgGavetaZoom, gavetazoom.x, gavetazoom.y, gavetazoom.w, gavetazoom.h);
         
-        parafusos.forEach(p => p.desenhar(ctx));
+        for (let i = 0; i < parafusos.length; i++) {
+            parafusos[i].desenhar(ctx);
+        }
         
         ctx.fillStyle = "#b32424";
         ctx.fillRect(btmVoltar.x, btmVoltar.y, btmVoltar.w, btmVoltar.h);
@@ -227,11 +235,11 @@ function cliques(evento){
             jogo.telaatual = 'sala';
         } else {
             // Verifica se clicou em algum parafuso
-            parafusos.forEach(p => {
-                if (dentro(x, y, p)) {
-                    p.interagir();
+            for (let i = 0; i < parafusos.length; i++) {
+                if (dentro(x, y, parafusos[i])) {
+                    parafusos[i].interagir();
                 }
-            });
+            }
             verificarGaveta();
         }
     }

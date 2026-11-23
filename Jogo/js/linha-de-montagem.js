@@ -352,7 +352,7 @@ function mostrarDialogo(id) {
 
     clearInterval(intervaloFala);
 
-    intervaloFala = setInterval(() => {
+    intervaloFala = setInterval(function () {
 
         falaNPC.textContent += textoAtual[indiceTexto];
 
@@ -381,21 +381,15 @@ function terminarFala() {
     botaoContinuar.style.display = "none";
 
     // Criar opções de resposta
-    dialogoAtual.opcoes.forEach(opcao => {
+    for (let i = 0; i < dialogoAtual.opcoes.length; i++) {
+        const opcao = dialogoAtual.opcoes[i];
 
-        const botao = document.createElement("button");
-
-        botao.textContent = opcao.texto;
-
-        botao.addEventListener("click", () => {
-
-            mostrarDialogo(opcao.proximo);
-
-        });
-
-        opcoesTelefone.appendChild(botao);
-
-    });
+        opcoesTelefone.innerHTML += `
+            <button type="button" onclick="mostrarDialogo('${opcao.proximo}')">
+                ${opcao.texto}
+            </button>
+        `;
+    }
 
 }
 
@@ -690,12 +684,12 @@ function verificarFios() {
                 const som = document.getElementById("som-energia");
                 som.currentTime = 0;
                 som.play()
-                    .then(() => {
+                    .then(function () {
                         localStorage.setItem("somEnergiaTocado", "true");
                         diario.anotar("Painel elétrico consertado: energia da fábrica restaurada.")
                         save();
                     })
-                    .catch(erro => {
+                    .catch(function (erro) {
                         console.error("Erro ao reproduzir o áudio:", erro);
                     });
             }

@@ -113,7 +113,7 @@ function atualizarSeguranca() {
     localStorage.setItem("seguranca", desativada ? "false" : "true");
 }
 
-interruptor.addEventListener("change", atualizarSeguranca);
+interruptor.onchange = atualizarSeguranca;
 
 function ColetarMonster(){
     Monster.Coletado = true;
