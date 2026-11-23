@@ -88,6 +88,12 @@ const Linha_de_Montagem = [
 const Refugio = [
 
 ];
+const Fuga = [
+    "../../../Sprites/Minigame2/gru_rosto.png",
+    "../../../Sprites/Minigame2/raio_congelante.png",
+    "../../../Sprites/Minigame2/vector_congelado_rosto.png",
+    "../../../Sprites/Minigame2/vector_rosto.png"
+];
 const descricoes = {
     Menu: [
         "Gru malvado",
@@ -169,6 +175,12 @@ const descricoes = {
     ],
     Refugio: [
 
+    ],
+    Fuga: [
+        "Gru irritado",
+        "Raio congelante",
+        "Vector congelado",
+        "Vector assustado"
     ]
 };
 
@@ -178,7 +190,8 @@ const categorias = {
     Laboratório: Laboratório,
     Fliperama: Fliperama,
     Linha_de_Montagem: Linha_de_Montagem,
-    Refugio: Refugio
+    Refugio: Refugio,
+    Fuga: Fuga
 };
 
 let lista = Menu;
