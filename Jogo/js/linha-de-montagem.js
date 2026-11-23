@@ -204,12 +204,12 @@ const conversasTelefone = {
     porta: {
         nome: "Dr. Nefário",
         fala: "Se eu soubesse, já teria saído! Gru atualizou tudo depois da minha saída. Quem sabe ele nunca tenha sido uma boa pessoa... Mas os Minions devem saber, eles estavam por toda a fábrica. Tente perguntar a algum deles.",
+        pista: "Os minions sabem a senha da porta do porão.",
         opcoes: [
             {
                 texto: "Entendi. Vamos voltar ao plano.",
                 proximo: "plano"
             },
-            diario.anotar("Os minions sabem a senha.")
         ]
         
     },
@@ -258,6 +258,7 @@ const conversasTelefone = {
     computador: {
         nome: "Dr. Nefário",
         fala: "Você pode utilizar meu usuário para entrar no sistema. O nome de usuário é Nefario. A senha é Minions123.",
+        pista: "Usuário do computador: Nefario | Senha: Minions123.",
         opcoes: [
             {
                 texto: "Entendi. Vou procurar o laboratório.",
@@ -267,7 +268,6 @@ const conversasTelefone = {
                 texto: "E se a senha não funcionar? *",
                 proximo: "senha"
             },
-            diario.anotar("A senha do computador é Minions123.")
         ]
     },
 
@@ -329,6 +329,9 @@ function mostrarDialogo(id) {
     if (!dialogo) return;
 
     dialogoAtual = dialogo;
+    if (dialogo.pista) {
+        diario.anotar(dialogo.pista);
+    }
 
     nomeNPC.textContent = dialogo.nome;
     textoAtual = dialogo.fala;
@@ -689,6 +692,7 @@ function verificarFios() {
                 som.play()
                     .then(() => {
                         localStorage.setItem("somEnergiaTocado", "true");
+                        diario.anotar("Painel elétrico consertado: energia da fábrica restaurada.")
                         save();
                     })
                     .catch(erro => {

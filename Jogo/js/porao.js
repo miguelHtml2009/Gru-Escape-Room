@@ -18,6 +18,7 @@ function fechar(){
         document.getElementById("senha-porta-w").hidden = false;
         document.getElementById("mensagem").textContent = "Você abriu a porta!";
         document.getElementById("senhaInput").value = "";
+        diario.anotar("Porta do porão destrancada com a senha 2024.");
     } else if (senhaDigitada !== "") {
         //  Só avisa erro se o jogador realmente digitou alguma senha errada, o ESC não chama isso mais
         document.getElementById("mensagem").textContent = "Senha incorreta!";
@@ -50,10 +51,12 @@ function pegarGeleia() {
     document.getElementById("geleia").hidden = true;
     adicionarItem("geleia", "../../Sprites/geleia-do-gru.png");
     document.getElementById("mensagem").textContent = "Você pegou a deliciosa geleia do Gru!";
+    diario.anotar("Item coletado: Geleia do Gru.");
 }
 
 function lerbilhete() {
     document.getElementById("bilhete-de-perto").hidden = false;
+    diario.anotar("Bilhete do Gru: ele saiu por 5 minutos para se vingar.");
 }
 
 function deslerbilhete() {

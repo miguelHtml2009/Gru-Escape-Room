@@ -39,6 +39,7 @@ function pegarChave() {
     document.getElementById("mensagem").textContent =
         "Você pegou uma chave de fenda, está suja de marrom na ponta, provavelmente ferrugem.";
     adicionarItem("chaveFenda", "../../Sprites/chave-Philps.png");
+    diario.anotar("Item coletado: Chave Phillips enferrujada.");
     save();
 }
 
@@ -51,6 +52,7 @@ function rasgarPintura() {
     if (!document.getElementById("item-chaveFenda")) {
         chave.hidden = false;
     }
+    diario.anotar("Encontrei um buraco escondido atrás do quadro no laboratório.");
     save();
     document.getElementById("mensagem").textContent =
         "Você tirou o quadro e encontrou uma chave Phillips escondida no buraco!";
@@ -77,6 +79,7 @@ function areaDeTrabalho() {
         document.getElementById("area-trabalho").hidden = false;
         document.getElementById("app").hidden = false;
         document.getElementById("mensagem").textContent = "Acesso autorizado!";
+        diario.anotar("Acesso liberado no computador do Dr. Nefário.");
     } else {
         document.getElementById("mensagem").textContent = "Senha incorreta!";
         document.getElementById("passwordInput2").value = "";
@@ -104,6 +107,9 @@ function atualizarSeguranca() {
     document.getElementById("desativado").hidden = !desativada;
     document.getElementById("desativar").hidden = desativada;
 
+    if (desativada) {
+        diario.anotar("Sistema de segurança e alarmes da fábrica desativados.");
+    }
     localStorage.setItem("seguranca", desativada ? "false" : "true");
 }
 
@@ -114,5 +120,6 @@ function ColetarMonster(){
     Monster.Elemento.hidden = true;
     mensagem.innerHTML = "Um monster amarelo, sua consistência é meio gelatinosa";
     adicionarItem("Monster", "../../Sprites/Monster.png");
+    diario.anotar("Item coletado: Lata de Monster amarelo.");
     save();
 }

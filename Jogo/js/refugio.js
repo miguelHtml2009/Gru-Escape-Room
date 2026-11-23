@@ -160,6 +160,8 @@ function vencerGenius() {
         voltarEscuro();
         cenarioEmergencia.classList.add("energia-ativa");
         painelMin.hidden = true;
+        document.getElementById("Nefario").hidden = false;
+        diario.anotar("Painel de cores resolvido: porta do refúgio aberta e Dr. Nefário libertado.");
         save();
     }, 800);
 }
@@ -177,16 +179,19 @@ function perguntar() {
         save();
     } else if (falaNefario === 2) {
         textoMensagem.textContent = "Dr. Nefário: Não sei, e mesmo se eu soubesse, sem cafeína meu cérebro não funciona...";
+        diario.anotar("Dr. Nefário precisa de cafeína para conseguir ajudar.");
         falaNefario = 3;
         save();
     } else if (falaNefario === 3 && temMonsterNoInventario) {
         textoMensagem.textContent = "Dr. Nefário: Isso serve!, na verdade, sempre vi o Gru juntando Monster com esse Reagente... NOSSA PROVA UM POUQUINHO ";
         removerItem("Monster");
+        diario.anotar("Entreguei a lata de Monster ao Dr. Nefário.");
         MonsterInsano();
         falaNefario = 4;
         save();
     } else if (falaNefario === 4) {
         textoMensagem.textContent = "Dr. Nefário: Se eu fosse você não me aproximaria dos Minions roxos! Um pouco de geleia cura eles...";
+        diario.anotar("Dica do Dr. Nefário: geleia cura os Minions roxos.");
     } else {
         textoMensagem.textContent = "Dr. Nefário: Não sei, e mesmo se eu soubesse, sem cafeína meu cérebro não funciona...";
     }
@@ -206,6 +211,7 @@ function rasgarRobert() {
         QuadroRobert.rasgadoelemento.hidden = false;
         Moeda.elemento.hidden = false;
         textoMensagem.textContent = "Você rasgou o quadro do Robert Gru! Havia uma moeda escondida atrás dele.";
+        diario.anotar("Rasguei o quadro de Robert Gru e encontrei uma moeda escondida.");
         save();
     }
 }
@@ -216,6 +222,7 @@ function pegarMoeda() {
         Moeda.elemento.hidden = true;
         textoMensagem.textContent = "Você pegou uma moeda dourada de fliperama!";
         adicionarItem("Moeda", "../../Sprites/moeda.png");
+        diario.anotar("Item coletado: Moeda dourada de fliperama.");
         save();
     }
 }

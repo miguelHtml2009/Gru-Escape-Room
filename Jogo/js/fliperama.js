@@ -10,6 +10,7 @@ function curar() {
     document.getElementById("minion1roxo").hidden = true;
     document.getElementById("minion1").hidden = false;
     document.getElementById("mensagem").textContent = "Você curou o Minion!";
+    diario.anotar("Curei o Minion roxo usando a geleia do Gru.");
     save();
 }
 
@@ -28,6 +29,7 @@ function jogarMinigame() {
 
     if (temMoeda) {
         removerItem("Moeda");
+        diario.anotar("Usei a moeda para liberar a máquina Bananatron.");
         localStorage.setItem("fliperamaLiberado", "true");
     }
 
@@ -45,7 +47,8 @@ function perguntar() {
     } else if (falaAtual === 1) {
         msg.textContent =
             "Minion: Bello! Eu sei, mas só conto se você bater o recorde do Bob no Bananatron!";
-        falaAtual = 2;
+            diario.anotar("O Minion só conta a senha se eu bater o recorde do Bob (15) no Bananatron.");
+            falaAtual = 2;
     } else if (record > RECORDE_BOB) {
         msg.textContent = "Minion: Você bateu o recorde do Bob! A senha é 2024.";
         diario.anotar("Senha da porta do porão: 2024");

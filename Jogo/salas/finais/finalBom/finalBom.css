@@ -1,0 +1,68 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #101010;
+    color: #eee;
+    font-family: 'Special Elite', monospace;
+}
+
+#inicio {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: 1;
+}
+
+#tela-final {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.55);
+    text-align: center;
+}
+
+#tela-final[hidden] {
+    display: none;
+}
+
+#titulo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+button {
+    cursor: pointer;
+    padding: 32px 48px;
+    margin: 4px;
+    color: #f5ead5;
+    background: #29231e;
+    border: 1px solid #806b48;
+    border-radius: 4px;
+    font-size: 30px;
+}
+
+button:hover {
+    background: #403426;
+}
+
+button:focus-visible {
+    outline: 2px solid #e7c88b;
+    outline-offset: 2px;
+}

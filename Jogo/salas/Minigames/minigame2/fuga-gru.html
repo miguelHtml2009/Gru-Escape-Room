@@ -14,6 +14,7 @@
         <p class="placar">Progresso da fuga: <span id="texto-progresso">0%</span></p>
         <p class="placar">Vidas: <span id="texto-vidas">3</span></p>
     </header>
+
     <main id="area-jogo">
         <section id="cenario">
             <div class="pista" style="left: 0px;"></div>
@@ -21,20 +22,19 @@
             <div class="pista" style="left: 360px;"></div>
 
             <div id="vector"></div>
-
             <div id="camada-raios"></div>
-
             <div id="gru"></div>
 
             <div id="tela-fim" class="oculto">
                 <h2 id="titulo-fim">Você fugiu!</h2>
-                <button onclick="iniciarJogo()">Jogar Novamente</button>
             </div>
         </section>
     </main>
+
     <footer id="rodape">
-        <p> Controles: Setas ⬅ e ➡ ou A e D</p>
+        <p>Controles: Setas ⬅ e ➡ ou A e D</p>
     </footer>
+
     <script src="fuga-gru.js"></script>
 </body>
 </html>

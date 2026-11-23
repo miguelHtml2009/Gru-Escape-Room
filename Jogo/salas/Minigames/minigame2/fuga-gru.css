@@ -51,8 +51,8 @@ body {
 
 #cenario {
     position: relative;
-    width: 540px;
-    height: 780px;
+    width: 546px;
+    height: 786px;
     background-color: #2f2f3f;
     border: 3px solid #ffffff;
     overflow: hidden;
@@ -133,24 +133,12 @@ body {
     display: none;
 }
 
-
 #tela-fim h2 {
     font-family: 'Iceberg', sans-serif;
     font-size: 40px;
     letter-spacing: 2px;
     color: #e0f7ff;
     margin-bottom: 20px;
-}
-
-#tela-fim button {
-    padding: 12px 24px;
-    font-size: 18px;
-    font-weight: bold;
-    background-color: #4cc9f0;
-    color: #000000;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
 }
 
 #rodape {

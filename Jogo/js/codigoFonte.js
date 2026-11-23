@@ -186,6 +186,9 @@ function carregarProgresso() {
         if (document.getElementById("Painelmin")) {
             document.getElementById("Painelmin").hidden = true;
         }
+        if (document.getElementById("Nefario")) {
+            document.getElementById("Nefario").hidden = false;
+        }
     }
 
     if (progresso.robertRasgado === true && document.getElementById("RobertRasgado")) {
@@ -296,14 +299,13 @@ const diario = {
         }
     },
 
-    atualizar: function () {
-
+   atualizar: function () {
         const anotacoes = document.getElementById("anotacoes");
         anotacoes.innerHTML = "<ol></ol>";
         const lista = anotacoes.querySelector("ol");
-        this.pistas.forEach(pista => {
-            lista.innerHTML += `<li>${pista}</li>`;
-        });
+        for (let i = 0; i < this.pistas.length; i++) {
+            lista.innerHTML += "<li>" + this.pistas[i] + "</li>";
+        }
     },
 
     salvar: function () {
