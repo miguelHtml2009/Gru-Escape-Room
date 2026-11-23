@@ -74,8 +74,16 @@ function save() {
             ? document.getElementById("Monster").hidden
             : dadosAntigos.monsterColetado,
         RobertApareceu: document.getElementById("Robert")
-            ? !document.getElementById("Robert").hidden
+            ? (!document.getElementById("Robert").hidden || !document.getElementById("RobertRasgado").hidden)
             : dadosAntigos.RobertApareceu,
+
+        robertRasgado: document.getElementById("RobertRasgado")
+            ? !document.getElementById("RobertRasgado").hidden
+            : dadosAntigos.robertRasgado,
+
+        moedaColetada: typeof Moeda !== "undefined"
+            ? Moeda.coletada
+            : dadosAntigos.moedaColetada,
         
         // INVENTÁRIO
         inventarioHTML: document.getElementById("inventario")
@@ -171,10 +179,22 @@ function carregarProgresso() {
         document.getElementById("minion1").hidden = false;
     }
     //Refugio
-    if(progresso.portaRefugioAberta === true && document.getElementById("cenario-emergencia")){
-        document.getElementById("cenario-emergencia").classList.add("energia-ativa");
+    if (progresso.portaRefugioAberta === true) {
+        if (document.getElementById("cenario-emergencia")) {
+            document.getElementById("cenario-emergencia").classList.add("energia-ativa");
+        }
+        if (document.getElementById("Painelmin")) {
+            document.getElementById("Painelmin").hidden = true;
+        }
     }
-    if (progresso.RobertApareceu === true && document.getElementById("Robert")) {
+
+    if (progresso.robertRasgado === true && document.getElementById("RobertRasgado")) {
+        document.getElementById("Robert").hidden = true;
+        document.getElementById("RobertRasgado").hidden = false;
+        if (document.getElementById("moeda")) {
+            document.getElementById("moeda").hidden = progresso.moedaColetada === true;
+        }
+    } else if (progresso.RobertApareceu === true && document.getElementById("Robert")) {
         document.getElementById("Robert").hidden = false;
     }
     

@@ -29,11 +29,25 @@
     </header>
 
     <main>
-        <img src="../../Sprites/painel.png" id="Painelmin" alt="Painel com quatro cores">
         <div id="sala" role="region" aria-label="Refúgio do Gru, Doutor Nefário está nessa sala, ele parece meio louco">
-            <div id="cenario-emergencia" onclick="estadoEnergia()"></div>
-            <img src="../../Sprites/Dr_Nefario.png" id="Nefario"  alt="Dr Nefário sorrindo" onclick="perguntar()">
-            <img src="../../Sprites/MolduraRobert.png" id="Robert" alt="Moldura de Roberto Gru" hidden>
+            <div id="cenario-emergencia" onclick="avisarLockdown()"></div>
+            <img src="../../Sprites/painel.png" id="Painelmin" alt="Painel com quatro cores" onclick="abrirPainel()">
+            
+            <img src="../../Sprites/Dr_Nefario.png" id="Nefario" alt="Dr Nefário sorrindo" onclick="perguntar()">
+            <img src="../../Sprites/MolduraRobert.png" id="Robert" alt="Moldura de Roberto Gru" onclick="rasgarRobert()" hidden>
+            <img src="../../Sprites/MolduraRobertRasgado.png" id="RobertRasgado" alt="Moldura de Roberto Gru rasgada" hidden>
+            <img src="../../Sprites/moeda.png" id="moeda" alt="Moeda dourada de fliperama" onclick="pegarMoeda()" hidden>
+        </div>
+        <div id="escuro" onclick="voltarEscuro()" hidden></div>
+        <div id="box-painel" hidden>
+            <img src="../../Sprites/painel_zoom.png" id="painel-zoom-img" alt="Painel ampliado com quatro botões coloridos e a letra M no centro">
+            
+            <button type="button" id="verde" class="botao-cor" aria-label="Botão verde" onclick="clicarCor('verde')"></button>
+            <button type="button" id="vermelho" class="botao-cor" aria-label="Botão vermelho" onclick="clicarCor('vermelho')"></button>
+            <button type="button" id="amarelo" class="botao-cor" aria-label="Botão amarelo" onclick="clicarCor('amarelo')"></button>
+            <button type="button" id="azul" class="botao-cor" aria-label="Botão azul" onclick="clicarCor('azul')"></button>
+            
+            <button type="button" id="btn-iniciar-genius" aria-label="Iniciar sequência" onclick="iniciarGenius()">Reiniciar/Iniciar</button>
         </div>
     </main>
 

@@ -19,6 +19,18 @@
     left: 308px;
     width: 16%;
 }
+#RobertRasgado{
+   position: absolute;
+    top: 220px;
+    left: 308px;
+    width: 16%; 
+}
+#moeda{
+    position: absolute;
+    top: 312px;
+    left: 382px;
+    width: 1.5%;
+}
 #cenario-emergencia {
     position: absolute;
     top: 0;
@@ -36,9 +48,133 @@
     pointer-events: none;
     display: none;
 }
-#Painelmin{
+#Painelmin {
     position: absolute;
-    top: 10px;
-    left: 10px;
-    width: 20%;
+    top: 172px;
+    left: 269px;
+    width: 6%;
+    cursor: pointer;
+    z-index: 16; /* Fica 1 nível acima do #cenario-emergencia (15) */
+}
+
+/* Fundo escuro ao abrir o zoom */
+#escuro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 50;
+}
+
+/* Caixa central do painel ampliado */
+#box-painel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 380px;
+    height: 380px;
+    z-index: 51;
+}
+
+#painel-zoom-img {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Áreas clicáveis das 4 cores */
+.botao-cor {
+    position: absolute;
+    width: 37.5%;
+    height: 37.5%;
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+/* VERDE */
+#verde {
+    top: 11%;
+    left: 11%;
+    border-top-left-radius: 100%;
+    -webkit-mask-image: radial-gradient(circle at 104% 104%, transparent 51%, black 52%);
+    mask-image: radial-gradient(circle at 104% 104%, transparent 51%, black 52%);
+}
+
+#verde:hover {
+    background: rgba(46, 255, 84, 0.25);
+}
+
+#verde:active,
+#verde.aceso {
+    background: rgba(70, 255, 105, 0.85);
+    mix-blend-mode: screen;
+}
+
+/* VERMELHO */
+#vermelho {
+    top: 11%;
+    right: 11%;
+    border-top-right-radius: 100%;
+    -webkit-mask-image: radial-gradient(circle at -4% 104%, transparent 51%, black 52%);
+    mask-image: radial-gradient(circle at -4% 104%, transparent 51%, black 52%);
+}
+
+#vermelho:hover {
+    background: rgba(255, 46, 46, 0.25);
+}
+
+#vermelho:active,
+#vermelho.aceso {
+    background: rgba(255, 65, 65, 0.85);
+    mix-blend-mode: screen;
+}
+
+/* AMARELO */
+#amarelo {
+    bottom: 11%;
+    left: 11%;
+    border-bottom-left-radius: 100%;
+    -webkit-mask-image: radial-gradient(circle at 104% -4%, transparent 51%, black 52%);
+    mask-image: radial-gradient(circle at 104% -4%, transparent 51%, black 52%);
+}
+
+#amarelo:hover {
+    background: rgba(255, 225, 0, 0.25);
+}
+
+#amarelo:active,
+#amarelo.aceso {
+    background: rgba(255, 235, 50, 0.85);
+    mix-blend-mode: screen;
+}
+
+/* AZUL */
+#azul {
+    bottom: 11%;
+    right: 11%;
+    border-bottom-right-radius: 100%;
+    -webkit-mask-image: radial-gradient(circle at -4% -4%, transparent 51%, black 52%);
+    mask-image: radial-gradient(circle at -4% -4%, transparent 51%, black 52%);
+}
+
+#azul:hover {
+    background: rgba(30, 144, 255, 0.25);
+}
+
+#azul:active,
+#azul.aceso {
+    background: rgba(65, 170, 255, 0.85);
+    mix-blend-mode: screen;
+}
+#btn-iniciar-genius{
+    position: absolute;
+    top: 371px;
+    left: 91px;
 }

@@ -17,6 +17,20 @@ const RECORDE_BOB = 15; // ajustar de acordo com o recorde do Bob
 let falaAtual = 0;
 
 function jogarMinigame() {
+    const temMoeda = document.getElementById("item-Moeda");
+    const fliperamaLiberado = localStorage.getItem("fliperamaLiberado") === "true";
+
+    if (!temMoeda && !fliperamaLiberado) {
+        document.getElementById("mensagem").textContent =
+            "A máquina está travada. Você precisa de uma moeda para jogar!";
+        return;
+    }
+
+    if (temMoeda) {
+        removerItem("Moeda");
+        localStorage.setItem("fliperamaLiberado", "true");
+    }
+
     save(); // guarda o tempo antes de sair da sala
     window.location.href = "Minigames/minigame1.html";
 }
