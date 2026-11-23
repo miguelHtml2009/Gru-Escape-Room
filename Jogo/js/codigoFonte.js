@@ -62,6 +62,21 @@ function save() {
             ? !document.getElementById("minion1").hidden
             : dadosAntigos.minionCurado,
 
+        //Refugio
+        portaRefugioAberta: document.getElementById("cenario-emergencia")
+        ? document.getElementById("cenario-emergencia").classList.contains("energia-ativa")
+        : dadosAntigos.portaRefugioAberta,
+        falaNefario: typeof falaNefario !== "undefined"
+            ? falaNefario
+            : dadosAntigos.falaNefario,
+
+        monsterColetado: document.getElementById("Monster")
+            ? document.getElementById("Monster").hidden
+            : dadosAntigos.monsterColetado,
+        RobertApareceu: document.getElementById("Robert")
+            ? !document.getElementById("Robert").hidden
+            : dadosAntigos.RobertApareceu,
+        
         // INVENTÁRIO
         inventarioHTML: document.getElementById("inventario")
             ? document.getElementById("inventario").innerHTML
@@ -127,7 +142,9 @@ function carregarProgresso() {
 
         quadroRasgado = true;
     }
-
+    if (progresso.monsterColetado === true && document.getElementById("Monster")) {
+        document.getElementById("Monster").hidden = true;
+    }
 
     // LINHA DE MONTAGEM
     // ENERGIA
@@ -147,14 +164,20 @@ function carregarProgresso() {
     if (progresso.telefoneBloqueadoAvisado === true) {
         localStorage.setItem("telefoneBloqueadoAvisado", "true");
     }
-    //flipersama
+    //fliperama
         if (progresso.minionCurado === true
         && document.getElementById("minion1")) {
         document.getElementById("minion1roxo").hidden = true;
         document.getElementById("minion1").hidden = false;
     }
-
-
+    //Refugio
+    if(progresso.portaRefugioAberta === true && document.getElementById("cenario-emergencia")){
+        document.getElementById("cenario-emergencia").classList.add("energia-ativa");
+    }
+    if (progresso.RobertApareceu === true && document.getElementById("Robert")) {
+        document.getElementById("Robert").hidden = false;
+    }
+    
     // INVENTÁRIO
     const inventario = document.getElementById("inventario");
     if (inventario && progresso.inventarioHTML != null) {

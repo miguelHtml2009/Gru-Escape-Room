@@ -9,6 +9,11 @@ body {
     color: #eee;
     font-family: 'Special Elite', monospace;
 }
+img {
+    user-select: none;
+    -webkit-user-select: none; 
+    -webkit-user-drag: none;  
+}
 
 header {
     text-align: center;
@@ -310,4 +315,23 @@ footer h2 {
     color: #c62828;
     letter-spacing: 4px;
     margin-bottom: 8px;
+}
+body.efeito-monster::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255, 215, 0, 0.28);
+    pointer-events: none; 
+    animation: pulso-amarelo 1s infinite alternate;
+}
+@keyframes pulso-amarelo {
+    from {
+        background: rgba(255, 215, 0, 0.18);
+    }
+    to {
+        background: rgba(255, 235, 0, 0.38);
+    }
 }

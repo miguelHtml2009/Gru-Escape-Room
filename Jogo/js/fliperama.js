@@ -13,7 +13,7 @@ function curar() {
     save();
 }
 
-const RECORDE_BOB = 15; // ajuste para o recorde do Bob
+const RECORDE_BOB = 15; // ajustar de acordo com o recorde do Bob
 let falaAtual = 0;
 
 function jogarMinigame() {

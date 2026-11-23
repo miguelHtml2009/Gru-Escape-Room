@@ -174,5 +174,18 @@
 #nefario{
     cursor: default;
 }
+#Monster{
+    position: absolute;
+    top: 368px;
+    left: 702px;
+    width: 5%;
+    transform: rotate(-24deg);
+}
+#lixeira{
+    position: absolute;
+    top: 394px;
+    left: 659px;
+    width: 15%;
+}
 
 

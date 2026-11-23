@@ -12,15 +12,33 @@
     left: 471px;
     width: 29%;
 }
-#Monster{
-    position: absolute;
-    top: 476px;
-    left: 435px;
-    width: 5%;
-}
+
 #Robert{
     position: absolute;
     top: 220px;
     left: 308px;
     width: 16%;
+}
+#cenario-emergencia {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../../Sprites/Emergencia.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    z-index: 15;
+}
+
+#cenario-emergencia.energia-ativa {
+    z-index: -1;
+    pointer-events: none;
+    display: none;
+}
+#Painelmin{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 20%;
 }

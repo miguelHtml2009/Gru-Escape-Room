@@ -3,6 +3,11 @@ const chave = document.getElementById("chave");
 const interruptor = document.getElementById("seguranca");
 const painelSeguranca = document.getElementById("painel-seguranca");
 
+const Monster = {
+    Elemento: document.getElementById("Monster"),
+    Coletado: false,
+}
+
 let energia = localStorage.getItem("energia") === "true";
 
 function abrirComputador() {
@@ -104,6 +109,10 @@ function atualizarSeguranca() {
 
 interruptor.addEventListener("change", atualizarSeguranca);
 
-function fugirPorao(){
-    window.location.href="Minigames/minigame2/fuga-gru.html";
+function ColetarMonster(){
+    Monster.Coletado = true;
+    Monster.Elemento.hidden = true;
+    mensagem.innerHTML = "Um monster amarelo, sua consistência é meio gelatinosa";
+    adicionarItem("Monster", "../../Sprites/Monster.png");
+    save();
 }
