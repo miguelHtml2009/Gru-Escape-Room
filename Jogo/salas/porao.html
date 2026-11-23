@@ -31,7 +31,7 @@
     <main>
         <div id="sala" role="region"
             aria-label="Porão do Gru, à esquerda um papel na parede, mais à direita uma porta trancada e um painel com senha à sua direita, mais à direita ainda, uma geladeira fechada">
-            <img src="../../Sprites/porta-fechada.png" id="porta-fechada" alt="Porta Fechada">
+            <img src="../../Sprites/porta-fechada.png" id="porta-fechada" alt="Porta Fechada" onclick="abrirPorta()">
             <img src="../../Sprites/porta-aberta.png" id="porta-aberta" alt="Porta Aberta"  onclick="fugirPorao()" hidden>
 
             <img src="../../Sprites/senha-porta.png" id="senha-porta" alt="Painel com senha" onclick="abrirPorta()">
@@ -46,7 +46,7 @@
             <img src="../../Sprites/geladeira-fechada.png" id="geladeira-fechada" alt="Geladeira Fechada"
                 onclick="abrirGeladeira()">
                 <img src="../../Sprites/geladeira-aberta.png" id="geladeira-aberta" alt="Geladeira aberta" hidden>
-            <img src="..." id="porta-aberta" alt="sair" onclick="sair()" hidden>
+            
 
             <img src="../../Sprites/geleia-do-gru.png" id="geleia" alt="Pote de geleia do Gru dentro da geladeira"
                 hidden onclick="pegarGeleia()">

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&family=Cinzel:wght@700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="alarme.css">
+    <link rel="shortcut icon" type="image/png" href="../../Sprites/icon.ico">
+    <title>Escape Room - Alarme Acionado</title>
+</head>
+<body>
+    <main>
+        <video id="inicio" src="../../videos/Alarmes.mp4" autoplay playsinline onclick="ativarSom()" onended="irParaMinigame()" aria-label="Cutscene: o sistema de segurança não foi desativado e o alarme disparou">
+            Seu navegador não suporta a reprodução deste vídeo.
+        </video>
+        <button type="button" id="pular" onclick="irParaMinigame()">Pular</button>
+    </main>
+
+    <script src="alarme.js" defer></script>
+</body>
+</html>

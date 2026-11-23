@@ -85,8 +85,14 @@ const Linha_de_Montagem = [
     "../../../Sprites/fios-conectados.png",
     "../../../Sprites/telefone.png",
 ];
-const Refugio = [
-
+const Refúgio = [
+    "../../../Sprites/painel.png",
+    "../../../Sprites/fundilho5.png",
+    "../../../Sprites/Dr_Nefario.png",
+    "../../../Sprites/MolduraRobert.png",
+    "../../../Sprites/MolduraRobertRasgado.png",
+    "../../../Sprites/moeda.png",
+    "../../../Sprites/painel_zoom.png",
 ];
 const Fuga = [
     "../../../Sprites/Minigame2/gru_rosto.png",
@@ -116,15 +122,17 @@ const descricoes = {
         
     ],
     Porão: [
-        "Geladeira fechada no porão",
-        "Porta aberta do porão",
+        "Porta fechada de ferro",
+        "Porta aberta de ferro",
         "Painel de senha da porta do porão",
         "Painel de senha da porta do porão com zoom",
         "Painel de senha da porta do porão com o display vermelho, concluido",
         "Geladeira fechada",
         "Geladeira aberta",
         "Geleia do Gru",
-        "Diário de Anotações"
+        "Bilhete de Gru",
+        "Bilhete de gru com zoom",
+        "Diário de Anotações",
     ],
     Laboratório: [
         "Computador desligado",
@@ -141,11 +149,11 @@ const descricoes = {
     Fliperama: [
         "Minion roxo maluco",
         "Minion com roupa de prisioneiro",
+        "Máquina de fliperama Bananatron",
         "Cenário retrô amarelo do fliperama",
         "Sprite de banana do fliperama",
         "Tela do minigame do fliperama",
         "Tela de Game Over do fliperama",
-        "Máquina de fliperama Bananatron"
     ],
     Linha_de_Montagem: [
         "Painel de fios fechado",
@@ -173,8 +181,14 @@ const descricoes = {
         "Telefone vermelho",
         "Diário de Anotações"
     ],
-    Refugio: [
-
+    Refúgio: [
+        "Genius Jogo",
+        "Plano de fundo do refúgio, com tubulações, uma cama, telefone e mantimentos",
+        "Doutor Nefário triste com uma poção na mão",
+        "Quadro com moldura de Robert Gru, pai de Gru",
+        "Quadro de Roberto Gru rasgado no meio",
+        "Moeda dourada reluzente, escrito nela está ARCADE TOKEN",
+        "Genius jogo, mas com zoom e um M no meio"
     ],
     Fuga: [
         "Gru irritado",
@@ -190,7 +204,7 @@ const categorias = {
     Laboratório: Laboratório,
     Fliperama: Fliperama,
     Linha_de_Montagem: Linha_de_Montagem,
-    Refugio: Refugio,
+    Refúgio: Refúgio,
     Fuga: Fuga
 };
 

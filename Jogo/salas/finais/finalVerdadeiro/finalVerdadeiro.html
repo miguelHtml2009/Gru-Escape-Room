@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&family=Cinzel:wght@700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="finalVerdadeiro.css">
+    <link rel="shortcut icon" type="image/png" href="../../../../Sprites/icon.ico">
+    <title>Escape Room - Final Verdadeiro</title>
+</head>
+<body>
+    <main id="tela-final">
+        <h1 id="titulo">Final Verdadeiro: Fuga Silenciosa!</h1>
+        <p id="descricao">
+            Você desativou o sistema de segurança antes de abrir a porta do porão. 
+            Nenhum alarme tocou, e o Gru nem percebeu que você escapou da base!
+        </p>
+        <button type="button" id="Reinicia" onclick="Reiniciar()">Jogar Novamente</button>
+    </main>
+
+    <script>
+        window.onload = function () {
+            const botao = document.getElementById("Reinicia");
+            if (botao) {
+                botao.focus();
+            }
+        };
+
+        function Reiniciar() {
+            localStorage.clear();
+            window.location.href = "../../porao.html";
+        }
+    </script>
+</body>
+</html>

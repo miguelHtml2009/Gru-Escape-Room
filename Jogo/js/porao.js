@@ -76,6 +76,15 @@ function sair() {
         window.location.href = "./finais/finalBom/finalBom.html";
     }
 }
-function fugirPorao(){
-    window.location.href="Minigames/minigame2/fuga-gru.html";
+function fugirPorao() {
+    save();
+    const segurancaDesativada = localStorage.getItem("seguranca") === "false";
+
+    if (segurancaDesativada) {
+        clearInterval(intervaloTimer);
+        localStorage.clear();
+        window.location.href = "finais/finalVerdadeiro/finalVerdadeiro.html";
+    } else {
+        window.location.href = "alarme.html";
+    }
 }
