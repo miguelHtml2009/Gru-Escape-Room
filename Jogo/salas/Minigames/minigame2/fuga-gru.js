@@ -103,7 +103,7 @@ function moverRaios(){
         let raio = raios[i];
 
         //Raio vai subindo a cada chamada da função 
-        raio.y = raio.y - 25;
+        raio.y = raio.y - 21;
 
         let mesmaPista = (raio.pista === vector.pista);
         let bateuAltura = (raio.y < 120 && (raio.y + 90) > 50); //Acertou a hitbox do Vector (40 até 130) com 10px de folga
@@ -180,7 +180,7 @@ function iniciarJogo(){
     atualizarPosicaoGru();
 
     jogo.relogioJogo = setInterval(moverRaios, 25);
-    jogo.relogioGru = setInterval(acaoGru, 330);
+    jogo.relogioGru = setInterval(acaoGru, 480);
 }
 
 iniciarJogo();

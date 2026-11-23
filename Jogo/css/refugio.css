@@ -6,3 +6,21 @@
     background-repeat: no-repeat;
     background-position: center;
 }
+#Nefario{
+    position: absolute;
+    top: 218px;
+    left: 471px;
+    width: 29%;
+}
+#Monster{
+    position: absolute;
+    top: 476px;
+    left: 435px;
+    width: 5%;
+}
+#Robert{
+    position: absolute;
+    top: 220px;
+    left: 308px;
+    width: 16%;
+}
