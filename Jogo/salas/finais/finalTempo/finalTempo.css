@@ -38,13 +38,13 @@ html, body {
     display: none;
 }
 
-#titulo-fim {
+#titulo {
     font-family: 'Orbitron', sans-serif;
     font-size: 48px;
     font-weight: 700;
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: #0a0a0a;
+    color: #ffffff;
 }
 
 button {
